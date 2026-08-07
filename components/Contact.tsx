@@ -1,11 +1,20 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import type {
+  FieldErrors,
+  SubmitHandler,
+  UseFormRegister,
+} from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Loader2, Mail, MapPin, Send } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { profile } from "@/data/portfolio";
+import { contactFormSchema } from "@/schemas/contactSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -16,43 +25,46 @@ interface FormState {
   message: string;
 }
 
-const initial: FormState = { name: "", email: "", subject: "", message: "" };
-
-const ease = [0.22, 1, 0.36, 1] as const;
+type ContactFormData = z.infer<typeof contactFormSchema>;
 
 export default function Contact() {
-  const [form, setForm] = useState<FormState>(initial);
   const [status, setStatus] = useState<Status>("idle");
-  const [errors, setErrors] = useState<
-    Partial<Record<keyof FormState, string>>
-  >({});
 
-  const validate = () => {
-    const next: Partial<Record<keyof FormState, string>> = {};
-    if (!form.name.trim()) next.name = "Please enter your name.";
-    if (!form.email.trim()) next.email = "Please enter your email.";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      next.email = "Enter a valid email.";
-    if (!form.subject.trim()) next.subject = "Add a subject.";
-    if (!form.message.trim()) next.message = "Add a message.";
-    setErrors(next);
-    return Object.keys(next).length === 0;
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
+  const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
+    console.log("Contact:", data);
     setStatus("sending");
-    setTimeout(() => {
-      setStatus("sent");
-      setForm(initial);
-      setTimeout(() => setStatus("idle"), 3500);
-    }, 1400);
-  };
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-  const update = (key: keyof FormState, value: string) => {
-    setForm((f) => ({ ...f, [key]: value }));
-    if (errors[key]) setErrors((er) => ({ ...er, [key]: undefined }));
+    if (!response.ok) {
+      console.log("Contact:res err", response.json());
+      throw new Error("Failed to submit");
+    }
+
+    const result = await response.json();
+    console.log("Contact:result", result);
+    setStatus("sent");
+    reset();
   };
 
   const contactCards = [
@@ -127,22 +139,24 @@ export default function Contact() {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="lg:col-span-3" noValidate>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="lg:col-span-3"
+            noValidate
+          >
             <div className="rounded-2xl glass-strong p-6 sm:p-8">
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field
                   label="Name"
-                  value={form.name}
-                  onChange={(v) => update("name", v)}
-                  error={errors.name}
+                  register={register}
+                  error={errors}
                   placeholder="Your name"
                   type="text"
                 />
                 <Field
                   label="Email"
-                  value={form.email}
-                  onChange={(v) => update("email", v)}
-                  error={errors.email}
+                  register={register}
+                  error={errors}
                   placeholder="you@example.com"
                   type="email"
                 />
@@ -150,9 +164,8 @@ export default function Contact() {
               <div className="mt-4">
                 <Field
                   label="Subject"
-                  value={form.subject}
-                  onChange={(v) => update("subject", v)}
-                  error={errors.subject}
+                  register={register}
+                  error={errors}
                   placeholder="Project inquiry"
                   type="text"
                 />
@@ -162,8 +175,7 @@ export default function Contact() {
                   Message
                 </label>
                 <textarea
-                  value={form.message}
-                  onChange={(e) => update("message", e.target.value)}
+                  {...register("message")}
                   rows={5}
                   placeholder="Tell me about your project, timeline, and goals..."
                   className={`w-full resize-none rounded-xl border bg-white/60 px-4 py-3 text-sm text-ink-800 placeholder:text-ink-400 outline-none transition-colors focus:border-brand-500 dark:bg-white/5 dark:text-ink-100 dark:placeholder:text-ink-500 ${
@@ -172,7 +184,7 @@ export default function Contact() {
                 />
                 {errors.message && (
                   <p className="mt-1.5 text-xs text-error-500">
-                    {errors.message}
+                    {errors.message.message}
                   </p>
                 )}
               </div>
@@ -245,21 +257,14 @@ export default function Contact() {
 
 interface FieldProps {
   label: string;
-  value: string;
-  onChange: (v: string) => void;
-  error?: string;
+  register: UseFormRegister<FormState>;
+  error: FieldErrors<FormState>;
   placeholder: string;
   type: string;
 }
 
-function Field({
-  label,
-  value,
-  onChange,
-  error,
-  placeholder,
-  type,
-}: FieldProps) {
+function Field({ label, register, error, placeholder, type }: FieldProps) {
+  const fieldName = label.toLowerCase() as keyof FormState;
   return (
     <div>
       <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-ink-500 dark:text-ink-300">
@@ -267,14 +272,17 @@ function Field({
       </label>
       <input
         type={type}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+        {...register(fieldName)}
         placeholder={placeholder}
         className={`w-full rounded-xl border bg-white/60 px-4 py-3 text-sm text-ink-800 placeholder:text-ink-400 outline-none transition-colors focus:border-brand-500 dark:bg-white/5 dark:text-ink-100 dark:placeholder:text-ink-500 ${
-          error ? "border-error-500/60" : "border-hairline"
+          error?.[fieldName] ? "border-error-500/60" : "border-hairline"
         }`}
       />
-      {error && <p className="mt-1.5 text-xs text-error-500">{error}</p>}
+      {error?.[fieldName] && (
+        <p className="mt-1.5 text-xs text-error-500">
+          {error?.[fieldName].message}
+        </p>
+      )}
     </div>
   );
 }
