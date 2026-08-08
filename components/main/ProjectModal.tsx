@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, ExternalLink, Layers, X } from "lucide-react";
-import { GithubIcon } from "@/components/icons";
+import { GithubIcon } from "@/components/main/icons";
 import type { Project } from "@/data/portfolio";
 
 interface ProjectModalProps {

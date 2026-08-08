@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Download, MapPin, Sparkles } from "lucide-react";
 import { profile } from "@/data/portfolio";
-import { GithubIcon, LinkedinIcon } from "@/components/icons";
+import { GithubIcon, LinkedinIcon } from "@/components/main/icons";
 
 const codeLines = [
   { t: "import", c: " { useEffect, useState } ", k: "from", q: "'react'" },

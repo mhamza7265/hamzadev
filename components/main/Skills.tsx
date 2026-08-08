@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Cloud, Code, Server } from "lucide-react";
-import SectionHeading from "@/components/SectionHeading";
+import SectionHeading from "@/components/main/SectionHeading";
 import { skills, type Skill, type SkillCategory } from "@/data/portfolio";
 
 type Filter = "All" | SkillCategory;

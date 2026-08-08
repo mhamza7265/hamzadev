@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUp, Heart } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/icons";
+import { GithubIcon, LinkedinIcon } from "@/components/main/icons";
 import { navLinks, profile } from "@/data/portfolio";
 
 export default function Footer() {

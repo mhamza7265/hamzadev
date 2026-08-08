@@ -11,7 +11,7 @@ import {
   Shield,
   Zap,
 } from "lucide-react";
-import SectionHeading from "@/components/SectionHeading";
+import SectionHeading from "@/components/main/SectionHeading";
 import { architectureNodes, type ArchitectureNode } from "@/data/portfolio";
 
 const iconMap: Record<ArchitectureNode["icon"], typeof Globe> = {

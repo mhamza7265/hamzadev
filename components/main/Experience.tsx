@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Briefcase, Check, MapPin } from "lucide-react";
-import SectionHeading from "@/components/SectionHeading";
+import SectionHeading from "@/components/main/SectionHeading";
 import { experiences } from "@/data/portfolio";
 
 const ease = [0.22, 1, 0.36, 1] as const;

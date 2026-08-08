@@ -9,8 +9,8 @@ import type {
 } from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Loader2, Mail, MapPin, Send } from "lucide-react";
-import SectionHeading from "@/components/SectionHeading";
-import { GithubIcon, LinkedinIcon } from "@/components/icons";
+import SectionHeading from "@/components/main/SectionHeading";
+import { GithubIcon, LinkedinIcon } from "@/components/main/icons";
 import { profile } from "@/data/portfolio";
 import { contactFormSchema } from "@/schemas/contactSchema";
 import { zodResolver } from "@hookform/resolvers/zod";

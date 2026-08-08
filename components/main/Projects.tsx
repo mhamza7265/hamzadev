@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, FileText } from "lucide-react";
-import SectionHeading from "@/components/SectionHeading";
-import ProjectModal from "@/components/ProjectModal";
-import { GithubIcon } from "@/components/icons";
+import SectionHeading from "@/components/main/SectionHeading";
+import ProjectModal from "@/components/main/ProjectModal";
+import { GithubIcon } from "@/components/main/icons";
 import { projects, type Project } from "@/data/portfolio";
 
 const ease = [0.22, 1, 0.36, 1] as const;
