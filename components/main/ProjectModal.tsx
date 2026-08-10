@@ -143,7 +143,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   Live Preview
                 </a>
               )}
-              {project.repoUrl && (
+              {project.repoUrl && !project.clientProject && (
                 <a
                   href={project.repoUrl}
                   target="_blank"

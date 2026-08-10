@@ -17,6 +17,7 @@ export interface Project {
   highlights: { label: string; value: string }[];
   liveUrl?: string;
   repoUrl?: string;
+  clientProject: boolean;
   accent: string; // tailwind gradient classes
   icon: "car" | "cart" | "chat" | "cms";
 }
@@ -129,8 +130,9 @@ export const projects: Project[] = [
       { label: "Deploy", value: "AWS EC2" },
       { label: "Auth", value: "JWT + RBAC" },
     ],
-    liveUrl: "#",
+    liveUrl: "https://thedrivehub.com/",
     repoUrl: "#",
+    clientProject: true,
     accent: "from-brand-500 to-accent-400",
     icon: "car",
   },
@@ -163,8 +165,9 @@ export const projects: Project[] = [
       { label: "Templating", value: "Blade" },
       { label: "Theme System", value: "Dynamic" },
     ],
-    liveUrl: "#",
+    liveUrl: "https://www.synaptekx.com/",
     repoUrl: "#",
+    clientProject: true,
     accent: "from-brand-500 to-accent-400",
     icon: "cms",
   },
