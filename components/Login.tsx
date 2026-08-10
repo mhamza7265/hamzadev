@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Eye, EyeClosed } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
   email: z.email(),
@@ -21,6 +22,8 @@ type LoginFormData = z.infer<typeof loginSchema>;
 const Login = () => {
   const [status, setStatus] = useState<Status>("idle");
   const [displayPass, setDisplayPass] = useState(false);
+
+  const router = useRouter();
 
   const {
     register,
@@ -59,6 +62,7 @@ const Login = () => {
       if (login?.ok) {
         setStatus("success");
         toast.success("Signed in successfully!");
+        router.push("/admin");
         reset();
       }
     } catch (error) {
