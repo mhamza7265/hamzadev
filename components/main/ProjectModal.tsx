@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, ExternalLink, Layers, X } from "lucide-react";
 import { GithubIcon } from "@/components/main/icons";
-import type { Project } from "@/data/portfolio";
+import type { Project } from "@/types/types";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -102,7 +102,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <ul className="mt-3 space-y-2.5">
                 {project.features.map((f, i) => (
                   <motion.li
-                    key={f}
+                    key={f.id}
                     initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 + i * 0.05, duration: 0.3 }}
@@ -111,7 +111,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-success-500/15 text-success-500 dark:text-success-400">
                       <Check className="h-3 w-3" />
                     </span>
-                    {f}
+                    {f.content}
                   </motion.li>
                 ))}
               </ul>
@@ -120,12 +120,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 Tech Stack
               </h4>
               <div className="mt-3 flex flex-wrap gap-2">
-                {project.stack.map((tech) => (
+                {project.technologies.map((tech) => (
                   <span
-                    key={tech}
+                    key={tech.id}
                     className="rounded-full border border-hairline bg-ink-100/50 px-3 py-1 text-xs font-medium text-ink-600 dark:bg-white/5 dark:text-ink-200"
                   >
-                    {tech}
+                    {tech.name}
                   </span>
                 ))}
               </div>

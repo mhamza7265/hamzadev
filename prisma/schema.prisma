@@ -85,8 +85,9 @@ model Project {
   tagline     String
   description String
 
-codePreviewName String?
+  codePreviewName String?
   previewCode  String?  @db.Text
+  codeLanguage  String?
 
   liveUrl     String?
   repoUrl     String?

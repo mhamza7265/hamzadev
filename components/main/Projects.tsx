@@ -6,12 +6,20 @@ import { ExternalLink, FileText } from "lucide-react";
 import SectionHeading from "@/components/main/SectionHeading";
 import ProjectModal from "@/components/main/ProjectModal";
 import { GithubIcon } from "@/components/main/icons";
-import { projects, type Project } from "@/data/portfolio";
+import { projects } from "@/data/portfolio";
+import type { Project } from "@/types/types";
+import CodePreview from "../CodePreview";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-export default function Projects() {
+interface ProjectProp {
+  data: Project[];
+}
+
+export default function Projects({ data }: ProjectProp) {
   const [active, setActive] = useState<Project | null>(null);
+
+  console.log("Projects:data", data);
 
   return (
     <section id="projects" className="relative py-20 sm:py-28">
@@ -24,7 +32,7 @@ export default function Projects() {
         />
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          {projects.map((project, i) => (
+          {data.map((project, i) => (
             <motion.article
               key={project.id}
               initial={{ opacity: 0, y: 28 }}
@@ -46,14 +54,17 @@ export default function Projects() {
                   </p>
 
                   <div className="mt-4 flex flex-wrap gap-1.5">
-                    {project.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-md border border-hairline bg-ink-100/40 px-2 py-0.5 text-[11px] font-medium text-ink-500 dark:bg-white/5 dark:text-ink-300"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                    {project.technologies.map((tech) => {
+                      console.log("Projects:tech", tech);
+                      return (
+                        <span
+                          key={tech.id}
+                          className="rounded-md border border-hairline bg-ink-100/40 px-2 py-0.5 text-[11px] font-medium text-ink-500 dark:bg-white/5 dark:text-ink-300"
+                        >
+                          {tech.name}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -77,7 +88,7 @@ export default function Projects() {
                         <ExternalLink className="h-4 w-4" />
                       </a>
                     )}
-                    {project.repoUrl && (
+                    {project.repoUrl && !project.clientProject && (
                       <a
                         href={project.repoUrl}
                         target="_blank"
@@ -102,6 +113,8 @@ export default function Projects() {
 }
 
 function ProjectPreview({ project }: { project: Project }) {
+  console.log("Projects:projects", project);
+  console.log(project.highlightedCode);
   return (
     <div className="relative h-44 overflow-hidden border-b border-hairline dark:bg-ink-950">
       <div className="absolute inset-0 bg-grid opacity-20" />
@@ -115,15 +128,17 @@ function ProjectPreview({ project }: { project: Project }) {
               <span className="h-2 w-2 rounded-full bg-warning-500/70" />
               <span className="h-2 w-2 rounded-full bg-success-500/70" />
               <span className="ml-2 font-mono text-[9px] text-ink-400">
-                {project.icon === "car"
-                  ? "fleet.ts"
-                  : project.icon === "cms"
-                    ? "PageController.php"
-                    : "presence.ts"}
+                {project.codePreviewName}
               </span>
             </div>
-            <div className="p-3 font-mono text-[9px] leading-relaxed">
-              <PreviewCode project={project} />
+            <div
+              dangerouslySetInnerHTML={{
+                __html: project.highlightedCode as string,
+              }}
+              className="p-3 font-mono text-[9px] leading-relaxed"
+            >
+              {/* {project.highlightedCode} */}
+              {/* {console.log("Projects:", project.highlightedCode)} */}
             </div>
           </div>
         </div>
@@ -143,142 +158,143 @@ function ProjectPreview({ project }: { project: Project }) {
   );
 }
 
-function PreviewCode({ project }: { project: Project }) {
-  if (project.icon === "car") {
-    return (
-      <pre className="whitespace-pre-wrap">
-        <span className="text-brand-300">{"const"}</span>{" "}
-        <span className="text-accent-300">fleet</span>{" "}
-        <span className="text-ink-400">{"="}</span>{" "}
-        <span className="text-brand-300">{"await"}</span>{" "}
-        <span className="text-accent-300">Vehicle</span>
-        <span className="text-ink-400">.</span>
-        <span className="text-accent-300">find</span>
-        <span className="text-ink-200">(</span>
-        <span className="text-ink-200">{"{"}</span>
-        {"\n    "}
-        <span className="text-warning-400">{"'status'"}</span>
-        <span className="text-ink-400">{":"}</span>{" "}
-        <span className="text-warning-400">{"'available'"}</span>
-        <span className="text-ink-400">{","}</span>
-        {"\n    "}
-        <span className="text-warning-400">{"'vendorId'"}</span>
-        <span className="text-ink-400">{":"}</span>{" "}
-        <span className="text-brand-300">{"req"}</span>
-        <span className="text-ink-400">.</span>
-        <span className="text-accent-300">vendor</span>
-        <span className="text-ink-400">.</span>
-        <span className="text-accent-300">id</span>
-        {"\n  "}
-        <span className="text-ink-200">{"}"}</span>
-        <span className="text-ink-200">)</span>
-        <span className="text-ink-400">.</span>
-        <span className="text-accent-300">populate</span>
-        <span className="text-ink-200">(</span>
-        <span className="text-warning-400">{"'location'"}</span>
-        <span className="text-ink-200">);</span>
-        {"\n\n"}
-        <span className="text-ink-500">{"// sync fleet media to aws s3"}</span>
-        {"\n"}
-        <span className="text-accent-300">S3Storage</span>
-        <span className="text-ink-400">.</span>
-        <span className="text-accent-300">uploadMedia</span>
-        <span className="text-ink-200">(</span>
-        <span className="text-accent-300">fleet</span>
-        <span className="text-ink-200">);</span>
-      </pre>
-    );
-  }
-  if (project.icon === "cms") {
-    return (
-      <pre className="whitespace-pre-wrap">
-        <span className="text-brand-300">{"$cmsData"}</span>{" "}
-        <span className="text-ink-400">{"="}</span>{" "}
-        <span className="text-accent-300">PageContent</span>
-        <span className="text-ink-400">::</span>
-        <span className="text-accent-300">where</span>
-        <span className="text-ink-200">(</span>
-        <span className="text-warning-400">{"'slug'"}</span>
-        <span className="text-ink-400">,</span>{" "}
-        <span className="text-brand-300">{"$slug"}</span>
-        <span className="text-ink-200">)</span>
-        {"\n  "}
-        <span className="text-ink-400">{"->"}</span>
-        <span className="text-accent-300">firstOrFail</span>
-        <span className="text-ink-200">();</span>
-        {"\n\n"}
-        <span className="text-brand-300">{"return"}</span>{" "}
-        <span className="text-accent-300">response</span>
-        <span className="text-ink-200">()</span>
-        <span className="text-ink-400">{"->"}</span>
-        <span className="text-accent-300">json</span>
-        <span className="text-ink-200">(</span>
-        <span className="text-brand-300">{"$cmsData"}</span>
-        <span className="text-ink-200">);</span>
-      </pre>
-    );
-  }
-  if (project.icon === "cart") {
-    return (
-      <pre className="whitespace-pre-wrap">
-        <span className="text-brand-300">{"$product"}</span>
-        <span className="text-ink-400">{"->"}</span>
-        <span className="text-accent-300">where</span>
-        <span className="text-ink-200">(</span>
-        <span className="text-warning-400">{"'stock'"}</span>
-        <span className="text-ink-400">,</span>{" "}
-        <span className="text-warning-400">{"'>'"}</span>
-        <span className="text-ink-400">,</span>{" "}
-        <span className="text-brand-400">0</span>
-        <span className="text-ink-200">)</span>
-        {"\n  "}
-        <span className="text-ink-400">{"->"}</span>
-        <span className="text-accent-300">paginate</span>
-        <span className="text-ink-200">(</span>
-        <span className="text-brand-300">24</span>
-        <span className="text-ink-200">);</span>
-        {"\n\n"}
-        <span className="text-ink-500">{"// auto restock alert"}</span>
-        {"\n"}
-        <span className="text-accent-300">StockAlert</span>
-        <span className="text-ink-400">::</span>
-        <span className="text-accent-300">dispatch</span>
-        <span className="text-ink-200">(</span>
-        <span className="text-warning-400">{"'low'"}</span>
-        <span className="text-ink-200">);</span>
-      </pre>
-    );
-  }
-  return (
-    <pre className="whitespace-pre-wrap">
-      <span className="text-brand-300">io</span>
-      <span className="text-ink-400">.</span>
-      <span className="text-accent-300">on</span>
-      <span className="text-ink-200">(</span>
-      <span className="text-warning-400">{"'message'"}</span>
-      <span className="text-ink-400">,</span>{" "}
-      <span className="text-ink-200">(</span>
-      <span className="text-accent-300">msg</span>
-      <span className="text-ink-200">) </span>
-      <span className="text-brand-300">{"=>"}</span>{" "}
-      <span className="text-ink-200">{"}{"}</span>
-      {"\n  "}
-      <span className="text-accent-300">presence</span>
-      <span className="text-ink-400">.</span>
-      <span className="text-accent-300">set</span>
-      <span className="text-ink-200">(</span>
-      <span className="text-warning-400">{"'online'"}</span>
-      <span className="text-ink-200">);</span>
-      {"\n  "}
-      <span className="text-accent-300">broadcast</span>
-      <span className="text-ink-400">.</span>
-      <span className="text-accent-300">emit</span>
-      <span className="text-ink-200">(</span>
-      <span className="text-accent-300">msg</span>
-      <span className="text-ink-200">);</span>
-      {"\n"}
-      <span className="text-ink-200">{"}"}</span>
-      <span className="text-ink-200">);</span>
-    </pre>
-  );
-}
+// function PreviewCode({ project }: { project: Project }) {
+//   if(project.icon === 'car')
+//   // if (project.icon === "car") {
+//   //   return (
+//   //     <pre className="whitespace-pre-wrap">
+//   //       <span className="text-brand-300">{"const"}</span>{" "}
+//   //       <span className="text-accent-300">fleet</span>{" "}
+//   //       <span className="text-ink-400">{"="}</span>{" "}
+//   //       <span className="text-brand-300">{"await"}</span>{" "}
+//   //       <span className="text-accent-300">Vehicle</span>
+//   //       <span className="text-ink-400">.</span>
+//   //       <span className="text-accent-300">find</span>
+//   //       <span className="text-ink-200">(</span>
+//   //       <span className="text-ink-200">{"{"}</span>
+//   //       {"\n    "}
+//   //       <span className="text-warning-400">{"'status'"}</span>
+//   //       <span className="text-ink-400">{":"}</span>{" "}
+//   //       <span className="text-warning-400">{"'available'"}</span>
+//   //       <span className="text-ink-400">{","}</span>
+//   //       {"\n    "}
+//   //       <span className="text-warning-400">{"'vendorId'"}</span>
+//   //       <span className="text-ink-400">{":"}</span>{" "}
+//   //       <span className="text-brand-300">{"req"}</span>
+//   //       <span className="text-ink-400">.</span>
+//   //       <span className="text-accent-300">vendor</span>
+//   //       <span className="text-ink-400">.</span>
+//   //       <span className="text-accent-300">id</span>
+//   //       {"\n  "}
+//   //       <span className="text-ink-200">{"}"}</span>
+//   //       <span className="text-ink-200">)</span>
+//   //       <span className="text-ink-400">.</span>
+//   //       <span className="text-accent-300">populate</span>
+//   //       <span className="text-ink-200">(</span>
+//   //       <span className="text-warning-400">{"'location'"}</span>
+//   //       <span className="text-ink-200">);</span>
+//   //       {"\n\n"}
+//   //       <span className="text-ink-500">{"// sync fleet media to aws s3"}</span>
+//   //       {"\n"}
+//   //       <span className="text-accent-300">S3Storage</span>
+//   //       <span className="text-ink-400">.</span>
+//   //       <span className="text-accent-300">uploadMedia</span>
+//   //       <span className="text-ink-200">(</span>
+//   //       <span className="text-accent-300">fleet</span>
+//   //       <span className="text-ink-200">);</span>
+//   //     </pre>
+//   //   );
+//   // }
+//   // if (project.icon === "cms") {
+//   //   return (
+//   //     <pre className="whitespace-pre-wrap">
+//   //       <span className="text-brand-300">{"$cmsData"}</span>{" "}
+//   //       <span className="text-ink-400">{"="}</span>{" "}
+//   //       <span className="text-accent-300">PageContent</span>
+//   //       <span className="text-ink-400">::</span>
+//   //       <span className="text-accent-300">where</span>
+//   //       <span className="text-ink-200">(</span>
+//   //       <span className="text-warning-400">{"'slug'"}</span>
+//   //       <span className="text-ink-400">,</span>{" "}
+//   //       <span className="text-brand-300">{"$slug"}</span>
+//   //       <span className="text-ink-200">)</span>
+//   //       {"\n  "}
+//   //       <span className="text-ink-400">{"->"}</span>
+//   //       <span className="text-accent-300">firstOrFail</span>
+//   //       <span className="text-ink-200">();</span>
+//   //       {"\n\n"}
+//   //       <span className="text-brand-300">{"return"}</span>{" "}
+//   //       <span className="text-accent-300">response</span>
+//   //       <span className="text-ink-200">()</span>
+//   //       <span className="text-ink-400">{"->"}</span>
+//   //       <span className="text-accent-300">json</span>
+//   //       <span className="text-ink-200">(</span>
+//   //       <span className="text-brand-300">{"$cmsData"}</span>
+//   //       <span className="text-ink-200">);</span>
+//   //     </pre>
+//   //   );
+//   // }
+//   // if (project.icon === "cart") {
+//   //   return (
+//   //     <pre className="whitespace-pre-wrap">
+//   //       <span className="text-brand-300">{"$product"}</span>
+//   //       <span className="text-ink-400">{"->"}</span>
+//   //       <span className="text-accent-300">where</span>
+//   //       <span className="text-ink-200">(</span>
+//   //       <span className="text-warning-400">{"'stock'"}</span>
+//   //       <span className="text-ink-400">,</span>{" "}
+//   //       <span className="text-warning-400">{"'>'"}</span>
+//   //       <span className="text-ink-400">,</span>{" "}
+//   //       <span className="text-brand-400">0</span>
+//   //       <span className="text-ink-200">)</span>
+//   //       {"\n  "}
+//   //       <span className="text-ink-400">{"->"}</span>
+//   //       <span className="text-accent-300">paginate</span>
+//   //       <span className="text-ink-200">(</span>
+//   //       <span className="text-brand-300">24</span>
+//   //       <span className="text-ink-200">);</span>
+//   //       {"\n\n"}
+//   //       <span className="text-ink-500">{"// auto restock alert"}</span>
+//   //       {"\n"}
+//   //       <span className="text-accent-300">StockAlert</span>
+//   //       <span className="text-ink-400">::</span>
+//   //       <span className="text-accent-300">dispatch</span>
+//   //       <span className="text-ink-200">(</span>
+//   //       <span className="text-warning-400">{"'low'"}</span>
+//   //       <span className="text-ink-200">);</span>
+//   //     </pre>
+//   //   );
+//   // }
+//   // return (
+//   //   <pre className="whitespace-pre-wrap">
+//   //     <span className="text-brand-300">io</span>
+//   //     <span className="text-ink-400">.</span>
+//   //     <span className="text-accent-300">on</span>
+//   //     <span className="text-ink-200">(</span>
+//   //     <span className="text-warning-400">{"'message'"}</span>
+//   //     <span className="text-ink-400">,</span>{" "}
+//   //     <span className="text-ink-200">(</span>
+//   //     <span className="text-accent-300">msg</span>
+//   //     <span className="text-ink-200">) </span>
+//   //     <span className="text-brand-300">{"=>"}</span>{" "}
+//   //     <span className="text-ink-200">{"}{"}</span>
+//   //     {"\n  "}
+//   //     <span className="text-accent-300">presence</span>
+//   //     <span className="text-ink-400">.</span>
+//   //     <span className="text-accent-300">set</span>
+//   //     <span className="text-ink-200">(</span>
+//   //     <span className="text-warning-400">{"'online'"}</span>
+//   //     <span className="text-ink-200">);</span>
+//   //     {"\n  "}
+//   //     <span className="text-accent-300">broadcast</span>
+//   //     <span className="text-ink-400">.</span>
+//   //     <span className="text-accent-300">emit</span>
+//   //     <span className="text-ink-200">(</span>
+//   //     <span className="text-accent-300">msg</span>
+//   //     <span className="text-ink-200">);</span>
+//   //     {"\n"}
+//   //     <span className="text-ink-200">{"}"}</span>
+//   //     <span className="text-ink-200">);</span>
+//   //   </pre>
+//   // );
+// }

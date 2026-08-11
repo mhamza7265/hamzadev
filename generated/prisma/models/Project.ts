@@ -44,6 +44,7 @@ export type ProjectMinAggregateOutputType = {
   description: string | null
   codePreviewName: string | null
   previewCode: string | null
+  codeLanguage: string | null
   liveUrl: string | null
   repoUrl: string | null
   clientProject: boolean | null
@@ -62,6 +63,7 @@ export type ProjectMaxAggregateOutputType = {
   description: string | null
   codePreviewName: string | null
   previewCode: string | null
+  codeLanguage: string | null
   liveUrl: string | null
   repoUrl: string | null
   clientProject: boolean | null
@@ -80,6 +82,7 @@ export type ProjectCountAggregateOutputType = {
   description: number
   codePreviewName: number
   previewCode: number
+  codeLanguage: number
   liveUrl: number
   repoUrl: number
   clientProject: number
@@ -110,6 +113,7 @@ export type ProjectMinAggregateInputType = {
   description?: true
   codePreviewName?: true
   previewCode?: true
+  codeLanguage?: true
   liveUrl?: true
   repoUrl?: true
   clientProject?: true
@@ -128,6 +132,7 @@ export type ProjectMaxAggregateInputType = {
   description?: true
   codePreviewName?: true
   previewCode?: true
+  codeLanguage?: true
   liveUrl?: true
   repoUrl?: true
   clientProject?: true
@@ -146,6 +151,7 @@ export type ProjectCountAggregateInputType = {
   description?: true
   codePreviewName?: true
   previewCode?: true
+  codeLanguage?: true
   liveUrl?: true
   repoUrl?: true
   clientProject?: true
@@ -251,6 +257,7 @@ export type ProjectGroupByOutputType = {
   description: string
   codePreviewName: string | null
   previewCode: string | null
+  codeLanguage: string | null
   liveUrl: string | null
   repoUrl: string | null
   clientProject: boolean
@@ -292,6 +299,7 @@ export type ProjectWhereInput = {
   description?: Prisma.StringFilter<"Project"> | string
   codePreviewName?: Prisma.StringNullableFilter<"Project"> | string | null
   previewCode?: Prisma.StringNullableFilter<"Project"> | string | null
+  codeLanguage?: Prisma.StringNullableFilter<"Project"> | string | null
   liveUrl?: Prisma.StringNullableFilter<"Project"> | string | null
   repoUrl?: Prisma.StringNullableFilter<"Project"> | string | null
   clientProject?: Prisma.BoolFilter<"Project"> | boolean
@@ -313,6 +321,7 @@ export type ProjectOrderByWithRelationInput = {
   description?: Prisma.SortOrder
   codePreviewName?: Prisma.SortOrderInput | Prisma.SortOrder
   previewCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  codeLanguage?: Prisma.SortOrderInput | Prisma.SortOrder
   liveUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   repoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   clientProject?: Prisma.SortOrder
@@ -337,6 +346,7 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringFilter<"Project"> | string
   codePreviewName?: Prisma.StringNullableFilter<"Project"> | string | null
   previewCode?: Prisma.StringNullableFilter<"Project"> | string | null
+  codeLanguage?: Prisma.StringNullableFilter<"Project"> | string | null
   liveUrl?: Prisma.StringNullableFilter<"Project"> | string | null
   repoUrl?: Prisma.StringNullableFilter<"Project"> | string | null
   clientProject?: Prisma.BoolFilter<"Project"> | boolean
@@ -358,6 +368,7 @@ export type ProjectOrderByWithAggregationInput = {
   description?: Prisma.SortOrder
   codePreviewName?: Prisma.SortOrderInput | Prisma.SortOrder
   previewCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  codeLanguage?: Prisma.SortOrderInput | Prisma.SortOrder
   liveUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   repoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   clientProject?: Prisma.SortOrder
@@ -384,6 +395,7 @@ export type ProjectScalarWhereWithAggregatesInput = {
   description?: Prisma.StringWithAggregatesFilter<"Project"> | string
   codePreviewName?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
   previewCode?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
+  codeLanguage?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
   liveUrl?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
   repoUrl?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
   clientProject?: Prisma.BoolWithAggregatesFilter<"Project"> | boolean
@@ -401,6 +413,7 @@ export type ProjectCreateInput = {
   description: string
   codePreviewName?: string | null
   previewCode?: string | null
+  codeLanguage?: string | null
   liveUrl?: string | null
   repoUrl?: string | null
   clientProject?: boolean
@@ -422,6 +435,7 @@ export type ProjectUncheckedCreateInput = {
   description: string
   codePreviewName?: string | null
   previewCode?: string | null
+  codeLanguage?: string | null
   liveUrl?: string | null
   repoUrl?: string | null
   clientProject?: boolean
@@ -442,6 +456,7 @@ export type ProjectUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   codePreviewName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   previewCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   repoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clientProject?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -463,6 +478,7 @@ export type ProjectUncheckedUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   codePreviewName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   previewCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   repoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clientProject?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -484,6 +500,7 @@ export type ProjectCreateManyInput = {
   description: string
   codePreviewName?: string | null
   previewCode?: string | null
+  codeLanguage?: string | null
   liveUrl?: string | null
   repoUrl?: string | null
   clientProject?: boolean
@@ -501,6 +518,7 @@ export type ProjectUpdateManyMutationInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   codePreviewName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   previewCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   repoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clientProject?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -519,6 +537,7 @@ export type ProjectUncheckedUpdateManyInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   codePreviewName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   previewCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   repoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clientProject?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -537,6 +556,7 @@ export type ProjectCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   codePreviewName?: Prisma.SortOrder
   previewCode?: Prisma.SortOrder
+  codeLanguage?: Prisma.SortOrder
   liveUrl?: Prisma.SortOrder
   repoUrl?: Prisma.SortOrder
   clientProject?: Prisma.SortOrder
@@ -560,6 +580,7 @@ export type ProjectMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   codePreviewName?: Prisma.SortOrder
   previewCode?: Prisma.SortOrder
+  codeLanguage?: Prisma.SortOrder
   liveUrl?: Prisma.SortOrder
   repoUrl?: Prisma.SortOrder
   clientProject?: Prisma.SortOrder
@@ -578,6 +599,7 @@ export type ProjectMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   codePreviewName?: Prisma.SortOrder
   previewCode?: Prisma.SortOrder
+  codeLanguage?: Prisma.SortOrder
   liveUrl?: Prisma.SortOrder
   repoUrl?: Prisma.SortOrder
   clientProject?: Prisma.SortOrder
@@ -647,6 +669,7 @@ export type ProjectCreateWithoutTechnologiesInput = {
   description: string
   codePreviewName?: string | null
   previewCode?: string | null
+  codeLanguage?: string | null
   liveUrl?: string | null
   repoUrl?: string | null
   clientProject?: boolean
@@ -667,6 +690,7 @@ export type ProjectUncheckedCreateWithoutTechnologiesInput = {
   description: string
   codePreviewName?: string | null
   previewCode?: string | null
+  codeLanguage?: string | null
   liveUrl?: string | null
   repoUrl?: string | null
   clientProject?: boolean
@@ -702,6 +726,7 @@ export type ProjectUpdateWithoutTechnologiesInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   codePreviewName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   previewCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   repoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clientProject?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -722,6 +747,7 @@ export type ProjectUncheckedUpdateWithoutTechnologiesInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   codePreviewName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   previewCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   repoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clientProject?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -741,6 +767,7 @@ export type ProjectCreateWithoutFeaturesInput = {
   description: string
   codePreviewName?: string | null
   previewCode?: string | null
+  codeLanguage?: string | null
   liveUrl?: string | null
   repoUrl?: string | null
   clientProject?: boolean
@@ -761,6 +788,7 @@ export type ProjectUncheckedCreateWithoutFeaturesInput = {
   description: string
   codePreviewName?: string | null
   previewCode?: string | null
+  codeLanguage?: string | null
   liveUrl?: string | null
   repoUrl?: string | null
   clientProject?: boolean
@@ -796,6 +824,7 @@ export type ProjectUpdateWithoutFeaturesInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   codePreviewName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   previewCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   repoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clientProject?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -816,6 +845,7 @@ export type ProjectUncheckedUpdateWithoutFeaturesInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   codePreviewName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   previewCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   repoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clientProject?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -835,6 +865,7 @@ export type ProjectCreateWithoutHighlightsInput = {
   description: string
   codePreviewName?: string | null
   previewCode?: string | null
+  codeLanguage?: string | null
   liveUrl?: string | null
   repoUrl?: string | null
   clientProject?: boolean
@@ -855,6 +886,7 @@ export type ProjectUncheckedCreateWithoutHighlightsInput = {
   description: string
   codePreviewName?: string | null
   previewCode?: string | null
+  codeLanguage?: string | null
   liveUrl?: string | null
   repoUrl?: string | null
   clientProject?: boolean
@@ -890,6 +922,7 @@ export type ProjectUpdateWithoutHighlightsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   codePreviewName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   previewCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   repoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clientProject?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -910,6 +943,7 @@ export type ProjectUncheckedUpdateWithoutHighlightsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   codePreviewName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   previewCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  codeLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   liveUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   repoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clientProject?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -979,6 +1013,7 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   description?: boolean
   codePreviewName?: boolean
   previewCode?: boolean
+  codeLanguage?: boolean
   liveUrl?: boolean
   repoUrl?: boolean
   clientProject?: boolean
@@ -1001,6 +1036,7 @@ export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   description?: boolean
   codePreviewName?: boolean
   previewCode?: boolean
+  codeLanguage?: boolean
   liveUrl?: boolean
   repoUrl?: boolean
   clientProject?: boolean
@@ -1019,6 +1055,7 @@ export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   description?: boolean
   codePreviewName?: boolean
   previewCode?: boolean
+  codeLanguage?: boolean
   liveUrl?: boolean
   repoUrl?: boolean
   clientProject?: boolean
@@ -1037,6 +1074,7 @@ export type ProjectSelectScalar = {
   description?: boolean
   codePreviewName?: boolean
   previewCode?: boolean
+  codeLanguage?: boolean
   liveUrl?: boolean
   repoUrl?: boolean
   clientProject?: boolean
@@ -1047,7 +1085,7 @@ export type ProjectSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "title" | "tagline" | "description" | "codePreviewName" | "previewCode" | "liveUrl" | "repoUrl" | "clientProject" | "accent" | "icon" | "sortOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "title" | "tagline" | "description" | "codePreviewName" | "previewCode" | "codeLanguage" | "liveUrl" | "repoUrl" | "clientProject" | "accent" | "icon" | "sortOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
 export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   technologies?: boolean | Prisma.Project$technologiesArgs<ExtArgs>
   features?: boolean | Prisma.Project$featuresArgs<ExtArgs>
@@ -1072,6 +1110,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     description: string
     codePreviewName: string | null
     previewCode: string | null
+    codeLanguage: string | null
     liveUrl: string | null
     repoUrl: string | null
     clientProject: boolean
@@ -1513,6 +1552,7 @@ export interface ProjectFieldRefs {
   readonly description: Prisma.FieldRef<"Project", 'String'>
   readonly codePreviewName: Prisma.FieldRef<"Project", 'String'>
   readonly previewCode: Prisma.FieldRef<"Project", 'String'>
+  readonly codeLanguage: Prisma.FieldRef<"Project", 'String'>
   readonly liveUrl: Prisma.FieldRef<"Project", 'String'>
   readonly repoUrl: Prisma.FieldRef<"Project", 'String'>
   readonly clientProject: Prisma.FieldRef<"Project", 'Boolean'>

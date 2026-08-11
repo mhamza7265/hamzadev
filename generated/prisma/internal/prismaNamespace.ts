@@ -1285,6 +1285,7 @@ export const ProjectScalarFieldEnum = {
   description: 'description',
   codePreviewName: 'codePreviewName',
   previewCode: 'previewCode',
+  codeLanguage: 'codeLanguage',
   liveUrl: 'liveUrl',
   repoUrl: 'repoUrl',
   clientProject: 'clientProject',

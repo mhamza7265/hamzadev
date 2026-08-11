@@ -11,6 +11,7 @@ export async function projectSeed() {
         description: project.description,
         codePreviewName: project.codePreviewName,
         previewCode: project.previewCode,
+        codeLanguage: project.codeLanguage,
         liveUrl: project.liveUrl,
         repoUrl: project.repoUrl,
         clientProject: project.clientProject,
@@ -55,14 +56,15 @@ const projects = [
       "A commercial car rental platform built on a decoupled architecture.",
 
     codePreviewName: "fleet.ts",
+    codeLanguage: "javascript",
 
     previewCode: `const fleet = await Vehicle.find({
     'status': 'available',
     'vendorId': req.vendor.id
-}).populate('location');
+      }).populate('location');
 
-// sync fleet media to aws s3
-S3Storage.uploadMedia(fleet);`,
+      // sync fleet media to aws s3
+      S3Storage.uploadMedia(fleet);`,
 
     liveUrl: "https://thedrivehub.com/",
     repoUrl: "#",
@@ -108,6 +110,8 @@ S3Storage.uploadMedia(fleet);`,
     description:
       "A bespoke business web application and custom CMS delivered for an international client in the UK. Features a dynamic global color selector that updates the public storefront styling in real time, alongside blog management, stock alert triggers, and optimized Blade templates.",
     codePreviewName: "PageController.php",
+
+    codeLanguage: "php",
 
     previewCode: `$cmsData = PageContent::where(
     'slug',

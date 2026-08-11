@@ -4,7 +4,19 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Cloud, Code, Server } from "lucide-react";
 import SectionHeading from "@/components/main/SectionHeading";
-import { skills, type Skill, type SkillCategory } from "@/data/portfolio";
+import { type SkillCategory } from "@/data/portfolio";
+
+type Skill = {
+  id: number;
+  name: string;
+  category: string;
+  level: number;
+  tag: string;
+};
+
+interface SkillProps {
+  data: Skill[];
+}
 
 type Filter = "All" | SkillCategory;
 
@@ -36,13 +48,12 @@ const categoryIcon: Record<SkillCategory, typeof Code> = {
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-export default function Skills() {
+export default function Skills({ data }: SkillProps) {
   const [filter, setFilter] = useState<Filter>("All");
 
   const visible = useMemo(
-    () =>
-      filter === "All" ? skills : skills.filter((s) => s.category === filter),
-    [filter],
+    () => (filter === "All" ? data : data.filter((s) => s.category === filter)),
+    [filter, data],
   );
 
   return (
@@ -83,7 +94,7 @@ export default function Skills() {
         >
           <AnimatePresence mode="popLayout">
             {visible.map((skill) => {
-              const Icon = categoryIcon[skill.category];
+              const Icon = categoryIcon[skill.category as SkillCategory];
               return (
                 <motion.div
                   key={skill.name}
