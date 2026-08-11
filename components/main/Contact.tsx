@@ -193,7 +193,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === "sending" || status === "sent"}
-                  className="relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95 disabled:cursor-not-allowed disabled:opacity-80"
+                  className="relative cursor-pointer inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95 disabled:cursor-not-allowed disabled:opacity-80"
                 >
                   <AnimatePresence mode="wait" initial={false}>
                     {status === "sending" && (

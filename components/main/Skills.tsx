@@ -59,7 +59,7 @@ export default function Skills() {
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              className={`relative cursor-pointer rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                 filter === f
                   ? "text-white"
                   : "text-ink-500 hover:text-ink-900 dark:text-ink-300 dark:hover:text-white"

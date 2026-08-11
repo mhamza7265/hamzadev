@@ -81,7 +81,7 @@ export default function Hero() {
           >
             <button
               onClick={() => scrollTo("#projects")}
-              className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95"
+              className="group cursor-pointer inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95"
             >
               View Projects
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

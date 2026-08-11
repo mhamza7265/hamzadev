@@ -60,7 +60,7 @@ export default function Projects() {
                 <div className="mt-6 flex items-center gap-2 border-t border-hairline pt-4">
                   <button
                     onClick={() => setActive(project)}
-                    className="inline-flex items-center gap-1.5 rounded-lg bg-brand-500/10 px-3 py-2 text-xs font-semibold text-brand-500 transition-colors hover:bg-brand-500/20 dark:text-brand-300"
+                    className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg bg-brand-500/10 px-3 py-2 text-xs font-semibold text-brand-500 transition-colors hover:bg-brand-500/20 dark:text-brand-300"
                   >
                     <FileText className="h-3.5 w-3.5" />
                     View Case Study

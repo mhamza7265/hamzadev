@@ -34,7 +34,7 @@ export default function Footer() {
               <button
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
-                className="text-sm text-ink-500 transition-colors hover:text-brand-500 dark:text-ink-300 dark:hover:text-brand-300"
+                className="text-sm cursor-pointer text-ink-500 transition-colors hover:text-brand-500 dark:text-ink-300 dark:hover:text-brand-300"
               >
                 {link.label}
               </button>
@@ -78,7 +78,7 @@ export default function Footer() {
           </p>
           <button
             onClick={() => scrollTo("#about")}
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-ink-500 transition-colors hover:text-brand-500 dark:text-ink-300 dark:hover:text-brand-300"
+            className="inline-flex cursor-pointer items-center gap-1.5 text-xs font-medium text-ink-500 transition-colors hover:text-brand-500 dark:text-ink-300 dark:hover:text-brand-300"
           >
             Back to top
             <ArrowUp className="h-3.5 w-3.5" />

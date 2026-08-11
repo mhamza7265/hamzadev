@@ -87,7 +87,7 @@ export default function Navbar() {
                 <button
                   key={link.href}
                   onClick={() => handleNav(link.href)}
-                  className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors cursor-pointer ${
                     active === link.href
                       ? "text-brand-500 dark:text-brand-300"
                       : "text-ink-500 hover:text-ink-900 dark:text-ink-300 dark:hover:text-white"
@@ -113,7 +113,7 @@ export default function Navbar() {
               <button
                 onClick={toggleTheme}
                 aria-label="Toggle theme"
-                className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-hairline bg-ink-100/60 text-ink-600 transition-colors hover:text-brand-500 dark:bg-white/5 dark:text-ink-200 dark:hover:text-brand-300"
+                className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-hairline bg-ink-100/60 text-ink-600 transition-colors hover:text-brand-500 dark:bg-white/5 dark:text-ink-200 dark:hover:text-brand-300 cursor-pointer"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {isDark ? (
@@ -142,7 +142,7 @@ export default function Navbar() {
 
               <button
                 onClick={() => handleNav("#contact")}
-                className="hidden rounded-lg bg-gradient-to-r from-brand-500 to-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95 sm:inline-flex"
+                className="hidden rounded-lg bg-gradient-to-r cursor-pointer from-brand-500 to-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95 sm:inline-flex"
               >
                 Hire Me
               </button>
@@ -150,7 +150,7 @@ export default function Navbar() {
               <button
                 onClick={() => setOpen(true)}
                 aria-label="Open menu"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-hairline bg-ink-100/60 text-ink-700 dark:bg-white/5 dark:text-ink-100 md:hidden"
+                className="flex cursor-pointer h-9 w-9 items-center justify-center rounded-lg border border-hairline bg-ink-100/60 text-ink-700 dark:bg-white/5 dark:text-ink-100 md:hidden"
               >
                 <Menu className="h-5 w-5" />
               </button>
