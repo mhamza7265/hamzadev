@@ -55,7 +55,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <button
                 onClick={onClose}
                 aria-label="Close case study"
-                className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-lg bg-ink-950/30 text-white backdrop-blur transition-colors hover:bg-ink-950/50"
+                className="absolute cursor-pointer right-4 top-4 flex h-9 w-9 items-center justify-center rounded-lg bg-ink-950/30 text-white backdrop-blur transition-colors hover:bg-ink-950/50"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -137,7 +137,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95"
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95"
                 >
                   <ExternalLink className="h-4 w-4" />
                   Live Preview
@@ -148,7 +148,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   href={project.repoUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-hairline px-4 py-2.5 text-sm font-semibold text-ink-700 transition-colors hover:text-brand-500 dark:text-ink-100 dark:hover:text-brand-300"
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-hairline px-4 py-2.5 text-sm font-semibold text-ink-700 transition-colors hover:text-brand-500 dark:text-ink-100 dark:hover:text-brand-300"
                 >
                   <GithubIcon className="h-4 w-4" />
                   Source Code
@@ -156,7 +156,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               )}
               <button
                 onClick={onClose}
-                className="ml-auto text-sm font-medium text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-100"
+                className="ml-auto cursor-pointer text-sm font-medium text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-100"
               >
                 Close
               </button>
