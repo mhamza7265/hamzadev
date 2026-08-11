@@ -71,10 +71,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-hairline pt-6 sm:flex-row">
-          <p className="flex items-center gap-1.5 text-xs text-ink-400">
-            © {year} {profile.name}. Built with
-            <Heart className="h-3.5 w-3.5 text-brand-500" />
-            using Next.js, TypeScript & Tailwind CSS.
+          <p className="text-center text-xs text-ink-400">
+            © {year} {profile.name}. Built with{" "}
+            <Heart className="inline h-3.5 w-3.5 text-brand-500" /> using
+            Next.js, TypeScript & Tailwind CSS.
           </p>
           <button
             onClick={() => scrollTo("#about")}

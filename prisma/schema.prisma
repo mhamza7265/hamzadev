@@ -69,3 +69,72 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model Skill {
+  id                  Int       @id @default(autoincrement())
+  name                String
+  category            String
+  level               Int
+  tag                 String
+}
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  title       String
+  tagline     String
+  description String
+
+codePreviewName String?
+  previewCode  String?  @db.Text
+
+  liveUrl     String?
+  repoUrl     String?
+
+  clientProject Boolean @default(false)
+  accent        String?
+  icon          String?
+
+  technologies ProjectTechnology[]
+  features     ProjectFeature[]
+  highlights   ProjectHighlight[]
+
+  sortOrder     Int  @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ProjectTechnology {
+  id          Int      @id @default(autoincrement())
+  name        String
+  projectId   Int
+  sortOrder   Int  @default(0)
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, sortOrder])
+}
+
+model ProjectFeature {
+  id        Int      @id @default(autoincrement())
+  content   String
+  projectId Int
+  sortOrder     Int  @default(0)
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, sortOrder])
+}
+
+model ProjectHighlight {
+  id        Int     @id @default(autoincrement())
+  label     String
+  value     String
+  projectId Int
+  sortOrder     Int  @default(0)
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, sortOrder])
+}

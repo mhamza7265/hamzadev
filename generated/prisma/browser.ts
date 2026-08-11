@@ -42,3 +42,28 @@ export type Session = Prisma.SessionModel
  * 
  */
 export type VerificationToken = Prisma.VerificationTokenModel
+/**
+ * Model Skill
+ * 
+ */
+export type Skill = Prisma.SkillModel
+/**
+ * Model Project
+ * 
+ */
+export type Project = Prisma.ProjectModel
+/**
+ * Model ProjectTechnology
+ * 
+ */
+export type ProjectTechnology = Prisma.ProjectTechnologyModel
+/**
+ * Model ProjectFeature
+ * 
+ */
+export type ProjectFeature = Prisma.ProjectFeatureModel
+/**
+ * Model ProjectHighlight
+ * 
+ */
+export type ProjectHighlight = Prisma.ProjectHighlightModel

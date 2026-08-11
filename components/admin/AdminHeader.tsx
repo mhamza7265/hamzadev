@@ -3,7 +3,11 @@
 import { Menu } from "lucide-react";
 import { useSession } from "next-auth/react";
 
-export default function AdminHeader() {
+export default function AdminHeader({
+  onMenuClick,
+}: {
+  onMenuClick: () => void;
+}) {
   const { data: session } = useSession();
 
   console.log("AdminHeader:session", session);
@@ -13,6 +17,7 @@ export default function AdminHeader() {
         <button
           type="button"
           className="rounded-lg p-2 text-slate-400 transition hover:bg-slate-900 hover:text-white lg:hidden"
+          onClick={() => onMenuClick()}
         >
           <Menu className="h-5 w-5" />
         </button>

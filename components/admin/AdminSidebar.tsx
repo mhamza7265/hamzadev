@@ -8,16 +8,30 @@ import {
   UserRound,
   Settings,
   LogOut,
+  Menu,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 
-export default function AdminSidebar() {
+export default function AdminSidebar({
+  isSidebarOpen,
+  onMenuClick,
+}: {
+  isSidebarOpen: boolean;
+  onMenuClick: () => void;
+}) {
   return (
-    <aside className="hidden w-64 shrink-0 border-r border-slate-800 bg-slate-950 lg:flex lg:flex-col">
-      <div className="fixed top-0">
+    <aside
+      className={`fixed inset-y-0 left-0 z-50
+    w-[280px] max-w-[85vw]
+    bg-slate-950 border-r border-slate-800
+    transform transition-transform duration-300 ease-in-out
+    ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
+    lg:static lg:w-64 lg:max-w-none lg:translate-x-0`}
+    >
+      <div className="fixed top-0 w-full">
         {/* Logo */}
         <div className="flex h-20 items-center border-b border-slate-800 px-6">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between gap-3 w-full">
             <span className="hidden sm:inline">
               <span className="text-slate-300 dark:text-ink-300">{"<"}</span>
               <span className="text-slate-100">Hamza</span>
@@ -30,6 +44,14 @@ export default function AdminSidebar() {
 
               <p className="text-xs text-slate-500">Admin Panel</p>
             </div>
+
+            <button
+              type="button"
+              className="rounded-lg p-2 text-slate-400 transition hover:bg-slate-900 hover:text-white lg:hidden"
+              onClick={() => onMenuClick()}
+            >
+              <Menu className="h-5 w-5" />
+            </button>
           </div>
         </div>
 

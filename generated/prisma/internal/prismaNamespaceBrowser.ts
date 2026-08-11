@@ -55,7 +55,12 @@ export const ModelName = {
   User: 'User',
   Account: 'Account',
   Session: 'Session',
-  VerificationToken: 'VerificationToken'
+  VerificationToken: 'VerificationToken',
+  Skill: 'Skill',
+  Project: 'Project',
+  ProjectTechnology: 'ProjectTechnology',
+  ProjectFeature: 'ProjectFeature',
+  ProjectHighlight: 'ProjectHighlight'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -133,6 +138,69 @@ export const VerificationTokenScalarFieldEnum = {
 } as const
 
 export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
+
+
+export const SkillScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  category: 'category',
+  level: 'level',
+  tag: 'tag'
+} as const
+
+export type SkillScalarFieldEnum = (typeof SkillScalarFieldEnum)[keyof typeof SkillScalarFieldEnum]
+
+
+export const ProjectScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  tagline: 'tagline',
+  description: 'description',
+  codePreviewName: 'codePreviewName',
+  previewCode: 'previewCode',
+  liveUrl: 'liveUrl',
+  repoUrl: 'repoUrl',
+  clientProject: 'clientProject',
+  accent: 'accent',
+  icon: 'icon',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+
+
+export const ProjectTechnologyScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  projectId: 'projectId',
+  sortOrder: 'sortOrder'
+} as const
+
+export type ProjectTechnologyScalarFieldEnum = (typeof ProjectTechnologyScalarFieldEnum)[keyof typeof ProjectTechnologyScalarFieldEnum]
+
+
+export const ProjectFeatureScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  projectId: 'projectId',
+  sortOrder: 'sortOrder'
+} as const
+
+export type ProjectFeatureScalarFieldEnum = (typeof ProjectFeatureScalarFieldEnum)[keyof typeof ProjectFeatureScalarFieldEnum]
+
+
+export const ProjectHighlightScalarFieldEnum = {
+  id: 'id',
+  label: 'label',
+  value: 'value',
+  projectId: 'projectId',
+  sortOrder: 'sortOrder'
+} as const
+
+export type ProjectHighlightScalarFieldEnum = (typeof ProjectHighlightScalarFieldEnum)[keyof typeof ProjectHighlightScalarFieldEnum]
 
 
 export const SortOrder = {

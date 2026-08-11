@@ -32,7 +32,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute top-20 right-1/4 h-80 w-80 rounded-full bg-accent-400/20 blur-3xl animate-blob [animation-delay:-6s]" />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
-        <div className="lg:col-span-7">
+        <div className="min-w-0 lg:col-span-7">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -131,7 +131,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30, rotateX: 8 }}
           animate={{ opacity: 1, y: 0, rotateX: 0 }}
           transition={{ duration: 0.8, ease, delay: 0.2 }}
-          className="lg:col-span-5"
+          className="min-w-0 lg:col-span-5"
         >
           <CodeCard />
         </motion.div>

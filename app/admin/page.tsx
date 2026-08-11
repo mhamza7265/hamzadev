@@ -1,18 +1,9 @@
-import { dashboardData } from "@/actions/dashboard";
+import { dashboardData, getMessages } from "@/actions/dashboard";
 import StatCard from "@/components/admin/home/StatCard";
 import WelcomeText from "@/components/admin/home/WelcomeText";
 import { getSession } from "@/lib/authSession";
 import MessagesCard from "@/components/admin/home/MessagesCard";
 import QuickActions from "@/components/admin/home/QuickActions";
-
-type StatIcon = "projects" | "messages" | "skills" | "views";
-
-type Stat = {
-  title: string;
-  value: string;
-  description: string;
-  icon: StatIcon;
-};
 
 type ActionsIcon = "add" | "view" | "edit";
 
@@ -20,54 +11,6 @@ type Actions = {
   label: string;
   icon: ActionsIcon;
 };
-
-const stats: Stat[] = [
-  {
-    title: "Projects",
-    value: "8",
-    description: "2 added this month",
-    icon: "projects",
-  },
-  {
-    title: "Messages",
-    value: "12",
-    description: "3 unread",
-    icon: "messages",
-  },
-  {
-    title: "Skills",
-    value: "18",
-    description: "Across 6 categories",
-    icon: "skills",
-  },
-  {
-    title: "Profile Views",
-    value: "1,284",
-    description: "+18% this month",
-    icon: "views",
-  },
-];
-
-const projects = [
-  {
-    name: "E-commerce Platform",
-    category: "Full Stack",
-    status: "Published",
-    updated: "2 hours ago",
-  },
-  {
-    name: "Real-time Chat Application",
-    category: "Web Application",
-    status: "Published",
-    updated: "Yesterday",
-  },
-  {
-    name: "AI Business Tool",
-    category: "SaaS",
-    status: "Draft",
-    updated: "3 days ago",
-  },
-];
 
 const quickActions: Actions[] = [
   {
@@ -87,6 +30,8 @@ const quickActions: Actions[] = [
 export default async function DashboardPage() {
   const session = await getSession();
   const data = await dashboardData();
+  const messages = await getMessages();
+
   return (
     <div className="space-y-8">
       {/* Welcome */}
@@ -94,7 +39,7 @@ export default async function DashboardPage() {
 
       {/* Stats */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {stats.map((stat, index) => {
+        {data.stats.map((stat, index) => {
           return <StatCard key={index} stat={stat} index={index} />;
         })}
       </div>
@@ -102,7 +47,7 @@ export default async function DashboardPage() {
       {/* Main content */}
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
         {/* Recent Messages */}
-        <MessagesCard messages={data.messages.slice(0, 3)} />
+        <MessagesCard messages={messages.slice(0, 3)} />
 
         {/* Quick Actions */}
         <QuickActions quickActions={quickActions} />
