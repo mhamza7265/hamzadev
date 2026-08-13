@@ -1,10 +1,8 @@
-import AdminHeader from "@/components/admin/AdminHeader";
-import AdminMain from "@/components/admin/AdminMain";
-import AdminSidebar from "@/components/admin/AdminSidebar";
 import SessionProvider from "@/providers/SessionProvider";
 import { getSession } from "@/lib/authSession";
 import { redirect } from "next/navigation";
-import LayoutWrapper from "@/components/admin/LayoutWrapper";
+import LayoutWrapper from "@/components/admin/layout/LayoutWrapper";
+import { ToastContainer } from "react-toastify";
 
 export default async function AdminLayout({
   children,
@@ -20,8 +18,9 @@ export default async function AdminLayout({
   return (
     <SessionProvider>
       <div className="min-h-screen bg-slate-950 text-slate-100">
-        <LayoutWrapper>{children}</LayoutWrapper>
+        <LayoutWrapper user={session.user}>{children}</LayoutWrapper>
       </div>
+      <ToastContainer position="bottom-right" theme="light" />
     </SessionProvider>
   );
 }

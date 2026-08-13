@@ -2,9 +2,10 @@
 
 import { ArrowUp, Heart } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/main/icons";
-import { navLinks, profile } from "@/data/portfolio";
+import { navLinks } from "@/data/portfolio";
+import { ProfileType } from "@/types/types";
 
-export default function Footer() {
+export default function Footer({ profile }: { profile: ProfileType | null }) {
   const scrollTo = (href: string) =>
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
 
@@ -24,8 +25,9 @@ export default function Footer() {
               <span className="text-ink-400">{" />"}</span>
             </button>
             <p className="mt-3 text-sm leading-relaxed text-ink-500 dark:text-ink-300">
-              {profile.title} based in {profile.location}. Building scalable,
-              decoupled web applications and cloud-backed architectures.
+              {profile?.professionalTitle} based in {profile?.location}.
+              Building scalable, decoupled web applications and cloud-backed
+              architectures.
             </p>
           </div>
 
@@ -43,7 +45,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-3">
             <a
-              href={profile.github}
+              href={profile?.github || "https://github.com/"}
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
@@ -52,7 +54,7 @@ export default function Footer() {
               <GithubIcon className="h-4 w-4" />
             </a>
             <a
-              href={profile.linkedin}
+              href={profile?.linkedin || "https://linkedin/in/"}
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
@@ -61,7 +63,7 @@ export default function Footer() {
               <LinkedinIcon className="h-4 w-4" />
             </a>
             <a
-              href={`mailto:${profile.email}`}
+              href={`mailto:${profile?.email}`}
               aria-label="Email"
               className="flex h-9 w-9 items-center justify-center rounded-lg border border-hairline text-ink-500 transition-colors hover:text-brand-500 dark:text-ink-300 dark:hover:text-brand-300"
             >
@@ -72,7 +74,7 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-hairline pt-6 sm:flex-row">
           <p className="text-center text-xs text-ink-400">
-            © {year} {profile.name}. Built with{" "}
+            © {year} {profile?.name}. Built with{" "}
             <Heart className="inline h-3.5 w-3.5 text-brand-500" /> using
             Next.js, TypeScript & Tailwind CSS.
           </p>

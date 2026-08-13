@@ -91,3 +91,8 @@ export type ProjectFeature = Prisma.ProjectFeatureModel
  * 
  */
 export type ProjectHighlight = Prisma.ProjectHighlightModel
+/**
+ * Model Profile
+ * 
+ */
+export type Profile = Prisma.ProfileModel

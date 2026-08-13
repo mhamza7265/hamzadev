@@ -5,7 +5,13 @@ import AdminHeader from "./AdminHeader";
 import AdminMain from "./AdminMain";
 import AdminSidebar from "./AdminSidebar";
 
-const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
+const LayoutWrapper = ({
+  children,
+  user,
+}: {
+  children: React.ReactNode;
+  user?: { name?: string | null };
+}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
@@ -41,7 +47,7 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
         />
 
         <div className="min-w-0 flex-1">
-          <AdminHeader onMenuClick={handleIsSideBarOpen} />
+          <AdminHeader user={user} onMenuClick={handleIsSideBarOpen} />
 
           <AdminMain>{children}</AdminMain>
         </div>

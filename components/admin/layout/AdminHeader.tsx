@@ -4,8 +4,10 @@ import { Menu } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 export default function AdminHeader({
+  user,
   onMenuClick,
 }: {
+  user?: { name?: string | null };
   onMenuClick: () => void;
 }) {
   const { data: session } = useSession();
@@ -33,9 +35,7 @@ export default function AdminHeader({
 
       <div className="flex items-center gap-3">
         <div className="hidden text-right sm:block">
-          <p className="text-sm font-medium text-white">
-            {session?.user?.name}
-          </p>
+          <p className="text-sm font-medium text-white">{user?.name}</p>
 
           <p className="text-xs text-slate-500">Administrator</p>
         </div>

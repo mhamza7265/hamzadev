@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Download, MapPin, Sparkles } from "lucide-react";
-import { profile } from "@/data/portfolio";
+// import { profile } from "@/data/portfolio";
 import { GithubIcon, LinkedinIcon } from "@/components/main/icons";
+import { ProfileType } from "@/types/types";
 
 const codeLines = [
   { t: "import", c: " { useEffect, useState } ", k: "from", q: "'react'" },
@@ -18,7 +19,7 @@ const codeLines = [
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-export default function Hero() {
+export default function Hero({ profile }: { profile: ProfileType | null }) {
   const scrollTo = (href: string) =>
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
 
@@ -60,7 +61,7 @@ export default function Hero() {
             transition={{ duration: 0.7, ease, delay: 0.12 }}
             className="mt-5 max-w-xl text-base leading-relaxed text-ink-500 dark:text-ink-300 sm:text-lg"
           >
-            {profile.tagline}
+            {profile?.tagline}
           </motion.p>
 
           <motion.p
@@ -87,7 +88,7 @@ export default function Hero() {
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </button>
             <a
-              href={profile.resumeUrl}
+              href={profile?.resumeLink || "#"}
               className="inline-flex items-center gap-2 rounded-xl border border-hairline bg-white/60 px-5 py-3 text-sm font-semibold text-ink-700 backdrop-blur transition-colors hover:border-brand-500/50 hover:text-brand-500 dark:bg-white/5 dark:text-ink-100 dark:hover:text-brand-300"
             >
               <Download className="h-4 w-4" />
@@ -103,11 +104,11 @@ export default function Hero() {
           >
             <span className="inline-flex items-center gap-1.5">
               <MapPin className="h-4 w-4 text-brand-500" />
-              {profile.location}
+              {profile?.location}
             </span>
             <span className="h-4 w-px bg-ink-300/50 dark:bg-white/10" />
             <a
-              href={profile.github}
+              href={profile?.github || "https://github.com/"}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 transition-colors hover:text-brand-500 dark:hover:text-brand-300"
@@ -116,7 +117,7 @@ export default function Hero() {
               GitHub
             </a>
             <a
-              href={profile.linkedin}
+              href={profile?.linkedin || "https://linkedin.com/in/"}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 transition-colors hover:text-brand-500 dark:hover:text-brand-300"

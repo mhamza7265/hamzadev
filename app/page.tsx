@@ -1,4 +1,5 @@
 import { getHomepageData } from "@/actions/homepage";
+import { getProfileData } from "@/actions/profile";
 import Architecture from "@/components/main/Architecture";
 import Contact from "@/components/main/Contact";
 import Experience from "@/components/main/Experience";
@@ -10,20 +11,19 @@ import Skills from "@/components/main/Skills";
 
 export default async function Home() {
   const pageData = await getHomepageData();
-
-  console.log("page:pageData", pageData);
+  const profile = await getProfileData();
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <Navbar />
       <main>
-        <Hero />
+        <Hero profile={profile} />
         <Skills data={pageData?.skills ?? []} />
         <Projects data={pageData?.projectsWithCode ?? []} />
         <Architecture />
         <Experience />
-        <Contact />
+        <Contact profile={profile} />
       </main>
-      <Footer />
+      <Footer profile={profile} />
     </div>
   );
 }

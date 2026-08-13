@@ -47,7 +47,7 @@ export const profile = {
   tagline:
     "Building scalable, decoupled web applications, cloud-backed architectures, and high-performance user experiences.",
   location: "Lahore, Pakistan",
-  email: "m.hamza7265@gmail.com",
+  email: "contact@hamzahanif.dev",
   github: "https://github.com/mhamza7265",
   linkedin: "https://www.linkedin.com/in/mhamza7265",
   resumeUrl: "#",
@@ -331,3 +331,15 @@ export const experiences: ExperienceItem[] = [
     ],
   },
 ];
+
+export const sidebarOverviewMenu = [
+  { href: "/admin", title: "Dashboard", icon: "dashboard" },
+  { href: "/admin/projects", title: "Projects", icon: "project" },
+  { href: "/admin/experience", title: "Experience", icon: "experience" },
+  { href: "/admin/skills", title: "Skills", icon: "skill" },
+] as const;
+
+export const sidebarAccountMenu = [
+  { href: "/admin/profile", title: "Profile", icon: "profile" },
+  { href: "/admin/settings", title: "Settings", icon: "setting" },
+] as const;

@@ -11,10 +11,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Check, Loader2, Mail, MapPin, Send } from "lucide-react";
 import SectionHeading from "@/components/main/SectionHeading";
 import { GithubIcon, LinkedinIcon } from "@/components/main/icons";
-import { profile } from "@/data/portfolio";
 import { contactFormSchema } from "@/schemas/contactSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { ProfileType } from "@/types/types";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -27,7 +27,7 @@ interface FormState {
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
 
-export default function Contact() {
+export default function Contact({ profile }: { profile: ProfileType | null }) {
   const [status, setStatus] = useState<Status>("idle");
 
   const {
@@ -71,26 +71,26 @@ export default function Contact() {
     {
       icon: Mail,
       label: "Email",
-      value: profile.email,
-      href: `mailto:${profile.email}`,
+      value: profile?.email,
+      href: `mailto:${profile?.email}`,
     },
     {
       icon: MapPin,
       label: "Location",
-      value: profile.location,
+      value: profile?.location,
       href: undefined,
     },
     {
       icon: GithubIcon,
       label: "GitHub",
       value: "github.com",
-      href: profile.github,
+      href: profile?.github,
     },
     {
       icon: LinkedinIcon,
       label: "LinkedIn",
       value: "linkedin.com",
-      href: profile.linkedin,
+      href: profile?.linkedin,
     },
   ];
 

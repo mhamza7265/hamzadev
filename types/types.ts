@@ -46,3 +46,15 @@ export type Highlight = {
   projectId: number;
   sortOrder: number;
 };
+
+export type ProfileType = {
+  name: string | null;
+  firstName: string | null;
+  professionalTitle: string | null;
+  tagline: string | null;
+  location: string | null;
+  email: string | null;
+  github: string | null;
+  linkedin: string | null;
+  resumeLink: string | null;
+};

@@ -139,3 +139,16 @@ model ProjectHighlight {
 
   @@index([projectId, sortOrder])
 }
+
+model Profile {
+  id                      Int     @id @default(autoincrement())
+  name                    String? 
+  firstName               String?
+  professionalTitle       String?
+  tagline                 String?
+  location                String?
+  email                   String?
+  github                  String?
+  linkedin                String?
+  resumeLink              String?
+}

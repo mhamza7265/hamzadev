@@ -1,5 +1,6 @@
 "use client";
 
+import { sidebarAccountMenu, sidebarOverviewMenu } from "@/data/portfolio";
 import {
   LayoutDashboard,
   FolderKanban,
@@ -9,8 +10,19 @@ import {
   Settings,
   LogOut,
   Menu,
+  Code2,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
+import { usePathname } from "next/navigation";
+
+const sidebarIcons = {
+  dashboard: LayoutDashboard,
+  project: FolderKanban,
+  experience: BriefcaseBusiness,
+  skill: Code2,
+  profile: UserRound,
+  setting: Settings,
+};
 
 export default function AdminSidebar({
   isSidebarOpen,
@@ -19,10 +31,11 @@ export default function AdminSidebar({
   isSidebarOpen: boolean;
   onMenuClick: () => void;
 }) {
+  const pathname = usePathname();
   return (
     <aside
       className={`fixed inset-y-0 left-0 z-50
-    w-[280px] max-w-[85vw]
+    w-70 max-w-[85vw]
     bg-slate-950 border-r border-slate-800
     transform transition-transform duration-300 ease-in-out
     ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
@@ -61,33 +74,23 @@ export default function AdminSidebar({
             Overview
           </p>
 
-          <a
-            href="/admin"
-            className="flex items-center gap-3 rounded-lg bg-brand-500/10 px-3 py-2.5 text-sm font-medium text-brand-400 cursor-pointer"
-          >
-            <LayoutDashboard className="h-5 w-5" />
-            Dashboard
-          </a>
-
-          <a
-            href="/admin/projects"
-            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-400 transition hover:bg-slate-900 hover:text-white cursor-pointer"
-          >
-            <FolderKanban className="h-5 w-5" />
-            Projects
-          </a>
-
-          <a
-            href="/admin/experience"
-            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-400 transition hover:bg-slate-900 hover:text-white cursor-pointer"
-          >
-            <BriefcaseBusiness className="h-5 w-5" />
-            Experience
-          </a>
+          {sidebarOverviewMenu.map((menu, i) => {
+            const Icon = sidebarIcons[menu.icon];
+            return (
+              <a
+                key={i}
+                href={menu.href}
+                className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium cursor-pointer transition ${pathname === menu.href ? "bg-brand-500/10 text-brand-400" : "text-slate-400 hover:text-white hover:bg-slate-900"}`}
+              >
+                <Icon className="h-5 w-5" />
+                {menu.title}
+              </a>
+            );
+          })}
 
           <a
             href="/admin/messages"
-            className="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-slate-400 transition hover:bg-slate-900 hover:text-white cursor-pointer"
+            className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium cursor-pointer transition ${pathname === "/admin/messages" ? "bg-brand-500/10 text-brand-400" : "text-slate-400 hover:text-white hover:bg-slate-900"}`}
           >
             <span className="flex items-center gap-3">
               <MessageSquare className="h-5 w-5" />
@@ -103,21 +106,19 @@ export default function AdminSidebar({
             Account
           </p>
 
-          <a
-            href="/admin/profile"
-            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-400 transition hover:bg-slate-900 hover:text-white cursor-pointer"
-          >
-            <UserRound className="h-5 w-5" />
-            Profile
-          </a>
-
-          <a
-            href="/admin/settings"
-            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-400 transition hover:bg-slate-900 hover:text-white cursor-pointer"
-          >
-            <Settings className="h-5 w-5" />
-            Settings
-          </a>
+          {sidebarAccountMenu.map((menu, i) => {
+            const Icon = sidebarIcons[menu.icon];
+            return (
+              <a
+                key={i}
+                href={menu.href}
+                className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium cursor-pointer transition ${pathname === menu.href ? "bg-brand-500/10 text-brand-400" : "text-slate-400 hover:text-white hover:bg-slate-900"}`}
+              >
+                <Icon className="h-5 w-5" />
+                {menu.title}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Sign out */}
