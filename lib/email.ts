@@ -1,4 +1,8 @@
+import ContactEmail from "@/components/email/ContactEmail";
 import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -27,3 +31,24 @@ export const sendContactEmail = async (
     `,
   });
 };
+
+export async function sendEmail(
+  name: string,
+  email: string,
+  subject: string,
+  message: string,
+) {
+  const { data, error } = await resend.emails.send({
+    from: `${name} via portfolio <contact@hamzahanif.dev>`,
+    to: ["contact@hamzahanif.dev"],
+    replyTo: email,
+    subject: subject,
+    react: ContactEmail({ name, email, subject, message }),
+  });
+
+  if (error) {
+    return console.error({ error });
+  }
+
+  console.log({ data });
+}

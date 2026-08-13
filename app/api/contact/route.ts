@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest as Request } from "next/server";
 import { contactFormSchema } from "@/schemas/contactSchema";
-import { sendContactEmail } from "@/lib/email";
+import { sendEmail } from "@/lib/email";
 import { prisma } from "@/lib/prisma";
 
 // export async function GET(request: Request) {
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
       },
     });
 
-    await sendContactEmail(data.name, data.email, data.subject, data.message);
+    await sendEmail(data.name, data.email, data.subject, data.message);
 
     return NextResponse.json(
       {
