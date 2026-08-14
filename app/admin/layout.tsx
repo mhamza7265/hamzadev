@@ -20,7 +20,7 @@ export default async function AdminLayout({
       <div className="min-h-screen bg-slate-950 text-slate-100">
         <LayoutWrapper user={session.user}>{children}</LayoutWrapper>
       </div>
-      <ToastContainer position="bottom-right" theme="light" />
+      <ToastContainer position="bottom-right" theme="light" autoClose={3000} />
     </SessionProvider>
   );
 }

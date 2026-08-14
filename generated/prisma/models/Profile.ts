@@ -211,15 +211,15 @@ export type ProfileGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type ProfileGroupByOutputType = {
   id: number
-  name: string | null
-  firstName: string | null
-  professionalTitle: string | null
-  tagline: string | null
-  location: string | null
-  email: string | null
-  github: string | null
-  linkedin: string | null
-  resumeLink: string | null
+  name: string
+  firstName: string
+  professionalTitle: string
+  tagline: string
+  location: string
+  email: string
+  github: string
+  linkedin: string
+  resumeLink: string
   _count: ProfileCountAggregateOutputType | null
   _avg: ProfileAvgAggregateOutputType | null
   _sum: ProfileSumAggregateOutputType | null
@@ -247,28 +247,28 @@ export type ProfileWhereInput = {
   OR?: Prisma.ProfileWhereInput[]
   NOT?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[]
   id?: Prisma.IntFilter<"Profile"> | number
-  name?: Prisma.StringNullableFilter<"Profile"> | string | null
-  firstName?: Prisma.StringNullableFilter<"Profile"> | string | null
-  professionalTitle?: Prisma.StringNullableFilter<"Profile"> | string | null
-  tagline?: Prisma.StringNullableFilter<"Profile"> | string | null
-  location?: Prisma.StringNullableFilter<"Profile"> | string | null
-  email?: Prisma.StringNullableFilter<"Profile"> | string | null
-  github?: Prisma.StringNullableFilter<"Profile"> | string | null
-  linkedin?: Prisma.StringNullableFilter<"Profile"> | string | null
-  resumeLink?: Prisma.StringNullableFilter<"Profile"> | string | null
+  name?: Prisma.StringFilter<"Profile"> | string
+  firstName?: Prisma.StringFilter<"Profile"> | string
+  professionalTitle?: Prisma.StringFilter<"Profile"> | string
+  tagline?: Prisma.StringFilter<"Profile"> | string
+  location?: Prisma.StringFilter<"Profile"> | string
+  email?: Prisma.StringFilter<"Profile"> | string
+  github?: Prisma.StringFilter<"Profile"> | string
+  linkedin?: Prisma.StringFilter<"Profile"> | string
+  resumeLink?: Prisma.StringFilter<"Profile"> | string
 }
 
 export type ProfileOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrderInput | Prisma.SortOrder
-  firstName?: Prisma.SortOrderInput | Prisma.SortOrder
-  professionalTitle?: Prisma.SortOrderInput | Prisma.SortOrder
-  tagline?: Prisma.SortOrderInput | Prisma.SortOrder
-  location?: Prisma.SortOrderInput | Prisma.SortOrder
-  email?: Prisma.SortOrderInput | Prisma.SortOrder
-  github?: Prisma.SortOrderInput | Prisma.SortOrder
-  linkedin?: Prisma.SortOrderInput | Prisma.SortOrder
-  resumeLink?: Prisma.SortOrderInput | Prisma.SortOrder
+  name?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  professionalTitle?: Prisma.SortOrder
+  tagline?: Prisma.SortOrder
+  location?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  github?: Prisma.SortOrder
+  linkedin?: Prisma.SortOrder
+  resumeLink?: Prisma.SortOrder
 }
 
 export type ProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -276,28 +276,28 @@ export type ProfileWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[]
   OR?: Prisma.ProfileWhereInput[]
   NOT?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[]
-  name?: Prisma.StringNullableFilter<"Profile"> | string | null
-  firstName?: Prisma.StringNullableFilter<"Profile"> | string | null
-  professionalTitle?: Prisma.StringNullableFilter<"Profile"> | string | null
-  tagline?: Prisma.StringNullableFilter<"Profile"> | string | null
-  location?: Prisma.StringNullableFilter<"Profile"> | string | null
-  email?: Prisma.StringNullableFilter<"Profile"> | string | null
-  github?: Prisma.StringNullableFilter<"Profile"> | string | null
-  linkedin?: Prisma.StringNullableFilter<"Profile"> | string | null
-  resumeLink?: Prisma.StringNullableFilter<"Profile"> | string | null
+  name?: Prisma.StringFilter<"Profile"> | string
+  firstName?: Prisma.StringFilter<"Profile"> | string
+  professionalTitle?: Prisma.StringFilter<"Profile"> | string
+  tagline?: Prisma.StringFilter<"Profile"> | string
+  location?: Prisma.StringFilter<"Profile"> | string
+  email?: Prisma.StringFilter<"Profile"> | string
+  github?: Prisma.StringFilter<"Profile"> | string
+  linkedin?: Prisma.StringFilter<"Profile"> | string
+  resumeLink?: Prisma.StringFilter<"Profile"> | string
 }, "id">
 
 export type ProfileOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrderInput | Prisma.SortOrder
-  firstName?: Prisma.SortOrderInput | Prisma.SortOrder
-  professionalTitle?: Prisma.SortOrderInput | Prisma.SortOrder
-  tagline?: Prisma.SortOrderInput | Prisma.SortOrder
-  location?: Prisma.SortOrderInput | Prisma.SortOrder
-  email?: Prisma.SortOrderInput | Prisma.SortOrder
-  github?: Prisma.SortOrderInput | Prisma.SortOrder
-  linkedin?: Prisma.SortOrderInput | Prisma.SortOrder
-  resumeLink?: Prisma.SortOrderInput | Prisma.SortOrder
+  name?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  professionalTitle?: Prisma.SortOrder
+  tagline?: Prisma.SortOrder
+  location?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  github?: Prisma.SortOrder
+  linkedin?: Prisma.SortOrder
+  resumeLink?: Prisma.SortOrder
   _count?: Prisma.ProfileCountOrderByAggregateInput
   _avg?: Prisma.ProfileAvgOrderByAggregateInput
   _max?: Prisma.ProfileMaxOrderByAggregateInput
@@ -310,103 +310,103 @@ export type ProfileScalarWhereWithAggregatesInput = {
   OR?: Prisma.ProfileScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProfileScalarWhereWithAggregatesInput | Prisma.ProfileScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Profile"> | number
-  name?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
-  firstName?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
-  professionalTitle?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
-  tagline?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
-  location?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
-  email?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
-  github?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
-  linkedin?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
-  resumeLink?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  name?: Prisma.StringWithAggregatesFilter<"Profile"> | string
+  firstName?: Prisma.StringWithAggregatesFilter<"Profile"> | string
+  professionalTitle?: Prisma.StringWithAggregatesFilter<"Profile"> | string
+  tagline?: Prisma.StringWithAggregatesFilter<"Profile"> | string
+  location?: Prisma.StringWithAggregatesFilter<"Profile"> | string
+  email?: Prisma.StringWithAggregatesFilter<"Profile"> | string
+  github?: Prisma.StringWithAggregatesFilter<"Profile"> | string
+  linkedin?: Prisma.StringWithAggregatesFilter<"Profile"> | string
+  resumeLink?: Prisma.StringWithAggregatesFilter<"Profile"> | string
 }
 
 export type ProfileCreateInput = {
-  name?: string | null
-  firstName?: string | null
-  professionalTitle?: string | null
-  tagline?: string | null
-  location?: string | null
-  email?: string | null
-  github?: string | null
-  linkedin?: string | null
-  resumeLink?: string | null
+  name: string
+  firstName: string
+  professionalTitle: string
+  tagline: string
+  location: string
+  email: string
+  github: string
+  linkedin: string
+  resumeLink: string
 }
 
 export type ProfileUncheckedCreateInput = {
   id?: number
-  name?: string | null
-  firstName?: string | null
-  professionalTitle?: string | null
-  tagline?: string | null
-  location?: string | null
-  email?: string | null
-  github?: string | null
-  linkedin?: string | null
-  resumeLink?: string | null
+  name: string
+  firstName: string
+  professionalTitle: string
+  tagline: string
+  location: string
+  email: string
+  github: string
+  linkedin: string
+  resumeLink: string
 }
 
 export type ProfileUpdateInput = {
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  professionalTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  linkedin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  resumeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  professionalTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  tagline?: Prisma.StringFieldUpdateOperationsInput | string
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  github?: Prisma.StringFieldUpdateOperationsInput | string
+  linkedin?: Prisma.StringFieldUpdateOperationsInput | string
+  resumeLink?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProfileUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  professionalTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  linkedin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  resumeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  professionalTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  tagline?: Prisma.StringFieldUpdateOperationsInput | string
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  github?: Prisma.StringFieldUpdateOperationsInput | string
+  linkedin?: Prisma.StringFieldUpdateOperationsInput | string
+  resumeLink?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProfileCreateManyInput = {
   id?: number
-  name?: string | null
-  firstName?: string | null
-  professionalTitle?: string | null
-  tagline?: string | null
-  location?: string | null
-  email?: string | null
-  github?: string | null
-  linkedin?: string | null
-  resumeLink?: string | null
+  name: string
+  firstName: string
+  professionalTitle: string
+  tagline: string
+  location: string
+  email: string
+  github: string
+  linkedin: string
+  resumeLink: string
 }
 
 export type ProfileUpdateManyMutationInput = {
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  professionalTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  linkedin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  resumeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  professionalTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  tagline?: Prisma.StringFieldUpdateOperationsInput | string
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  github?: Prisma.StringFieldUpdateOperationsInput | string
+  linkedin?: Prisma.StringFieldUpdateOperationsInput | string
+  resumeLink?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProfileUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  professionalTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  linkedin?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  resumeLink?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  professionalTitle?: Prisma.StringFieldUpdateOperationsInput | string
+  tagline?: Prisma.StringFieldUpdateOperationsInput | string
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  github?: Prisma.StringFieldUpdateOperationsInput | string
+  linkedin?: Prisma.StringFieldUpdateOperationsInput | string
+  resumeLink?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProfileCountOrderByAggregateInput = {
@@ -517,15 +517,15 @@ export type $ProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    name: string | null
-    firstName: string | null
-    professionalTitle: string | null
-    tagline: string | null
-    location: string | null
-    email: string | null
-    github: string | null
-    linkedin: string | null
-    resumeLink: string | null
+    name: string
+    firstName: string
+    professionalTitle: string
+    tagline: string
+    location: string
+    email: string
+    github: string
+    linkedin: string
+    resumeLink: string
   }, ExtArgs["result"]["profile"]>
   composites: {}
 }
@@ -1158,7 +1158,7 @@ export type ProfileCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * The data needed to create a Profile.
    */
-  data?: Prisma.XOR<Prisma.ProfileCreateInput, Prisma.ProfileUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.ProfileCreateInput, Prisma.ProfileUncheckedCreateInput>
 }
 
 /**

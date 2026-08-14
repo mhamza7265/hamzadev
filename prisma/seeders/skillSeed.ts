@@ -1,4 +1,11 @@
 import { prisma } from "@/lib/prisma";
+import { SkillCategory, SkillTag } from "@/generated/prisma/enums";
+
+type SkillData = {
+  name: string;
+  category: SkillCategory;
+  tag: SkillTag;
+};
 
 export async function skillSeed() {
   await prisma.skill.deleteMany();
@@ -7,47 +14,48 @@ export async function skillSeed() {
       data: {
         name: skill.name,
         category: skill.category,
-        level: skill.level,
         tag: skill.tag,
       },
     });
   }
 }
 
-const skills = [
+const skills: SkillData[] = [
   // Frontend
-  { name: "React.js", category: "Frontend", level: 95, tag: "Expert" },
-  { name: "TypeScript", category: "Frontend", level: 92, tag: "Expert" },
-  { name: "Tailwind CSS", category: "Frontend", level: 94, tag: "Expert" },
-  { name: "Redux Toolkit", category: "Frontend", level: 88, tag: "Advanced" },
-  { name: "HTML5 / CSS3", category: "Frontend", level: 96, tag: "Expert" },
+  { name: "React.js", category: "Frontend", tag: "Expert" },
+  { name: "TypeScript", category: "Frontend", tag: "Expert" },
+  { name: "Tailwind CSS", category: "Frontend", tag: "Expert" },
+  { name: "Redux Toolkit", category: "Frontend", tag: "Advanced" },
+  { name: "HTML5 / CSS3", category: "Frontend", tag: "Expert" },
   {
     name: "RESTful API Integration",
     category: "Frontend",
-    level: 90,
     tag: "Expert",
   },
   // Backend
-  { name: "Node.js", category: "Backend", level: 90, tag: "Expert" },
-  { name: "Express.js", category: "Backend", level: 89, tag: "Expert" },
-  { name: "Laravel", category: "Backend", level: 85, tag: "Advanced" },
-  { name: "REST APIs", category: "Backend", level: 92, tag: "Expert" },
-  { name: "JWT Authentication", category: "Backend", level: 90, tag: "Expert" },
+  { name: "Node.js", category: "Backend", tag: "Expert" },
+  { name: "Express.js", category: "Backend", tag: "Expert" },
+  { name: "Laravel", category: "Backend", tag: "Advanced" },
+  { name: "REST APIs", category: "Backend", tag: "Expert" },
+  { name: "JWT Authentication", category: "Backend", tag: "Expert" },
   {
     name: "WebSockets / Real-Time",
     category: "Backend",
-    level: 82,
     tag: "Advanced",
   },
   // Cloud / DevOps
-  { name: "MongoDB", category: "Cloud/DevOps", level: 90, tag: "Expert" },
-  { name: "MySQL", category: "Cloud/DevOps", level: 87, tag: "Advanced" },
+  { name: "MongoDB", category: "Cloud_DevOps", tag: "Expert" },
+  { name: "MySQL", category: "Cloud_DevOps", tag: "Advanced" },
   {
-    name: "AWS (EC2, S3)",
-    category: "Cloud/DevOps",
-    level: 84,
+    name: "AWS (EC2)",
+    category: "Cloud_DevOps",
     tag: "Advanced",
   },
-  { name: "Vercel", category: "Cloud/DevOps", level: 88, tag: "Expert" },
-  { name: "Git / GitHub", category: "Cloud/DevOps", level: 93, tag: "Expert" },
+  {
+    name: "AWS (S3)",
+    category: "Cloud_DevOps",
+    tag: "Advanced",
+  },
+  { name: "Vercel", category: "Cloud_DevOps", tag: "Expert" },
+  { name: "Git / GitHub", category: "Cloud_DevOps", tag: "Expert" },
 ];

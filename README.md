@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Portfolio
+
+A full-stack personal portfolio built with **Next.js, TypeScript, Prisma, and PostgreSQL**. The project includes a public portfolio website and an admin dashboard for managing portfolio content.
+
+## Features
+
+- Responsive portfolio website
+- Hero, About, Skills, Projects, and Contact sections
+- Contact form with email notifications
+- Admin authentication
+- Admin dashboard
+- Skills management (create, edit, delete)
+- Server-side data validation
+- Responsive dark-themed dashboard
+- PostgreSQL database with Prisma ORM
+- Server-side rendering and data fetching
+- Server-side data revalidation
+
+## Tech Stack
+
+### Frontend
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- React Hook Form
+- React Toastify
+
+### Backend
+
+- Next.js Server Actions
+- Next.js Route Handlers
+- Prisma
+- PostgreSQL
+- Zod
+- Resend
+
+### Authentication
+
+- NextAuth.js
+
+### Deployment
+
+- Vercel
+- Neon PostgreSQL
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js
+- PostgreSQL database
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone <repository-url>
+cd <project-directory>
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create your local environment file from the provided example:
+
+```bash
+cp .env.example .env
+```
+
+Generate the Prisma client:
+
+```bash
+npx prisma generate
+```
+
+Run the database migrations:
+
+```bash
+npx prisma migrate dev
+```
+
+````md
+Run the database seed:
+
+```bash
+npx prisma db seed
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Project Status
 
-## Learn More
+The portfolio website is actively being developed. The public-facing website is being built alongside an admin dashboard for managing portfolio content.
 
-To learn more about Next.js, take a look at the following resources:
+The admin dashboard currently includes authentication and skills management, with additional content management features still in development.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Hamza Hanif
 
-## Deploy on Vercel
+Full Stack Web Developer
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- GitHub: [Hamza Hanif](https://github.com/mhamza7265)
+- LinkedIn: [Hamza Hanif](https://www.linkedin.com/in/mhamza7265/)
+````

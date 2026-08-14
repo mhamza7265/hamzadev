@@ -10,14 +10,11 @@ export async function getHomepageData() {
       include: { technologies: true, features: true, highlights: true },
     });
 
-    console.log("projects server", projects);
-
     const projectsWithCode = await Promise.all(
       projects.map(async (project) => {
         let highlightedCode = null;
 
         if (project.previewCode) {
-          console.log("Language:", project.codeLanguage);
           highlightedCode = await codeToHtml(project.previewCode, {
             lang: project.codeLanguage ?? "text",
             theme: "vitesse-dark",
@@ -30,11 +27,6 @@ export async function getHomepageData() {
         };
       }),
     );
-
-    console.log("project with highlighted code", {
-      projectsWithCode,
-      projects,
-    });
 
     return { skills, projectsWithCode };
   } catch (err) {

@@ -1,4 +1,4 @@
-export type SkillCategory = "Frontend" | "Backend" | "Cloud/DevOps";
+export type SkillCategory = "Frontend" | "Backend" | "Cloud_DevOps";
 
 export interface Skill {
   name: string;

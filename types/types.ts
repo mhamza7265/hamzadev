@@ -48,13 +48,25 @@ export type Highlight = {
 };
 
 export type ProfileType = {
-  name: string | null;
-  firstName: string | null;
-  professionalTitle: string | null;
-  tagline: string | null;
-  location: string | null;
-  email: string | null;
-  github: string | null;
-  linkedin: string | null;
-  resumeLink: string | null;
+  name: string;
+  firstName: string;
+  professionalTitle: string;
+  tagline: string;
+  location: string;
+  email: string;
+  github: string;
+  linkedin: string;
+  resumeLink: string;
+};
+
+export type SkillCategory = "Frontend" | "Backend" | "Cloud_DevOps";
+
+export type SkillTag = "Advanced" | "Expert";
+
+export type Skill = {
+  id: number;
+  name: string;
+  category: SkillCategory;
+  tag: SkillTag;
+  icon?: React.ReactNode;
 };

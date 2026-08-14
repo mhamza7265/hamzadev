@@ -70,12 +70,22 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+enum SkillCategory {
+  Frontend
+  Backend
+  Cloud_DevOps
+}
+
+enum SkillTag {
+  Advanced
+  Expert
+}
+
 model Skill {
   id                  Int       @id @default(autoincrement())
   name                String
-  category            String
-  level               Int
-  tag                 String
+  category            SkillCategory
+  tag                 SkillTag
 }
 
 model Project {
@@ -142,13 +152,13 @@ model ProjectHighlight {
 
 model Profile {
   id                      Int     @id @default(autoincrement())
-  name                    String? 
-  firstName               String?
-  professionalTitle       String?
-  tagline                 String?
-  location                String?
-  email                   String?
-  github                  String?
-  linkedin                String?
-  resumeLink              String?
+  name                    String
+  firstName               String
+  professionalTitle       String
+  tagline                 String
+  location                String
+  email                   String
+  github                  String
+  linkedin                String
+  resumeLink              String
 }

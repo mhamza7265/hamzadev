@@ -145,7 +145,6 @@ export const SkillScalarFieldEnum = {
   id: 'id',
   name: 'name',
   category: 'category',
-  level: 'level',
   tag: 'tag'
 } as const
 

@@ -3,7 +3,7 @@
 import { ProfileFormData } from "@/data/constants";
 import { getSession } from "@/lib/authSession";
 import { prisma } from "@/lib/prisma";
-import { ProfileSchema } from "@/schemas/profileSchema";
+import { ProfileSchema } from "@/schemas/schemas";
 import { revalidatePath } from "next/cache";
 
 export async function getProfileData() {

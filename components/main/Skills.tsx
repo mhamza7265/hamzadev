@@ -10,7 +10,6 @@ type Skill = {
   id: number;
   name: string;
   category: string;
-  level: number;
   tag: string;
 };
 
@@ -20,7 +19,7 @@ interface SkillProps {
 
 type Filter = "All" | SkillCategory;
 
-const filters: Filter[] = ["All", "Frontend", "Backend", "Cloud/DevOps"];
+const filters: Filter[] = ["All", "Frontend", "Backend", "Cloud_DevOps"];
 
 const tagColor: Record<Skill["tag"], string> = {
   Expert:
@@ -43,7 +42,7 @@ const tagLabel: Record<Skill["tag"], string> = {
 const categoryIcon: Record<SkillCategory, typeof Code> = {
   Frontend: Code,
   Backend: Server,
-  "Cloud/DevOps": Cloud,
+  Cloud_DevOps: Cloud,
 };
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -117,7 +116,9 @@ export default function Skills({ data }: SkillProps) {
                             {skill.name}
                           </h3>
                           <p className="mt-0.5 text-xs text-ink-400">
-                            {skill.category}
+                            {skill.category === "Cloud_DevOps"
+                              ? "Cloud/DevOps"
+                              : skill.category}
                           </p>
                         </div>
                       </div>

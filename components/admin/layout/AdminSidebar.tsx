@@ -39,9 +39,9 @@ export default function AdminSidebar({
     bg-slate-950 border-r border-slate-800
     transform transition-transform duration-300 ease-in-out
     ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
-    lg:static lg:w-64 lg:max-w-none lg:translate-x-0`}
+    lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:max-w-none lg:translate-x-0`}
     >
-      <div className="fixed top-0 w-full">
+      <div className="flex h-full flex-col">
         {/* Logo */}
         <div className="flex h-20 items-center border-b border-slate-800 px-6">
           <div className="flex items-center justify-between gap-3 w-full">
@@ -69,7 +69,7 @@ export default function AdminSidebar({
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 space-y-1 px-3 py-6">
+        <nav className="flex-1 space-y-1 px-3 py-6 lg:max-h-[400px] lg:overflow-y-auto">
           <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
             Overview
           </p>

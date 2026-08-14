@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest as Request } from "next/server";
-import { contactFormSchema } from "@/schemas/contactSchema";
+import { contactFormSchema } from "@/schemas/schemas";
 import { sendEmail } from "@/lib/email";
 import { prisma } from "@/lib/prisma";
 

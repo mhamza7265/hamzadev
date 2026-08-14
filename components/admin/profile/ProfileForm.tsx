@@ -8,31 +8,18 @@ import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { ProfileSchema } from "@/schemas/profileSchema";
+import { ProfileSchema } from "@/schemas/schemas";
 import { updateProfile } from "@/actions/profile";
 import { toast } from "react-toastify";
-
-interface ProfileProps {
-  id: number;
-  name: string | null;
-  firstName: string | null;
-  professionalTitle: string | null;
-  tagline: string | null;
-  location: string | null;
-  email: string | null;
-  github: string | null;
-  linkedin: string | null;
-  resumeLink: string | null;
-}
+import { ProfileType } from "@/types/types";
 
 type ProfileFormData = z.infer<typeof ProfileSchema>;
 
-const ProfileForm = ({ profile }: { profile: ProfileProps | null }) => {
+const ProfileForm = ({ profile }: { profile: ProfileType | null }) => {
   const [isSaving, setIsSaving] = useState(false);
 
   const {
     register,
-    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<ProfileFormData>({
@@ -52,7 +39,6 @@ const ProfileForm = ({ profile }: { profile: ProfileProps | null }) => {
 
   const onSubmit = async (data: FieldValues) => {
     setIsSaving(true);
-    console.log("ProfileForm:data", data);
     const update = await updateProfile({
       name: data.name,
       firstName: data.firstName,

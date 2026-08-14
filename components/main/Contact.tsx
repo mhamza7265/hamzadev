@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Check, Loader2, Mail, MapPin, Send } from "lucide-react";
 import SectionHeading from "@/components/main/SectionHeading";
 import { GithubIcon, LinkedinIcon } from "@/components/main/icons";
-import { contactFormSchema } from "@/schemas/contactSchema";
+import { contactFormSchema } from "@/schemas/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ProfileType } from "@/types/types";
@@ -46,7 +46,6 @@ export default function Contact({ profile }: { profile: ProfileType | null }) {
   });
 
   const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
-    console.log("Contact:", data);
     setStatus("sending");
     const response = await fetch("/api/contact", {
       method: "POST",

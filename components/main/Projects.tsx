@@ -19,8 +19,6 @@ interface ProjectProp {
 export default function Projects({ data }: ProjectProp) {
   const [active, setActive] = useState<Project | null>(null);
 
-  console.log("Projects:data", data);
-
   return (
     <section id="projects" className="relative py-20 sm:py-28">
       <div className="pointer-events-none absolute inset-x-0 top-1/3 h-72 bg-gradient-to-b from-brand-500/5 to-transparent" />
@@ -55,7 +53,6 @@ export default function Projects({ data }: ProjectProp) {
 
                   <div className="mt-4 flex flex-wrap gap-1.5">
                     {project.technologies.map((tech) => {
-                      console.log("Projects:tech", tech);
                       return (
                         <span
                           key={tech.id}
@@ -113,8 +110,6 @@ export default function Projects({ data }: ProjectProp) {
 }
 
 function ProjectPreview({ project }: { project: Project }) {
-  console.log("Projects:projects", project);
-  console.log(project.highlightedCode);
   return (
     <div className="relative h-44 overflow-hidden border-b border-hairline dark:bg-ink-950">
       <div className="absolute inset-0 bg-grid opacity-20" />
@@ -136,10 +131,7 @@ function ProjectPreview({ project }: { project: Project }) {
                 __html: project.highlightedCode as string,
               }}
               className="p-3 font-mono text-[9px] leading-relaxed"
-            >
-              {/* {project.highlightedCode} */}
-              {/* {console.log("Projects:", project.highlightedCode)} */}
-            </div>
+            ></div>
           </div>
         </div>
       </div>

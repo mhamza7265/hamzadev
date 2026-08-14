@@ -219,6 +219,40 @@ export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedIntNullableFilter<$PrismaModel>
 }
 
+export type EnumSkillCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.SkillCategory | Prisma.EnumSkillCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.SkillCategory[] | Prisma.ListEnumSkillCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SkillCategory[] | Prisma.ListEnumSkillCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSkillCategoryFilter<$PrismaModel> | $Enums.SkillCategory
+}
+
+export type EnumSkillTagFilter<$PrismaModel = never> = {
+  equals?: $Enums.SkillTag | Prisma.EnumSkillTagFieldRefInput<$PrismaModel>
+  in?: $Enums.SkillTag[] | Prisma.ListEnumSkillTagFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SkillTag[] | Prisma.ListEnumSkillTagFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSkillTagFilter<$PrismaModel> | $Enums.SkillTag
+}
+
+export type EnumSkillCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SkillCategory | Prisma.EnumSkillCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.SkillCategory[] | Prisma.ListEnumSkillCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SkillCategory[] | Prisma.ListEnumSkillCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSkillCategoryWithAggregatesFilter<$PrismaModel> | $Enums.SkillCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSkillCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSkillCategoryFilter<$PrismaModel>
+}
+
+export type EnumSkillTagWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SkillTag | Prisma.EnumSkillTagFieldRefInput<$PrismaModel>
+  in?: $Enums.SkillTag[] | Prisma.ListEnumSkillTagFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SkillTag[] | Prisma.ListEnumSkillTagFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSkillTagWithAggregatesFilter<$PrismaModel> | $Enums.SkillTag
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSkillTagFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSkillTagFilter<$PrismaModel>
+}
+
 export type NestedIntFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
@@ -435,6 +469,40 @@ export type NestedFloatNullableFilter<$PrismaModel = never> = {
   gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   not?: Prisma.NestedFloatNullableFilter<$PrismaModel> | number | null
+}
+
+export type NestedEnumSkillCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.SkillCategory | Prisma.EnumSkillCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.SkillCategory[] | Prisma.ListEnumSkillCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SkillCategory[] | Prisma.ListEnumSkillCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSkillCategoryFilter<$PrismaModel> | $Enums.SkillCategory
+}
+
+export type NestedEnumSkillTagFilter<$PrismaModel = never> = {
+  equals?: $Enums.SkillTag | Prisma.EnumSkillTagFieldRefInput<$PrismaModel>
+  in?: $Enums.SkillTag[] | Prisma.ListEnumSkillTagFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SkillTag[] | Prisma.ListEnumSkillTagFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSkillTagFilter<$PrismaModel> | $Enums.SkillTag
+}
+
+export type NestedEnumSkillCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SkillCategory | Prisma.EnumSkillCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.SkillCategory[] | Prisma.ListEnumSkillCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SkillCategory[] | Prisma.ListEnumSkillCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSkillCategoryWithAggregatesFilter<$PrismaModel> | $Enums.SkillCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSkillCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSkillCategoryFilter<$PrismaModel>
+}
+
+export type NestedEnumSkillTagWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SkillTag | Prisma.EnumSkillTagFieldRefInput<$PrismaModel>
+  in?: $Enums.SkillTag[] | Prisma.ListEnumSkillTagFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SkillTag[] | Prisma.ListEnumSkillTagFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSkillTagWithAggregatesFilter<$PrismaModel> | $Enums.SkillTag
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSkillTagFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSkillTagFilter<$PrismaModel>
 }
 
 

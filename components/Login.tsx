@@ -71,25 +71,6 @@ const Login = () => {
       setStatus("error");
     }
   };
-  // const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
-  //   console.log("1 - submit");
-
-  //   try {
-  //     console.log("2 - before signIn");
-
-  //     const result = await signIn("credentials", {
-  //       email: data.email,
-  //       password: data.password,
-  //       redirect: false,
-  //     });
-
-  //     console.log("3 - after signIn", result);
-  //   } catch (error) {
-  //     console.error("4 - signIn threw:", error);
-  //   }
-
-  //   console.log("5 - finished");
-  // };
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-950 px-4">
       <motion.div

@@ -11,10 +11,8 @@ export default function AdminHeader({
   onMenuClick: () => void;
 }) {
   const { data: session } = useSession();
-
-  console.log("AdminHeader:session", session);
   return (
-    <header className="flex h-20 items-center justify-between border-b border-slate-800 bg-slate-950 px-4 sm:px-6 lg:px-8 sticky top-0">
+    <header className="flex z-10 h-20 items-center justify-between border-b border-slate-800 bg-slate-950 px-4 sm:px-6 lg:px-8 sticky top-0">
       <div className="flex items-center gap-3">
         <button
           type="button"

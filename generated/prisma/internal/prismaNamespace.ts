@@ -1345,7 +1345,6 @@ export const SkillScalarFieldEnum = {
   id: 'id',
   name: 'name',
   category: 'category',
-  level: 'level',
   tag: 'tag'
 } as const
 
@@ -1511,6 +1510,34 @@ export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'Role[]'
  */
 export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SkillCategory'
+ */
+export type EnumSkillCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SkillCategory'>
+    
+
+
+/**
+ * Reference to a field of type 'SkillCategory[]'
+ */
+export type ListEnumSkillCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SkillCategory[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SkillTag'
+ */
+export type EnumSkillTagFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SkillTag'>
+    
+
+
+/**
+ * Reference to a field of type 'SkillTag[]'
+ */
+export type ListEnumSkillTagFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SkillTag[]'>
     
 
 

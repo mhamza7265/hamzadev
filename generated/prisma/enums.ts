@@ -14,3 +14,20 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const SkillCategory = {
+  Frontend: 'Frontend',
+  Backend: 'Backend',
+  Cloud_DevOps: 'Cloud_DevOps'
+} as const
+
+export type SkillCategory = (typeof SkillCategory)[keyof typeof SkillCategory]
+
+
+export const SkillTag = {
+  Advanced: 'Advanced',
+  Expert: 'Expert'
+} as const
+
+export type SkillTag = (typeof SkillTag)[keyof typeof SkillTag]
