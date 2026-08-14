@@ -79,6 +79,8 @@ enum SkillCategory {
 enum SkillTag {
   Advanced
   Expert
+  Proficient
+  Intermediate
 }
 
 model Skill {

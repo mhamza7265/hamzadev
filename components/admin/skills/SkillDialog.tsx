@@ -220,6 +220,8 @@ export default function SkillDialog({
                 <option value="">Select Tag</option>
                 <option value="Advanced">Advanced</option>
                 <option value="Expert">Expert</option>
+                <option value="Proficient">Proficient</option>
+                <option value="Intermediate">Intermediate</option>
               </select>
 
               {errors?.tag && (

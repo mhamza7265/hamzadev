@@ -30,23 +30,32 @@ export default function SkillItem({
     <>
       <div className="group relative rounded-xl border border-slate-800 bg-slate-900/80 p-4 transition-all duration-200 hover:border-indigo-500/40 hover:bg-slate-900">
         <div className="flex items-center justify-between gap-4">
-          {/* Skill info */}
-          <div className="flex min-w-0 items-center gap-3">
-            {/* Icon */}
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-400">
-              {skill.icon ?? (
-                <span className="text-sm font-semibold">
-                  <Icon />
-                </span>
-              )}
+          <div className="flex justify-between w-full">
+            {/* Skill info */}
+            <div className="flex min-w-0 items-center gap-3">
+              {/* Icon */}
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-400">
+                {skill.icon ?? (
+                  <span className="text-sm font-semibold">
+                    <Icon />
+                  </span>
+                )}
+              </div>
+
+              <div className="min-w-0">
+                <h3 className="truncate text-sm font-semibold text-slate-100">
+                  {skill.name}
+                </h3>
+
+                <p className="mt-0.5 text-xs text-slate-500">
+                  {skill.category}
+                </p>
+              </div>
             </div>
-
-            <div className="min-w-0">
-              <h3 className="truncate text-sm font-semibold text-slate-100">
-                {skill.name}
-              </h3>
-
-              <p className="mt-0.5 text-xs text-slate-500">{skill.category}</p>
+            <div className="min-w-0 mt-2">
+              <p className="mt-0.5 text-xs text-white bg-green-700 px-2 py-1 rounded-xl">
+                {skill.tag}
+              </p>
             </div>
           </div>
         </div>

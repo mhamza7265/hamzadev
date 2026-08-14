@@ -61,7 +61,7 @@ export type ProfileType = {
 
 export type SkillCategory = "Frontend" | "Backend" | "Cloud_DevOps";
 
-export type SkillTag = "Advanced" | "Expert";
+export type SkillTag = "Advanced" | "Expert" | "Proficient" | "Intermediate";
 
 export type Skill = {
   id: number;

@@ -88,16 +88,16 @@ export const skills: Skill[] = [
     tag: "Advanced",
   },
   // Cloud / DevOps
-  { name: "MongoDB", category: "Cloud/DevOps", level: 90, tag: "Expert" },
-  { name: "MySQL", category: "Cloud/DevOps", level: 87, tag: "Advanced" },
+  { name: "MongoDB", category: "Cloud_DevOps", level: 90, tag: "Expert" },
+  { name: "MySQL", category: "Cloud_DevOps", level: 87, tag: "Advanced" },
   {
     name: "AWS (EC2, S3)",
-    category: "Cloud/DevOps",
+    category: "Cloud_DevOps",
     level: 84,
     tag: "Advanced",
   },
-  { name: "Vercel", category: "Cloud/DevOps", level: 88, tag: "Expert" },
-  { name: "Git / GitHub", category: "Cloud/DevOps", level: 93, tag: "Expert" },
+  { name: "Vercel", category: "Cloud_DevOps", level: 88, tag: "Expert" },
+  { name: "Git / GitHub", category: "Cloud_DevOps", level: 93, tag: "Expert" },
 ];
 
 export const projects: Project[] = [

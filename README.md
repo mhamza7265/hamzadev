@@ -86,7 +86,6 @@ Run the database migrations:
 npx prisma migrate dev
 ```
 
-````md
 Run the database seed:
 
 ```bash
@@ -119,4 +118,7 @@ Full Stack Web Developer
 
 - GitHub: [Hamza Hanif](https://github.com/mhamza7265)
 - LinkedIn: [Hamza Hanif](https://www.linkedin.com/in/mhamza7265/)
-````
+
+```
+
+```

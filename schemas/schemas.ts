@@ -9,7 +9,7 @@ export const SkillDialogSchema = z.object({
 export const SkillDialogServerSchema = z.object({
   name: z.string().trim().min(1, "Skill name is required"),
   category: z.enum(["Frontend", "Backend", "Cloud_DevOps"]),
-  tag: z.enum(["Advanced", "Expert"]),
+  tag: z.enum(["Advanced", "Expert", "Proficient", "Intermediate"]),
 });
 
 export const ProfileSchema = z.object({

@@ -107,6 +107,9 @@ export async function createSkill(skill: Skill) {
       return { success: false, message: "Validation error" };
     }
 
+    console.log("tag:", result.data.tag);
+    console.log("category:", result.data.category);
+
     const createdSkill = await prisma.skill.create({
       data: {
         name: result.data.name,

@@ -27,7 +27,9 @@ export type SkillCategory = (typeof SkillCategory)[keyof typeof SkillCategory]
 
 export const SkillTag = {
   Advanced: 'Advanced',
-  Expert: 'Expert'
+  Expert: 'Expert',
+  Proficient: 'Proficient',
+  Intermediate: 'Intermediate'
 } as const
 
 export type SkillTag = (typeof SkillTag)[keyof typeof SkillTag]
