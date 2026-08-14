@@ -121,4 +121,6 @@ Full Stack Web Developer
 
 ### License
 
-This project is a personal portfolio project. The source code is primarily intended to demonstrate the author's development skills and experience.
+This project is intended primarily as a personal portfolio project.
+
+If you plan to reuse substantial portions of the project, please contact the author first.
