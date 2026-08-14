@@ -118,3 +118,7 @@ Full Stack Web Developer
 
 - GitHub: [Hamza Hanif](https://github.com/mhamza7265)
 - LinkedIn: [Hamza Hanif](https://www.linkedin.com/in/mhamza7265/)
+
+### License
+
+This project is a personal portfolio project. The source code is primarily intended to demonstrate the author's development skills and experience.
