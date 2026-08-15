@@ -5,6 +5,7 @@ import { ArrowRight, Download, MapPin, Sparkles } from "lucide-react";
 // import { profile } from "@/data/portfolio";
 import { GithubIcon, LinkedinIcon } from "@/components/main/icons";
 import { ProfileType } from "@/types/types";
+import { trackAppEvent, trackEvent } from "@/lib/analytics";
 
 const codeLines = [
   { t: "import", c: " { useEffect, useState } ", k: "from", q: "'react'" },
@@ -88,6 +89,11 @@ export default function Hero({ profile }: { profile: ProfileType | null }) {
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </button>
             <a
+              onClick={() =>
+                trackEvent("resume_download", {
+                  location: "hero",
+                })
+              }
               href={profile?.resumeLink || "#"}
               className="inline-flex items-center gap-2 rounded-xl border border-hairline bg-white/60 px-5 py-3 text-sm font-semibold text-ink-700 backdrop-blur transition-colors hover:border-brand-500/50 hover:text-brand-500 dark:bg-white/5 dark:text-ink-100 dark:hover:text-brand-300"
             >
@@ -112,6 +118,15 @@ export default function Hero({ profile }: { profile: ProfileType | null }) {
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 transition-colors hover:text-brand-500 dark:hover:text-brand-300"
+              onClick={() => {
+                trackEvent("github_click", {
+                  location: "hero",
+                });
+                trackAppEvent({
+                  event: "github_click",
+                  path: window.location.pathname,
+                });
+              }}
             >
               <GithubIcon className="h-4 w-4" />
               GitHub
@@ -121,6 +136,15 @@ export default function Hero({ profile }: { profile: ProfileType | null }) {
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 transition-colors hover:text-brand-500 dark:hover:text-brand-300"
+              onClick={() => {
+                trackEvent("linkedin_click", {
+                  location: "hero",
+                });
+                trackAppEvent({
+                  event: "linkedin_click",
+                  path: window.location.pathname,
+                });
+              }}
             >
               <LinkedinIcon className="h-4 w-4" />
               LinkedIn

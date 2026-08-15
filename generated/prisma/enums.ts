@@ -33,3 +33,18 @@ export const SkillTag = {
 } as const
 
 export type SkillTag = (typeof SkillTag)[keyof typeof SkillTag]
+
+
+export const AnalyticsEventName = {
+  page_view: 'page_view',
+  github_click: 'github_click',
+  linkedin_click: 'linkedin_click',
+  email_click: 'email_click',
+  project_demo_click: 'project_demo_click',
+  project_case_study_click: 'project_case_study_click',
+  project_github_click: 'project_github_click',
+  project_live_url_click: 'project_live_url_click',
+  generate_lead: 'generate_lead'
+} as const
+
+export type AnalyticsEventName = (typeof AnalyticsEventName)[keyof typeof AnalyticsEventName]

@@ -30,3 +30,25 @@ export const contactFormSchema = z.object({
   subject: z.string().min(5, "Subject is required"),
   message: z.string().min(5, "Message is required"),
 });
+
+export const analyticsSchema = z.object({
+  eventId: z.uuid(),
+
+  event: z.enum([
+    "page_view",
+    "github_click",
+    "linkedin_click",
+    "email_click",
+    "project_demo_click",
+    "project_github_click",
+    "generate_lead",
+  ]),
+
+  path: z.string().max(500).optional(),
+  referrer: z.string().max(2000).optional(),
+  title: z.string().max(500).optional(),
+
+  projectId: z.string().max(100).optional(),
+
+  metadata: z.record(z.string(), z.json()).optional(),
+});

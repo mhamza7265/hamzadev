@@ -9,6 +9,7 @@ import { GithubIcon } from "@/components/main/icons";
 import { projects } from "@/data/portfolio";
 import type { Project } from "@/types/types";
 import CodePreview from "../CodePreview";
+import { trackAppEvent, trackEvent } from "@/lib/analytics";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -67,7 +68,20 @@ export default function Projects({ data }: ProjectProp) {
 
                 <div className="mt-6 flex items-center gap-2 border-t border-hairline pt-4">
                   <button
-                    onClick={() => setActive(project)}
+                    onClick={() => {
+                      setActive(project);
+                      trackEvent("project_case_study_click", {
+                        project: project.title,
+                      });
+                      trackAppEvent({
+                        event: "project_case_study_click",
+                        path: window.location.pathname,
+                        projectId: project.id.toString(),
+                        metadata: {
+                          projectName: project.title,
+                        },
+                      });
+                    }}
                     className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg bg-brand-500/10 px-3 py-2 text-xs font-semibold text-brand-500 transition-colors hover:bg-brand-500/20 dark:text-brand-300"
                   >
                     <FileText className="h-3.5 w-3.5" />
@@ -81,6 +95,19 @@ export default function Projects({ data }: ProjectProp) {
                         rel="noreferrer"
                         aria-label="Live preview"
                         className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-400 transition-colors hover:text-brand-500 dark:hover:text-brand-300"
+                        onClick={() => {
+                          trackEvent("project_live_url_click", {
+                            project: project.title,
+                          });
+                          trackAppEvent({
+                            event: "project_demo_click",
+                            path: window.location.pathname,
+                            projectId: project.id.toString(),
+                            metadata: {
+                              projectName: project.title,
+                            },
+                          });
+                        }}
                       >
                         <ExternalLink className="h-4 w-4" />
                       </a>
@@ -92,6 +119,19 @@ export default function Projects({ data }: ProjectProp) {
                         rel="noreferrer"
                         aria-label="Source code"
                         className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-400 transition-colors hover:text-brand-500 dark:hover:text-brand-300"
+                        onClick={() => {
+                          trackEvent("project_github_click", {
+                            project: project.title,
+                          });
+                          trackAppEvent({
+                            event: "project_github_click",
+                            path: window.location.pathname,
+                            projectId: project.id.toString(),
+                            metadata: {
+                              projectName: project.title,
+                            },
+                          });
+                        }}
                       >
                         <GithubIcon className="h-4 w-4" />
                       </a>

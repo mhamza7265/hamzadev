@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.7.1",
+    "@next/third-parties": "^16.3.1",
     "@prisma/adapter-pg": "^7.9.1",
     "@prisma/client": "^7.9.1",
     "@react-email/components": "^1.0.12",
@@ -26,6 +27,7 @@
     "react-hook-form": "^7.84.0",
     "react-toastify": "^11.1.0",
     "resend": "^6.19.0",
+    "ua-parser-js": "^2.0.10",
     "zod": "^4.4.3"
   },
   "devDependencies": {

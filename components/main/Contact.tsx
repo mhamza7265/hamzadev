@@ -15,6 +15,7 @@ import { contactFormSchema } from "@/schemas/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ProfileType } from "@/types/types";
+import { trackAppEvent, trackEvent } from "@/lib/analytics";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -55,12 +56,26 @@ export default function Contact({ profile }: { profile: ProfileType | null }) {
       body: JSON.stringify(data),
     });
 
+    const result = await response.json();
+
     if (!response.ok) {
       console.log("Contact:res err", response.json());
+      setStatus("error");
       throw new Error("Failed to submit");
     }
 
-    const result = await response.json();
+    trackEvent("generate_lead", {
+      form_name: "contact",
+    });
+
+    await trackAppEvent({
+      event: "generate_lead",
+      path: window.location.pathname,
+      metadata: {
+        form: "contact",
+      },
+    });
+
     console.log("Contact:result", result);
     setStatus("sent");
     reset();
@@ -126,6 +141,13 @@ export default function Contact({ profile }: { profile: ProfileType | null }) {
                     target={card.href.startsWith("http") ? "_blank" : undefined}
                     rel="noreferrer"
                     className="block h-full"
+                    onClick={() =>
+                      card.label === "Email"
+                        ? trackEvent("email_click", {
+                            location: "contact_section",
+                          })
+                        : null
+                    }
                   >
                     {content}
                   </a>
@@ -234,6 +256,17 @@ export default function Contact({ profile }: { profile: ProfileType | null }) {
                   </AnimatePresence>
                 </button>
                 <AnimatePresence>
+                  {status === "error" && (
+                    <motion.p
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0 }}
+                      className="text-sm text-error-500 dark:text-error-400"
+                    >
+                      Unable to send your message. Please try again later.
+                    </motion.p>
+                  )}
+
                   {status === "sent" && (
                     <motion.p
                       initial={{ opacity: 0, x: -8 }}

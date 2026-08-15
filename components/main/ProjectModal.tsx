@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Check, ExternalLink, Layers, X } from "lucide-react";
 import { GithubIcon } from "@/components/main/icons";
 import type { Project } from "@/types/types";
+import { trackEvent } from "@/lib/analytics";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -138,6 +139,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95"
+                  onClick={() =>
+                    trackEvent("project_live_url_click", {
+                      project: project.title,
+                    })
+                  }
                 >
                   <ExternalLink className="h-4 w-4" />
                   Live Preview
@@ -149,6 +155,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-hairline px-4 py-2.5 text-sm font-semibold text-ink-700 transition-colors hover:text-brand-500 dark:text-ink-100 dark:hover:text-brand-300"
+                  onClick={() =>
+                    trackEvent("project_github_click", {
+                      project: project.title,
+                    })
+                  }
                 >
                   <GithubIcon className="h-4 w-4" />
                   Source Code

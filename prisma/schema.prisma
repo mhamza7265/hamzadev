@@ -164,3 +164,52 @@ model Profile {
   linkedin                String
   resumeLink              String
 }
+
+enum AnalyticsEventName {
+  page_view
+  github_click
+  linkedin_click
+  email_click
+  project_demo_click
+  project_case_study_click
+  project_github_click
+  project_live_url_click
+  generate_lead
+}
+
+model AnalyticsEvent {
+  id String @id @default(cuid())
+
+  // Prevent duplicate event submissions
+  eventId String @unique
+
+  event AnalyticsEventName
+
+  // Anonymous identifiers
+  visitorId String
+  sessionId String
+
+  // Page/event context
+  path      String?
+  referrer  String?
+  title     String?
+
+  // Optional event-specific information
+  projectId String?
+  metadata  Json?
+
+  // Basic visitor information
+  country String?
+  city    String?
+  device  String?
+  browser String?
+  os      String?
+
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([event, createdAt])
+  @@index([visitorId, createdAt])
+  @@index([sessionId, createdAt])
+  @@index([path, createdAt])
+}

@@ -70,3 +70,14 @@ export type Skill = {
   tag: SkillTag;
   icon?: React.ReactNode;
 };
+
+export type AnalyticsEvent =
+  | "page_view"
+  | "github_click"
+  | "linkedin_click"
+  | "email_click"
+  | "project_demo_click"
+  | "project_github_click"
+  | "project_live_url_click"
+  | "project_case_study_click"
+  | "generate_lead";

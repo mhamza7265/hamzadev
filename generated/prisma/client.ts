@@ -96,3 +96,8 @@ export type ProjectHighlight = Prisma.ProjectHighlightModel
  * 
  */
 export type Profile = Prisma.ProfileModel
+/**
+ * Model AnalyticsEvent
+ * 
+ */
+export type AnalyticsEvent = Prisma.AnalyticsEventModel
