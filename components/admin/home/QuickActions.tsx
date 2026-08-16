@@ -3,6 +3,7 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Plus, Mail, Pencil } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const icons = { add: Plus, view: Mail, edit: Pencil };
 
@@ -18,6 +19,7 @@ interface QuickActionsProps {
 }
 
 const QuickActions = ({ quickActions }: QuickActionsProps) => {
+  const router = useRouter();
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -40,6 +42,11 @@ const QuickActions = ({ quickActions }: QuickActionsProps) => {
               key={action.label}
               type="button"
               className="flex w-full cursor-pointer items-center gap-3 rounded-lg border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm font-medium text-slate-300 transition-all hover:border-slate-700 hover:bg-slate-800/50 hover:text-white"
+              onClick={() => {
+                if (action.label === "Edit Profile") {
+                  router.push("/admin/profile");
+                }
+              }}
             >
               <Icon className="h-4 w-4 text-blue-400" />
 

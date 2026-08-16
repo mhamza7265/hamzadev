@@ -3,6 +3,13 @@ import { getSession } from "@/lib/authSession";
 import { redirect } from "next/navigation";
 import LayoutWrapper from "@/components/admin/layout/LayoutWrapper";
 import { ToastContainer } from "react-toastify";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Hamza Hanif | Admin Panel",
+  description:
+    "Full-stack web applications, scalable APIs, and cloud deployments.",
+};
 
 export default async function AdminLayout({
   children,

@@ -81,3 +81,41 @@ export type AnalyticsEvent =
   | "project_live_url_click"
   | "project_case_study_click"
   | "generate_lead";
+
+type CountryCount = {
+  country: string | null;
+  count: number;
+};
+
+type DeviceCount = {
+  device: string | null;
+  count: number;
+};
+
+type EventCount = {
+  event: string;
+  count: number;
+};
+
+type ProjectClick = {
+  project: string | null;
+  count: number;
+};
+
+type ReferrerCount = {
+  referrer: string | null;
+  count: number;
+};
+
+type AnalyticsCount = {
+  key: string | null;
+  count: number;
+};
+
+export type AnalyticsData = {
+  countries: CountryCount[];
+  devices: DeviceCount[];
+  eventCounts: EventCount[];
+  projectClick: ProjectClick[];
+  referrers: ReferrerCount[];
+};

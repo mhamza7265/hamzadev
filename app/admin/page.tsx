@@ -1,9 +1,11 @@
-import { dashboardData, getMessages } from "@/actions/dashboard";
+import { analytics, dashboardData, getMessages } from "@/actions/dashboard";
 import StatCard from "@/components/admin/home/StatCard";
 import WelcomeText from "@/components/admin/home/WelcomeText";
 import { getSession } from "@/lib/authSession";
 import MessagesCard from "@/components/admin/home/MessagesCard";
 import QuickActions from "@/components/admin/home/QuickActions";
+import PageViewsChart from "@/components/admin/home/PageViewsChart";
+import AnalyticsStatCard from "@/components/admin/home/AalyticsStatCard";
 
 type ActionsIcon = "add" | "view" | "edit";
 
@@ -29,8 +31,14 @@ const quickActions: Actions[] = [
 
 export default async function DashboardPage() {
   const session = await getSession();
-  const data = await dashboardData();
+  const data = await dashboardData({
+    startDate: undefined,
+    endDate: undefined,
+  });
   const messages = await getMessages();
+  const analyticsData = await analytics();
+
+  console.log("page:analyticsData", analyticsData);
 
   return (
     <div className="space-y-8">
@@ -42,6 +50,25 @@ export default async function DashboardPage() {
         {data.stats.map((stat, index) => {
           return <StatCard key={index} stat={stat} index={index} />;
         })}
+      </div>
+
+      <div className="">
+        <PageViewsChart />
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4 items-baseline">
+        {Object.entries(analyticsData?.data ?? {})?.map(
+          ([key, value], index) => {
+            return (
+              <AnalyticsStatCard
+                key={index}
+                title={key}
+                analytics={value}
+                index={index}
+              />
+            );
+          },
+        )}
       </div>
 
       {/* Main content */}

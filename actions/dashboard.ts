@@ -1,13 +1,28 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { Stat } from "@/types/types";
+import { AnalyticsData, Stat } from "@/types/types";
 
-export async function dashboardData() {
+export async function dashboardData({
+  startDate,
+  endDate,
+}: {
+  startDate?: Date;
+  endDate?: Date;
+}) {
   try {
     const messages = await prisma.contactMessage.findMany();
     const skills = await prisma.skill.findMany();
     const projects = await prisma.project.findMany();
+    const pageViews = await prisma.analyticsEvent.count({
+      where: {
+        event: "page_view",
+        createdAt: {
+          gte: startDate || undefined,
+          lt: endDate || undefined,
+        },
+      },
+    });
 
     const stats: Stat[] = [
       {
@@ -26,6 +41,11 @@ export async function dashboardData() {
         key: "skills",
         total: skills.length,
       },
+      {
+        title: "Views",
+        key: "views",
+        total: pageViews,
+      },
     ];
 
     return {
@@ -37,6 +57,207 @@ export async function dashboardData() {
   }
 }
 
+export async function getPageViews({
+  startDate,
+  endDate,
+}: {
+  startDate?: string;
+  endDate?: Date;
+}) {
+  try {
+    const now = new Date();
+
+    const days = Number(startDate) || 90;
+
+    const calculatedStartDate = new Date(now);
+    calculatedStartDate.setDate(calculatedStartDate.getDate() - days);
+
+    const calculatedEndDate = endDate ?? now;
+
+    const dailyPageViews = await prisma.$queryRaw<
+      {
+        date: Date;
+        views: bigint;
+      }[]
+    >`
+      SELECT
+        DATE_TRUNC('day', "createdAt") AS date,
+        COUNT(*) AS views
+      FROM "AnalyticsEvent"
+      WHERE
+        "event" = 'page_view'
+        AND "createdAt" >= ${calculatedStartDate}
+        AND "createdAt" < ${calculatedEndDate}
+      GROUP BY DATE_TRUNC('day', "createdAt")
+      ORDER BY date ASC;
+    `;
+
+    const chartData = dailyPageViews.map((item) => ({
+      date: item.date,
+      views: Number(item.views),
+    }));
+
+    return {
+      success: true,
+      dailyPageViewsData: chartData,
+      dates: {
+        startDate: calculatedStartDate,
+        endDate: calculatedEndDate,
+      },
+    };
+  } catch (err) {
+    console.error("Views fetching err", err);
+
+    return {
+      success: false,
+      message: "Error fetching views",
+    };
+  }
+}
+
+export async function analytics() {
+  try {
+    const referrers = await prisma.analyticsEvent.groupBy({
+      by: ["referrer"],
+      where: {
+        event: "page_view",
+        // createdAt: {
+        //   gte: startDate ||,
+        //   lt: endDate,
+        // },
+        referrer: {
+          not: null,
+        },
+      },
+      _count: {
+        _all: true,
+      },
+      orderBy: {
+        _count: {
+          referrer: "desc",
+        },
+      },
+      take: 10,
+    });
+
+    const formattedReferrers = referrers.map((item) => ({
+      referrer: item.referrer
+        ? new URL(item.referrer).hostname.replace(/^www\./, "")
+        : null,
+      count: item._count._all,
+    }));
+
+    const eventCounts = await prisma.analyticsEvent.groupBy({
+      by: ["event"],
+      where: {
+        // createdAt: {
+        //   gte: startDate,
+        //   lt: endDate,
+        // },
+      },
+      _count: {
+        _all: true,
+      },
+    });
+
+    const formattedEventCounts = eventCounts.map((item) => ({
+      event: item.event,
+      count: item._count._all,
+    }));
+
+    const devices = await prisma.analyticsEvent.groupBy({
+      by: ["device"],
+      where: {
+        event: "page_view",
+        // createdAt: {
+        //   gte: startDate,
+        //   lt: endDate,
+        // },
+      },
+      _count: {
+        _all: true,
+      },
+    });
+
+    const formattedDevicesCount = devices.map((item) => ({
+      device: item.device,
+      count: item._count._all,
+    }));
+
+    const countries = await prisma.analyticsEvent.groupBy({
+      by: ["country"],
+      where: {
+        event: "page_view",
+        // createdAt: {
+        //   gte: startDate,
+        //   lt: endDate,
+        // },
+        country: {
+          not: null,
+        },
+      },
+      _count: {
+        _all: true,
+      },
+      orderBy: {
+        _count: {
+          country: "desc",
+        },
+      },
+      take: 10,
+    });
+
+    const formattedCountries = countries.map((item) => ({
+      country: item.country,
+      count: item._count._all,
+    }));
+
+    const projectClicks = await prisma.analyticsEvent.groupBy({
+      by: ["projectId"],
+      where: {
+        event: "project_demo_click",
+        // createdAt: {
+        //   gte: startDate,
+        //   lt: endDate,
+        // },
+        projectId: {
+          not: null,
+        },
+      },
+      _count: {
+        _all: true,
+      },
+      orderBy: {
+        _count: {
+          projectId: "desc",
+        },
+      },
+    });
+
+    const formattedProjectsClicks = projectClicks.map((item) => ({
+      project: item.projectId,
+      count: item._count._all,
+    }));
+
+    return {
+      success: true,
+      data: {
+        referrers: formattedReferrers,
+        eventCounts: formattedEventCounts,
+        devices: formattedDevicesCount,
+        countries: formattedCountries,
+        projectClick: formattedProjectsClicks,
+      } satisfies AnalyticsData,
+    };
+  } catch (err) {
+    console.error("Analytics fetching err", err);
+
+    return {
+      success: false,
+      message: "Error fetching analytics",
+    };
+  }
+}
 export async function getMessages() {
   try {
     const messages = await prisma.contactMessage.findMany({
