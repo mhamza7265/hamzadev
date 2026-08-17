@@ -1,5 +1,6 @@
 "use client";
 
+import { getUnreadMessages } from "@/actions/messages";
 import { sidebarAccountMenu, sidebarOverviewMenu } from "@/data/portfolio";
 import {
   LayoutDashboard,
@@ -14,6 +15,7 @@ import {
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const sidebarIcons = {
   dashboard: LayoutDashboard,
@@ -31,7 +33,26 @@ export default function AdminSidebar({
   isSidebarOpen: boolean;
   onMenuClick: () => void;
 }) {
+  const [unreadMessages, setUnreadMessages] = useState<number>();
   const pathname = usePathname();
+
+  useEffect(() => {
+    const fetchUnreadMsgs = async () => {
+      const result = await getUnreadMessages();
+
+      if (result.success) {
+        setUnreadMessages(result.unreadMessagesCount ?? 0);
+      }
+    };
+
+    fetchUnreadMsgs();
+    window.addEventListener("message-read", fetchUnreadMsgs);
+
+    return () => {
+      window.removeEventListener("message-read", fetchUnreadMsgs);
+    };
+  }, []);
+
   return (
     <aside
       className={`fixed inset-y-0 left-0 z-50
@@ -90,16 +111,18 @@ export default function AdminSidebar({
 
           <a
             href="/admin/messages"
-            className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium cursor-pointer transition ${pathname === "/admin/messages" ? "bg-brand-500/10 text-brand-400" : "text-slate-400 hover:text-white hover:bg-slate-900"}`}
+            className={`flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium cursor-pointer transition ${pathname === "/admin/messages" ? "bg-brand-500/10 text-brand-400" : "text-slate-400 hover:text-white hover:bg-slate-900"}`}
           >
             <span className="flex items-center gap-3">
               <MessageSquare className="h-5 w-5" />
               Messages
             </span>
 
-            <span className="rounded-full bg-brand-500/10 px-2 py-0.5 text-xs text-brand-400">
-              4
-            </span>
+            {unreadMessages && unreadMessages > 0 && (
+              <span className="rounded-full bg-brand-500/10 px-2 py-0.5 text-xs text-brand-400">
+                {unreadMessages}
+              </span>
+            )}
           </a>
 
           <p className="mb-3 mt-8 px-3 text-xs font-semibold uppercase tracking-wider text-slate-500">

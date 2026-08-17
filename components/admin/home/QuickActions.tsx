@@ -46,6 +46,9 @@ const QuickActions = ({ quickActions }: QuickActionsProps) => {
                 if (action.label === "Edit Profile") {
                   router.push("/admin/profile");
                 }
+                if (action.label === "View Messages") {
+                  router.push("/admin/messages");
+                }
               }}
             >
               <Icon className="h-4 w-4 text-blue-400" />

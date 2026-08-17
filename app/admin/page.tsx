@@ -6,6 +6,7 @@ import MessagesCard from "@/components/admin/home/MessagesCard";
 import QuickActions from "@/components/admin/home/QuickActions";
 import PageViewsChart from "@/components/admin/home/PageViewsChart";
 import AnalyticsStatCard from "@/components/admin/home/AalyticsStatCard";
+import { getPaginatedMessages } from "@/actions/messages";
 
 type ActionsIcon = "add" | "view" | "edit";
 
@@ -37,8 +38,9 @@ export default async function DashboardPage() {
   });
   const messages = await getMessages();
   const analyticsData = await analytics();
+  const allMessages = await getPaginatedMessages();
 
-  console.log("page:analyticsData", analyticsData);
+  console.log("page:allMessages", allMessages);
 
   return (
     <div className="space-y-8">

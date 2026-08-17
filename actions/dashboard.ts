@@ -142,7 +142,7 @@ export async function analytics() {
 
     const formattedReferrers = referrers.map((item) => ({
       referrer: item.referrer
-        ? new URL(item.referrer).hostname.replace(/^www\./, "")
+        ? item.referrer.replace(/^https?:\/\//, "").replace(/^www\./, "")
         : null,
       count: item._count._all,
     }));
@@ -238,6 +238,8 @@ export async function analytics() {
       project: item.projectId,
       count: item._count._all,
     }));
+
+    console.log("referrers", referrers);
 
     return {
       success: true,

@@ -119,3 +119,22 @@ export type AnalyticsData = {
   projectClick: ProjectClick[];
   referrers: ReferrerCount[];
 };
+
+export type Message = {
+  id: number;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  read: boolean;
+  createdAt: Date;
+};
+
+export type Pagination = {
+  page: number;
+  pageSize: number;
+  total: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+};

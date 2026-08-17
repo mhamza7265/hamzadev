@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { getPageViews } from "@/actions/dashboard";
-import { ChartLineLinear } from "../charts/ChartLineLinear";
+import { ChartLineLinear } from "../ui/ChartLineLinear";
 
 type DateType = {
   startDate: Date;

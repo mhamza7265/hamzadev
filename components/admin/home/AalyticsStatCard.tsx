@@ -1,7 +1,6 @@
 "use client";
 
 import { AnalyticsEventName } from "@/generated/prisma/enums";
-import { AnalyticsData } from "@/types/types";
 import { motion } from "framer-motion";
 
 type AnalyticsItem =
@@ -16,10 +15,6 @@ interface StatCardProps {
   analytics: AnalyticsItem[];
   index: number;
 }
-("eventCounts");
-("devices");
-("countries");
-("projectClick");
 
 const formateTitle = (title: string) => {
   switch (title) {
@@ -57,8 +52,11 @@ const AnalyticsStatCard = ({ title, analytics, index }: StatCardProps) => {
           const label = labelKey ? item[labelKey as keyof typeof item] : null;
 
           return (
-            <div key={String(label)} className="flex justify-between">
-              <span>{label}</span>
+            <div
+              key={String(label) + item.count + index}
+              className="flex justify-between"
+            >
+              <span className="w-[80%] wrap-break-word">{label}</span>
               <span>{item.count}</span>
             </div>
           );
