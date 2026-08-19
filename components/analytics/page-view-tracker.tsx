@@ -11,6 +11,19 @@ export function PageViewTracker() {
   useEffect(() => {
     if (!pathname) return;
 
+    const key = `analytics-pageview:${pathname}`;
+    const lastViewed = sessionStorage.getItem(key);
+
+    if (lastViewed) {
+      const elapsed = Date.now() - Number(lastViewed);
+
+      if (elapsed < 30_000) {
+        return;
+      }
+    }
+
+    sessionStorage.setItem(key, Date.now().toString());
+
     trackAppEvent({
       event: "page_view",
       path: pathname,
