@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useProgress } from "@bprogress/next";
 
 type Message = {
   id: number;
@@ -19,6 +20,8 @@ interface MessagesCardProps {
 
 const MessagesCard = ({ messages }: MessagesCardProps) => {
   const router = useRouter();
+  const { start } = useProgress();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -38,7 +41,10 @@ const MessagesCard = ({ messages }: MessagesCardProps) => {
         <button
           type="button"
           className="flex cursor-pointer items-center gap-1 text-sm font-medium text-blue-400 transition-colors hover:text-blue-300"
-          onClick={() => router.push("/admin/messages")}
+          onClick={() => {
+            router.push("/admin/messages");
+            start();
+          }}
         >
           View all
           <ArrowRight className="h-4 w-4" />

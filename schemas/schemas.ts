@@ -52,3 +52,12 @@ export const analyticsSchema = z.object({
 
   metadata: z.record(z.string(), z.json()).optional(),
 });
+
+export const loginSchema = z.object({
+  email: z.email(),
+  password: z.string().min(1, "Password is required"),
+});
+
+export const ForgotPwSchema = z.object({
+  email: z.email().nonempty("Email is required"),
+});

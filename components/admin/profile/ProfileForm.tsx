@@ -63,8 +63,8 @@ const ProfileForm = ({ profile }: { profile: ProfileType | null }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {/* Personal Information */}
-      <section className="rounded-xl border border-slate-800 bg-slate-900/70 p-5">
-        <div className="border-b border-slate-800 px-6 py-4">
+      <section className="rounded-xl border border-slate-800 bg-slate-900/70 p-1 lg:p-5">
+        <div className="border-b border-slate-800 px-5 py-4">
           <h2 className="text-base font-semibold text-white">
             Personal Information
           </h2>
@@ -74,7 +74,7 @@ const ProfileForm = ({ profile }: { profile: ProfileType | null }) => {
           </p>
         </div>
 
-        <div className="grid gap-5 p-6 sm:grid-cols-2">
+        <div className="grid gap-5 p-5 lg:p-6 sm:grid-cols-2">
           {/* Name */}
           {profilePersonalInfoFields.map((field, i) => {
             return (
@@ -104,8 +104,8 @@ const ProfileForm = ({ profile }: { profile: ProfileType | null }) => {
       </section>
 
       {/* Social & Links */}
-      <section className="rounded-xl border border-slate-800 bg-slate-900/70 p-5">
-        <div className="border-b border-slate-800 px-6 py-4">
+      <section className="rounded-xl border border-slate-800 bg-slate-900/70 p-1 lg:p-5">
+        <div className="border-b border-slate-800 px-5 py-4">
           <h2 className="text-base font-semibold text-white">Social & Links</h2>
 
           <p className="mt-1 text-sm text-slate-400">
@@ -113,7 +113,7 @@ const ProfileForm = ({ profile }: { profile: ProfileType | null }) => {
           </p>
         </div>
 
-        <div className="space-y-5 p-6">
+        <div className="space-y-5 p-5 lg:p-6">
           {profileSocialFields.map((field, i) => (
             <div key={i}>
               <label

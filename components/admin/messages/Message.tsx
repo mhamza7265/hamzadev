@@ -3,7 +3,6 @@
 import { ArrowLeft, CalendarDays, Mail, User } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useRouter } from "next/navigation";
@@ -50,7 +49,7 @@ const MessageClient = ({
     hour12: true,
   });
   return (
-    <div className="min-h-full space-y-6 p-6">
+    <div className="min-h-full space-y-6 p-2 lg:p-6">
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">

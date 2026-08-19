@@ -17,11 +17,7 @@ const Message = async ({ params }: MessageProps) => {
     notFound();
   }
 
-  return (
-    <>
-      <MessageClient contactMessage={result.message} />
-    </>
-  );
+  return <MessageClient contactMessage={result.message} />;
 };
 
 export default Message;

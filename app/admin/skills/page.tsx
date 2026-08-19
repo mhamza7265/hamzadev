@@ -5,7 +5,7 @@ import SkillCreateButton from "@/components/admin/skills/SkillCreateButton";
 const page = async () => {
   const skills = await getSkills();
   return (
-    <div className="p-6">
+    <div className="p-2 lg:p-6">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">

@@ -2,6 +2,7 @@
 
 import { getUnreadMessages } from "@/actions/messages";
 import { sidebarAccountMenu, sidebarOverviewMenu } from "@/data/portfolio";
+import { useProgress } from "@bprogress/next";
 import {
   LayoutDashboard,
   FolderKanban,
@@ -14,7 +15,7 @@ import {
   Code2,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const sidebarIcons = {
@@ -35,6 +36,8 @@ export default function AdminSidebar({
 }) {
   const [unreadMessages, setUnreadMessages] = useState<number>();
   const pathname = usePathname();
+  const { start } = useProgress();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUnreadMsgs = async () => {
@@ -52,6 +55,11 @@ export default function AdminSidebar({
       window.removeEventListener("message-read", fetchUnreadMsgs);
     };
   }, []);
+
+  const navigate = (href: string) => {
+    start();
+    router.push(href);
+  };
 
   return (
     <aside
@@ -98,20 +106,20 @@ export default function AdminSidebar({
           {sidebarOverviewMenu.map((menu, i) => {
             const Icon = sidebarIcons[menu.icon];
             return (
-              <a
+              <span
                 key={i}
-                href={menu.href}
                 className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium cursor-pointer transition ${pathname === menu.href ? "bg-brand-500/10 text-brand-400" : "text-slate-400 hover:text-white hover:bg-slate-900"}`}
+                onClick={() => navigate(menu.href)}
               >
                 <Icon className="h-5 w-5" />
                 {menu.title}
-              </a>
+              </span>
             );
           })}
 
-          <a
-            href="/admin/messages"
+          <span
             className={`flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium cursor-pointer transition ${pathname === "/admin/messages" ? "bg-brand-500/10 text-brand-400" : "text-slate-400 hover:text-white hover:bg-slate-900"}`}
+            onClick={() => navigate("/admin/messages")}
           >
             <span className="flex items-center gap-3">
               <MessageSquare className="h-5 w-5" />
@@ -123,7 +131,7 @@ export default function AdminSidebar({
                 {unreadMessages}
               </span>
             )}
-          </a>
+          </span>
 
           <p className="mb-3 mt-8 px-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
             Account
@@ -132,14 +140,14 @@ export default function AdminSidebar({
           {sidebarAccountMenu.map((menu, i) => {
             const Icon = sidebarIcons[menu.icon];
             return (
-              <a
+              <span
                 key={i}
-                href={menu.href}
                 className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium cursor-pointer transition ${pathname === menu.href ? "bg-brand-500/10 text-brand-400" : "text-slate-400 hover:text-white hover:bg-slate-900"}`}
+                onClick={() => navigate(menu.href)}
               >
                 <Icon className="h-5 w-5" />
                 {menu.title}
-              </a>
+              </span>
             );
           })}
         </nav>

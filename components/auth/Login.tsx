@@ -4,16 +4,13 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { signIn } from "next-auth/react";
-import { toast } from "react-toastify";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Eye, EyeClosed } from "lucide-react";
+import { AlertTriangle, Eye, EyeClosed, X } from "lucide-react";
 import { useRouter } from "next/navigation";
-
-const loginSchema = z.object({
-  email: z.email(),
-  password: z.string().min(1, "Password is required"),
-});
+import { useProgress } from "@bprogress/next";
+import { Button } from "../ui/button";
+import { loginSchema } from "@/schemas/schemas";
 
 type Status = "idle" | "loggingIn" | "success" | "error";
 
@@ -22,6 +19,9 @@ type LoginFormData = z.infer<typeof loginSchema>;
 const Login = () => {
   const [status, setStatus] = useState<Status>("idle");
   const [displayPass, setDisplayPass] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
+  const { start } = useProgress();
 
   const router = useRouter();
 
@@ -50,7 +50,7 @@ const Login = () => {
 
       if (login?.error) {
         setStatus("error");
-        toast.error(
+        setSubmitError(
           login?.status === 401
             ? "Invalid email or password"
             : "Error signing in",
@@ -61,13 +61,13 @@ const Login = () => {
 
       if (login?.ok) {
         setStatus("success");
-        toast.success("Signed in successfully!");
         router.push("/admin");
+        start();
         reset();
       }
     } catch (error) {
       console.error("Login:exception", error);
-      toast("error");
+      setSubmitError("Some error occured, Please try.");
       setStatus("error");
     }
   };
@@ -87,7 +87,7 @@ const Login = () => {
             transition={{ duration: 0.4, delay: 0.1 }}
             className=""
           >
-            <span className="hidden sm:inline">
+            <span className="inline">
               <span className="text-slate-300 dark:text-ink-300">{"<"}</span>
               <span className="text-slate-100">Hamza</span>
               <span className="text-brand-500">.dev</span>
@@ -112,6 +112,24 @@ const Login = () => {
           className="rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-2xl shadow-black/20"
         >
           <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
+            {/* Banner */}
+            {submitError && (
+              <div className="relative mb-6 flex h-10 w-full items-center rounded-full bg-red-500 px-5 pr-12 transition-all">
+                <div className="flex items-center gap-3">
+                  <AlertTriangle size={18} color="#fff" />
+                  <p className="text-sm text-white">{submitError}</p>
+                </div>
+
+                <Button
+                  type="button"
+                  size="icon"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 cursor-pointer bg-transparent hover:bg-transparent [&:active:not([aria-haspopup])]:-translate-y-1/2"
+                  onClick={() => setSubmitError("")}
+                >
+                  <X className="text-white" />
+                </Button>
+              </div>
+            )}
             {/* Email */}
             <div>
               <label
@@ -134,7 +152,7 @@ const Login = () => {
             </div>
 
             {/* Password */}
-            <div>
+            <div className="">
               <div className="mb-2 flex items-center justify-between">
                 <label
                   htmlFor="password"
@@ -143,12 +161,15 @@ const Login = () => {
                   Password
                 </label>
 
-                <a
-                  href="/forgot-password"
-                  className="text-sm text-blue-400 transition hover:text-blue-300"
+                <span
+                  className="cursor-pointer text-sm text-blue-400 transition hover:text-blue-300"
+                  onClick={() => {
+                    router.push("/forgot-password");
+                    start();
+                  }}
                 >
                   Forgot password?
-                </a>
+                </span>
               </div>
 
               <div className="relative flex justify-between items-center">

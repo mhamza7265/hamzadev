@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Plus, Mail, Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useProgress } from "@bprogress/next";
 
 const icons = { add: Plus, view: Mail, edit: Pencil };
 
@@ -20,6 +21,8 @@ interface QuickActionsProps {
 
 const QuickActions = ({ quickActions }: QuickActionsProps) => {
   const router = useRouter();
+  const { start } = useProgress();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -45,9 +48,11 @@ const QuickActions = ({ quickActions }: QuickActionsProps) => {
               onClick={() => {
                 if (action.label === "Edit Profile") {
                   router.push("/admin/profile");
+                  start();
                 }
                 if (action.label === "View Messages") {
                   router.push("/admin/messages");
+                  start();
                 }
               }}
             >

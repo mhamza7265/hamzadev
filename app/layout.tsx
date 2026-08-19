@@ -1,9 +1,7 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import "./globals.css";
-import { PageViewTracker } from "@/components/analytics/page-view-tracker";
+import ProgressBarProvider from "@/components/admin/ui/ProgressProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,12 +12,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-export const metadata: Metadata = {
-  title: "Hamza Hanif | Full-Stack Engineer",
-  description:
-    "Full-stack web applications, scalable APIs, and cloud deployments.",
-};
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -44,13 +36,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
-      <body className="min-h-full flex flex-col">{children}</body>
-      {process.env.NODE_ENV === "production" && (
-        <>
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
-          <PageViewTracker />
-        </>
-      )}
+      <body className="min-h-full flex flex-col">
+        <ProgressBarProvider>{children}</ProgressBarProvider>
+      </body>
     </html>
   );
 }
