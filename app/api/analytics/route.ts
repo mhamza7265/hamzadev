@@ -44,9 +44,16 @@ export async function POST(request: NextRequest) {
 
     const parser = new UAParser(userAgent ?? "");
 
-    const device = parser.getDevice().type ?? "unknown";
+    const deviceType = parser.getDevice().type;
     const browser = parser.getBrowser().name ?? "unknown";
     const os = parser.getOS().name ?? "unknown";
+
+    const device =
+      deviceType === "mobile"
+        ? "mobile"
+        : deviceType === "tablet"
+          ? "tablet"
+          : "desktop";
 
     const forwardedCountry = request.headers.get("x-vercel-ip-country");
 
