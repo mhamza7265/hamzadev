@@ -36,6 +36,8 @@ model User {
   role              Role            @default(ADMIN)
   accounts          Account[]
   sessions          Session[]
+  resetToken      String?           @unique
+  resetTokenExpiresAt  DateTime?
 }
 
 model Account {

@@ -54,10 +54,39 @@ export const analyticsSchema = z.object({
 });
 
 export const loginSchema = z.object({
-  email: z.email(),
+  email: z.email().nonempty("Email is required"),
   password: z.string().min(1, "Password is required"),
 });
 
-export const ForgotPwSchema = z.object({
+export const forgotPwSchema = z.object({
   email: z.email().nonempty("Email is required"),
+});
+
+export const verifyTokenSchema = z.object({
+  token: z.string().regex(/^[0-9a-fA-F]{64}$/, {
+    message: "Must be a valid 64-character crypto hex token",
+  }),
+});
+
+export const resetTokenSchema = z.object({
+  token: z.string().regex(/^[0-9a-fA-F]{64}$/, {
+    message: "Must be a valid 64-character crypto hex token",
+  }),
+});
+
+export const resetPwSchema = z
+  .object({
+    password: z.string().min(1, "Password is required"),
+    confirmPassword: z.string().min(1, "Confirm password is required"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"], // Sets the error specifically to the confirmPassword field
+  });
+
+export const resetPwServerSchema = z.object({
+  token: z.string().regex(/^[0-9a-fA-F]{64}$/, {
+    message: "Must be a valid 64-character crypto hex token",
+  }),
+  password: z.string().min(1, "Password is required"),
 });

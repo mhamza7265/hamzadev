@@ -61,6 +61,7 @@ const Login = () => {
 
       if (login?.ok) {
         setStatus("success");
+        setSubmitError("");
         router.push("/admin");
         start();
         reset();
