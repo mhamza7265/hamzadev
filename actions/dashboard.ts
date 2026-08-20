@@ -239,8 +239,6 @@ export async function analytics() {
       count: item._count._all,
     }));
 
-    console.log("referrers", referrers);
-
     return {
       success: true,
       data: {
