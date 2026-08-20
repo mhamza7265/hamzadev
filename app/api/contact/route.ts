@@ -30,7 +30,13 @@ export async function POST(request: Request) {
       },
     });
 
-    await sendEmail(data.name, data.email, data.subject, data.message);
+    await sendEmail(
+      data.name,
+      data.email,
+      data.subject,
+      data.message,
+      "contactEmail",
+    );
 
     return NextResponse.json(
       {
