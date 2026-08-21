@@ -109,7 +109,10 @@ export default function AdminSidebar({
               <span
                 key={i}
                 className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium cursor-pointer transition ${pathname === menu.href ? "bg-brand-500/10 text-brand-400" : "text-slate-400 hover:text-white hover:bg-slate-900"}`}
-                onClick={() => navigate(menu.href)}
+                onClick={() => {
+                  navigate(menu.href);
+                  onMenuClick();
+                }}
               >
                 <Icon className="h-5 w-5" />
                 {menu.title}
@@ -119,7 +122,10 @@ export default function AdminSidebar({
 
           <span
             className={`flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium cursor-pointer transition ${pathname === "/admin/messages" ? "bg-brand-500/10 text-brand-400" : "text-slate-400 hover:text-white hover:bg-slate-900"}`}
-            onClick={() => navigate("/admin/messages")}
+            onClick={() => {
+              navigate("/admin/messages");
+              onMenuClick();
+            }}
           >
             <span className="flex items-center gap-3">
               <MessageSquare className="h-5 w-5" />
@@ -143,7 +149,10 @@ export default function AdminSidebar({
               <span
                 key={i}
                 className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium cursor-pointer transition ${pathname === menu.href ? "bg-brand-500/10 text-brand-400" : "text-slate-400 hover:text-white hover:bg-slate-900"}`}
-                onClick={() => navigate(menu.href)}
+                onClick={() => {
+                  navigate(menu.href);
+                  onMenuClick();
+                }}
               >
                 <Icon className="h-5 w-5" />
                 {menu.title}
