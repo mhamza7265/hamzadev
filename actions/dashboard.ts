@@ -125,6 +125,9 @@ export async function analytics() {
         //   gte: startDate ||,
         //   lt: endDate,
         // },
+        browser: {
+          not: "Chrome Headless",
+        },
         referrer: {
           not: null,
         },
@@ -142,7 +145,10 @@ export async function analytics() {
 
     const formattedReferrers = referrers.map((item) => ({
       referrer: item.referrer
-        ? item.referrer.replace(/^https?:\/\//, "").replace(/^www\./, "")
+        ? item.referrer
+            .replace(/^https?:\/\//, "")
+            .replace(/^www\./, "")
+            .replace(/\/$/, "")
         : null,
       count: item._count._all,
     }));
@@ -154,6 +160,9 @@ export async function analytics() {
         //   gte: startDate,
         //   lt: endDate,
         // },
+        browser: {
+          not: "Chrome Headless",
+        },
       },
       _count: {
         _all: true,
@@ -173,16 +182,26 @@ export async function analytics() {
         //   gte: startDate,
         //   lt: endDate,
         // },
+        browser: {
+          not: "Chrome Headless",
+        },
       },
       _count: {
         _all: true,
       },
     });
 
-    const formattedDevicesCount = devices.map((item) => ({
-      device: item.device,
-      count: item._count._all,
-    }));
+    const formattedDevicesCount = devices.map((item) => {
+      const formattedDeviceName = item.device
+        ? item.device.charAt(0).toUpperCase() +
+          item.device.slice(1).toLowerCase()
+        : item.device;
+
+      return {
+        device: formattedDeviceName,
+        count: item._count._all,
+      };
+    });
 
     const countries = await prisma.analyticsEvent.groupBy({
       by: ["country"],
@@ -192,6 +211,9 @@ export async function analytics() {
         //   gte: startDate,
         //   lt: endDate,
         // },
+        browser: {
+          not: "Chrome Headless",
+        },
         country: {
           not: null,
         },
@@ -208,8 +230,35 @@ export async function analytics() {
     });
 
     const formattedCountries = countries.map((item) => ({
-      country: item.country,
+      country: getCountryName(item.country || ""),
       count: item._count._all,
+    }));
+
+    const cities = await prisma.analyticsEvent.groupBy({
+      by: ["city"],
+      where: {
+        event: "page_view",
+        browser: {
+          not: "Chrome Headless",
+        },
+        city: {
+          not: null,
+        },
+      },
+      _count: {
+        _all: true,
+      },
+      orderBy: {
+        _count: {
+          city: "desc",
+        },
+      },
+      take: 10,
+    });
+
+    const formattedCities = cities.map((city) => ({
+      city: decodeURIComponent(city.city || ""),
+      count: city._count._all,
     }));
 
     const projectClicks = await prisma.analyticsEvent.groupBy({
@@ -220,6 +269,9 @@ export async function analytics() {
         //   gte: startDate,
         //   lt: endDate,
         // },
+        browser: {
+          not: "Chrome Headless",
+        },
         projectId: {
           not: null,
         },
@@ -242,10 +294,11 @@ export async function analytics() {
     return {
       success: true,
       data: {
+        countries: formattedCountries,
+        cities: formattedCities,
         referrers: formattedReferrers,
         eventCounts: formattedEventCounts,
         devices: formattedDevicesCount,
-        countries: formattedCountries,
         projectClick: formattedProjectsClicks,
       } satisfies AnalyticsData,
     };
@@ -272,3 +325,12 @@ export async function getMessages() {
     throw new Error("Failed to load dashboard data");
   }
 }
+
+const getCountryName = (code: string): string => {
+  try {
+    const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
+    return regionNames.of(code.toUpperCase()) || code;
+  } catch {
+    return code;
+  }
+};

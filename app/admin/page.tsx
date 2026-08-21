@@ -54,18 +54,16 @@ export default async function DashboardPage() {
         <PageViewsChart />
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4 items-baseline">
-        {Object.entries(analyticsData?.data ?? {})?.map(
-          ([key, value], index) => {
-            return (
-              <AnalyticsStatCard
-                key={index}
-                title={key}
-                analytics={value}
-                index={index}
-              />
-            );
-          },
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {Object.entries(analyticsData?.data ?? {}).map(([key, value], index) =>
+          value.length > 0 ? (
+            <AnalyticsStatCard
+              key={key || index}
+              title={key}
+              analytics={value}
+              index={index}
+            />
+          ) : null,
         )}
       </div>
 

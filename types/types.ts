@@ -87,6 +87,11 @@ type CountryCount = {
   count: number;
 };
 
+type CityCount = {
+  city: string | null;
+  count: number;
+};
+
 type DeviceCount = {
   device: string | null;
   count: number;
@@ -112,8 +117,21 @@ type AnalyticsCount = {
   count: number;
 };
 
+export type AnalyticsEventNames = {
+  "Page View": string;
+  "Github Click": string;
+  "Linkedin Click": string;
+  "Email Click": string;
+  "Project Demo Click": string;
+  "Project Case Study Click": string;
+  "Project Github Click": string;
+  "Project Live Url Click": string;
+  "Generate Lead": string;
+};
+
 export type AnalyticsData = {
   countries: CountryCount[];
+  cities: CityCount[];
   devices: DeviceCount[];
   eventCounts: EventCount[];
   projectClick: ProjectClick[];

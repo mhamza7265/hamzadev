@@ -21,7 +21,8 @@ import {
 const chartConfig = {
   desktop: {
     label: "Views",
-    color: "var(--chart-1)",
+    color: "#fff",
+    // color: "#6366f1",
   },
 } satisfies ChartConfig;
 
