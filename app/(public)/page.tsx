@@ -1,3 +1,4 @@
+import { getExperienceData } from "@/actions/experience";
 import { getHomepageData } from "@/actions/homepage";
 import { getProfileData } from "@/actions/profile";
 import Architecture from "@/components/main/Architecture";
@@ -10,8 +11,17 @@ import Projects from "@/components/main/Projects";
 import Skills from "@/components/main/Skills";
 
 export default async function Home() {
-  const pageData = await getHomepageData();
-  const profile = await getProfileData();
+  // const pageData = await getHomepageData();
+  // const profile = await getProfileData();
+  // const experiences = await getExperienceData();
+  const [pageData, profile, experiences] = await Promise.all([
+    await getHomepageData(),
+    await getProfileData(),
+    await getExperienceData(),
+  ]);
+
+  console.log("page:experience", experiences);
+
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <Navbar />
@@ -20,7 +30,7 @@ export default async function Home() {
         <Skills data={pageData?.skills ?? []} />
         <Projects data={pageData?.projectsWithCode ?? []} />
         <Architecture />
-        <Experience />
+        <Experience experiences={experiences.experiences || []} />
         <Contact profile={profile} />
       </main>
       <Footer profile={profile} />

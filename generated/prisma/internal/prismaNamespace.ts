@@ -408,7 +408,10 @@ export const ModelName = {
   ProjectFeature: 'ProjectFeature',
   ProjectHighlight: 'ProjectHighlight',
   Profile: 'Profile',
-  AnalyticsEvent: 'AnalyticsEvent'
+  AnalyticsEvent: 'AnalyticsEvent',
+  Experience: 'Experience',
+  ExperienceBullet: 'ExperienceBullet',
+  ExperienceSkill: 'ExperienceSkill'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -424,7 +427,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "contactMessage" | "user" | "account" | "session" | "verificationToken" | "skill" | "project" | "projectTechnology" | "projectFeature" | "projectHighlight" | "profile" | "analyticsEvent"
+    modelProps: "contactMessage" | "user" | "account" | "session" | "verificationToken" | "skill" | "project" | "projectTechnology" | "projectFeature" | "projectHighlight" | "profile" | "analyticsEvent" | "experience" | "experienceBullet" | "experienceSkill"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1316,6 +1319,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Experience: {
+      payload: Prisma.$ExperiencePayload<ExtArgs>
+      fields: Prisma.ExperienceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ExperienceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperiencePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ExperienceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperiencePayload>
+        }
+        findFirst: {
+          args: Prisma.ExperienceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperiencePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ExperienceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperiencePayload>
+        }
+        findMany: {
+          args: Prisma.ExperienceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperiencePayload>[]
+        }
+        create: {
+          args: Prisma.ExperienceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperiencePayload>
+        }
+        createMany: {
+          args: Prisma.ExperienceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ExperienceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperiencePayload>[]
+        }
+        delete: {
+          args: Prisma.ExperienceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperiencePayload>
+        }
+        update: {
+          args: Prisma.ExperienceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperiencePayload>
+        }
+        deleteMany: {
+          args: Prisma.ExperienceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ExperienceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ExperienceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperiencePayload>[]
+        }
+        upsert: {
+          args: Prisma.ExperienceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperiencePayload>
+        }
+        aggregate: {
+          args: Prisma.ExperienceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateExperience>
+        }
+        groupBy: {
+          args: Prisma.ExperienceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ExperienceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ExperienceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ExperienceCountAggregateOutputType> | number
+        }
+      }
+    }
+    ExperienceBullet: {
+      payload: Prisma.$ExperienceBulletPayload<ExtArgs>
+      fields: Prisma.ExperienceBulletFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ExperienceBulletFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceBulletPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ExperienceBulletFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceBulletPayload>
+        }
+        findFirst: {
+          args: Prisma.ExperienceBulletFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceBulletPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ExperienceBulletFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceBulletPayload>
+        }
+        findMany: {
+          args: Prisma.ExperienceBulletFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceBulletPayload>[]
+        }
+        create: {
+          args: Prisma.ExperienceBulletCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceBulletPayload>
+        }
+        createMany: {
+          args: Prisma.ExperienceBulletCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ExperienceBulletCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceBulletPayload>[]
+        }
+        delete: {
+          args: Prisma.ExperienceBulletDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceBulletPayload>
+        }
+        update: {
+          args: Prisma.ExperienceBulletUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceBulletPayload>
+        }
+        deleteMany: {
+          args: Prisma.ExperienceBulletDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ExperienceBulletUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ExperienceBulletUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceBulletPayload>[]
+        }
+        upsert: {
+          args: Prisma.ExperienceBulletUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceBulletPayload>
+        }
+        aggregate: {
+          args: Prisma.ExperienceBulletAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateExperienceBullet>
+        }
+        groupBy: {
+          args: Prisma.ExperienceBulletGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ExperienceBulletGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ExperienceBulletCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ExperienceBulletCountAggregateOutputType> | number
+        }
+      }
+    }
+    ExperienceSkill: {
+      payload: Prisma.$ExperienceSkillPayload<ExtArgs>
+      fields: Prisma.ExperienceSkillFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ExperienceSkillFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceSkillPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ExperienceSkillFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceSkillPayload>
+        }
+        findFirst: {
+          args: Prisma.ExperienceSkillFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceSkillPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ExperienceSkillFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceSkillPayload>
+        }
+        findMany: {
+          args: Prisma.ExperienceSkillFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceSkillPayload>[]
+        }
+        create: {
+          args: Prisma.ExperienceSkillCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceSkillPayload>
+        }
+        createMany: {
+          args: Prisma.ExperienceSkillCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ExperienceSkillCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceSkillPayload>[]
+        }
+        delete: {
+          args: Prisma.ExperienceSkillDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceSkillPayload>
+        }
+        update: {
+          args: Prisma.ExperienceSkillUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceSkillPayload>
+        }
+        deleteMany: {
+          args: Prisma.ExperienceSkillDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ExperienceSkillUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ExperienceSkillUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceSkillPayload>[]
+        }
+        upsert: {
+          args: Prisma.ExperienceSkillUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExperienceSkillPayload>
+        }
+        aggregate: {
+          args: Prisma.ExperienceSkillAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateExperienceSkill>
+        }
+        groupBy: {
+          args: Prisma.ExperienceSkillGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ExperienceSkillGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ExperienceSkillCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ExperienceSkillCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1517,6 +1742,40 @@ export const AnalyticsEventScalarFieldEnum = {
 } as const
 
 export type AnalyticsEventScalarFieldEnum = (typeof AnalyticsEventScalarFieldEnum)[keyof typeof AnalyticsEventScalarFieldEnum]
+
+
+export const ExperienceScalarFieldEnum = {
+  id: 'id',
+  jobTitle: 'jobTitle',
+  jobSummary: 'jobSummary',
+  employer: 'employer',
+  location: 'location',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  isContinued: 'isContinued',
+  sortOrder: 'sortOrder'
+} as const
+
+export type ExperienceScalarFieldEnum = (typeof ExperienceScalarFieldEnum)[keyof typeof ExperienceScalarFieldEnum]
+
+
+export const ExperienceBulletScalarFieldEnum = {
+  id: 'id',
+  experienceId: 'experienceId',
+  description: 'description',
+  sortOrder: 'sortOrder'
+} as const
+
+export type ExperienceBulletScalarFieldEnum = (typeof ExperienceBulletScalarFieldEnum)[keyof typeof ExperienceBulletScalarFieldEnum]
+
+
+export const ExperienceSkillScalarFieldEnum = {
+  experienceId: 'experienceId',
+  skillId: 'skillId',
+  sortOrder: 'sortOrder'
+} as const
+
+export type ExperienceSkillScalarFieldEnum = (typeof ExperienceSkillScalarFieldEnum)[keyof typeof ExperienceSkillScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1861,6 +2120,9 @@ export type GlobalOmitConfig = {
   projectHighlight?: Prisma.ProjectHighlightOmit
   profile?: Prisma.ProfileOmit
   analyticsEvent?: Prisma.AnalyticsEventOmit
+  experience?: Prisma.ExperienceOmit
+  experienceBullet?: Prisma.ExperienceBulletOmit
+  experienceSkill?: Prisma.ExperienceSkillOmit
 }
 
 /* Types for Logging */

@@ -156,3 +156,30 @@ export type Pagination = {
   hasNextPage: boolean;
   hasPrevPage: boolean;
 };
+
+export type ExperienceSkill = {
+  id: number;
+  name: string;
+  category?: string;
+  tag?: string;
+};
+
+export type ExperienceBullet = {
+  id?: number;
+  description: string;
+  sortOrder?: number;
+};
+
+export type Experience = {
+  id: number;
+  jobTitle: string;
+  jobSummary: string;
+  employer: string;
+  location: string;
+  startDate: number;
+  endDate: number | null;
+  isContinued: boolean;
+  sortOrder: number;
+  stack: ExperienceSkill[];
+  bullets: ExperienceBullet[];
+};

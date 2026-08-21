@@ -90,6 +90,7 @@ model Skill {
   name                String
   category            SkillCategory
   tag                 SkillTag
+  experience          ExperienceSkill[]
 }
 
 model Project {
@@ -214,4 +215,39 @@ model AnalyticsEvent {
   @@index([visitorId, createdAt])
   @@index([sessionId, createdAt])
   @@index([path, createdAt])
+}
+
+model Experience {
+  id             Int                     @id @default(autoincrement())
+  jobTitle       String
+  jobSummary     String
+  employer       String
+  location       String
+  startDate      Int
+  endDate        Int?
+  isContinued    Boolean                 @default(false)
+  stack          ExperienceSkill[]
+  sortOrder      Int                     @default(0)
+  bullets        ExperienceBullet[]
+}
+
+model ExperienceBullet {
+  id           Int        @id @default(autoincrement())
+  experienceId Int
+  description  String
+  sortOrder    Int        @default(0)
+  experience   Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+
+  @@index([experienceId])
+}
+
+model ExperienceSkill {
+  experienceId Int
+  skillId      Int
+  sortOrder    Int         @default(0)
+
+  experience   Experience  @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  skill        Skill       @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@id([experienceId, skillId])
 }

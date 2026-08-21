@@ -62,7 +62,10 @@ export const ModelName = {
   ProjectFeature: 'ProjectFeature',
   ProjectHighlight: 'ProjectHighlight',
   Profile: 'Profile',
-  AnalyticsEvent: 'AnalyticsEvent'
+  AnalyticsEvent: 'AnalyticsEvent',
+  Experience: 'Experience',
+  ExperienceBullet: 'ExperienceBullet',
+  ExperienceSkill: 'ExperienceSkill'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -243,6 +246,40 @@ export const AnalyticsEventScalarFieldEnum = {
 } as const
 
 export type AnalyticsEventScalarFieldEnum = (typeof AnalyticsEventScalarFieldEnum)[keyof typeof AnalyticsEventScalarFieldEnum]
+
+
+export const ExperienceScalarFieldEnum = {
+  id: 'id',
+  jobTitle: 'jobTitle',
+  jobSummary: 'jobSummary',
+  employer: 'employer',
+  location: 'location',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  isContinued: 'isContinued',
+  sortOrder: 'sortOrder'
+} as const
+
+export type ExperienceScalarFieldEnum = (typeof ExperienceScalarFieldEnum)[keyof typeof ExperienceScalarFieldEnum]
+
+
+export const ExperienceBulletScalarFieldEnum = {
+  id: 'id',
+  experienceId: 'experienceId',
+  description: 'description',
+  sortOrder: 'sortOrder'
+} as const
+
+export type ExperienceBulletScalarFieldEnum = (typeof ExperienceBulletScalarFieldEnum)[keyof typeof ExperienceBulletScalarFieldEnum]
+
+
+export const ExperienceSkillScalarFieldEnum = {
+  experienceId: 'experienceId',
+  skillId: 'skillId',
+  sortOrder: 'sortOrder'
+} as const
+
+export type ExperienceSkillScalarFieldEnum = (typeof ExperienceSkillScalarFieldEnum)[keyof typeof ExperienceSkillScalarFieldEnum]
 
 
 export const SortOrder = {

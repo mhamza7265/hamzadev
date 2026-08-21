@@ -101,3 +101,18 @@ export type Profile = Prisma.ProfileModel
  * 
  */
 export type AnalyticsEvent = Prisma.AnalyticsEventModel
+/**
+ * Model Experience
+ * 
+ */
+export type Experience = Prisma.ExperienceModel
+/**
+ * Model ExperienceBullet
+ * 
+ */
+export type ExperienceBullet = Prisma.ExperienceBulletModel
+/**
+ * Model ExperienceSkill
+ * 
+ */
+export type ExperienceSkill = Prisma.ExperienceSkillModel
