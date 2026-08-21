@@ -15,16 +15,20 @@ const LayoutWrapper = ({
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
-    const body = document.body;
+    const handleResize = () => {
+      if (window.innerWidth < 768 && isSidebarOpen) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+      }
+    };
 
-    if (isSidebarOpen) {
-      body.style.overflow = "hidden";
-    } else {
-      body.style.overflow = "";
-    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      body.style.overflow = "";
+      document.body.style.overflow = "";
+      window.removeEventListener("resize", handleResize);
     };
   }, [isSidebarOpen]);
 
