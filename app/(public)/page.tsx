@@ -11,16 +11,11 @@ import Projects from "@/components/main/Projects";
 import Skills from "@/components/main/Skills";
 
 export default async function Home() {
-  // const pageData = await getHomepageData();
-  // const profile = await getProfileData();
-  // const experiences = await getExperienceData();
   const [pageData, profile, experiences] = await Promise.all([
-    await getHomepageData(),
-    await getProfileData(),
-    await getExperienceData(),
+    getHomepageData(),
+    getProfileData(),
+    getExperienceData(),
   ]);
-
-  console.log("page:experience", experiences);
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">

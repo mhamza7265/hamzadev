@@ -4,11 +4,22 @@ import { redirect } from "next/navigation";
 import LayoutWrapper from "@/components/admin/layout/LayoutWrapper";
 import { ToastContainer } from "react-toastify";
 import { Metadata } from "next";
+import { getSettings } from "@/actions/settings";
+
+const settings = await getSettings();
 
 export const metadata: Metadata = {
-  title: "Hamza Hanif | Admin Panel",
-  description:
-    "Full-stack web applications, scalable APIs, and cloud deployments.",
+  title: {
+    default: settings.data?.adminTitle || "Admin Dashboard | Hamza Hanif",
+    template: `%s | ${settings.data?.adminTitle || "Admin Dashboard"}`,
+  },
+
+  description: settings.data?.adminDescription || "Manage your portfolio.",
+
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default async function AdminLayout({

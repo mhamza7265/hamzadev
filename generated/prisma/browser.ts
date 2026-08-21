@@ -92,3 +92,8 @@ export type ExperienceBullet = Prisma.ExperienceBulletModel
  * 
  */
 export type ExperienceSkill = Prisma.ExperienceSkillModel
+/**
+ * Model SiteSettings
+ * 
+ */
+export type SiteSettings = Prisma.SiteSettingsModel

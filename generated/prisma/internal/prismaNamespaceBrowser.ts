@@ -65,7 +65,8 @@ export const ModelName = {
   AnalyticsEvent: 'AnalyticsEvent',
   Experience: 'Experience',
   ExperienceBullet: 'ExperienceBullet',
-  ExperienceSkill: 'ExperienceSkill'
+  ExperienceSkill: 'ExperienceSkill',
+  SiteSettings: 'SiteSettings'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -280,6 +281,26 @@ export const ExperienceSkillScalarFieldEnum = {
 } as const
 
 export type ExperienceSkillScalarFieldEnum = (typeof ExperienceSkillScalarFieldEnum)[keyof typeof ExperienceSkillScalarFieldEnum]
+
+
+export const SiteSettingsScalarFieldEnum = {
+  id: 'id',
+  publicSiteTitle: 'publicSiteTitle',
+  publicSiteDescription: 'publicSiteDescription',
+  siteUrl: 'siteUrl',
+  adminTitle: 'adminTitle',
+  adminDescription: 'adminDescription',
+  seoTitle: 'seoTitle',
+  seoDescription: 'seoDescription',
+  seoKeywords: 'seoKeywords',
+  canonicalUrl: 'canonicalUrl',
+  ogImageUrl: 'ogImageUrl',
+  analyticsRetentionDays: 'analyticsRetentionDays',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SiteSettingsScalarFieldEnum = (typeof SiteSettingsScalarFieldEnum)[keyof typeof SiteSettingsScalarFieldEnum]
 
 
 export const SortOrder = {

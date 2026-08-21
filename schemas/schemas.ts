@@ -90,3 +90,168 @@ export const resetPwServerSchema = z.object({
   }),
   password: z.string().min(1, "Password is required"),
 });
+
+export const GeneralSettingsSchema = z.object({
+  publicSiteTitle: z
+    .string()
+    .min(1, "Public site title is required")
+    .max(100, "Public site title is too long"),
+
+  publicSiteDescription: z
+    .string()
+    .max(300, "Public site description is too long"),
+
+  siteUrl: z.string().url("Enter a valid URL").or(z.literal("")),
+
+  adminTitle: z
+    .string()
+    .min(1, "Admin title is required")
+    .max(100, "Admin title is too long"),
+
+  adminDescription: z.string().max(300, "Admin description is too long"),
+
+  seoTitle: z.string().max(100, "SEO title is too long"),
+
+  seoDescription: z.string().max(300, "SEO description is too long"),
+
+  seoKeywords: z.string().max(500, "SEO keywords are too long"),
+
+  canonicalUrl: z.string().url("Enter a valid URL").or(z.literal("")),
+
+  ogImageUrl: z.string().url("Enter a valid URL").or(z.literal("")),
+});
+
+export const AnalyticsSettingsSchema = z.object({
+  analyticsRetentionDays: z
+    .number()
+    .int("Retention period must be a whole number")
+    .min(1, "Retention period must be at least 1 day")
+    .max(3650, "Retention period cannot exceed 3650 days"),
+});
+
+export const ChangePasswordSchema = z
+  .object({
+    currentPassword: z.string().min(1, "Current password is required"),
+
+    newPassword: z
+      .string()
+      .min(8, "New password must be at least 8 characters"),
+
+    confirmPassword: z.string().min(1, "Please confirm your new password"),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
+
+export const experienceSchema = z.object({
+  jobTitle: z
+    .string()
+    .trim()
+    .min(1, "Job title is required")
+    .max(150, "Job title is too long"),
+
+  employer: z
+    .string()
+    .trim()
+    .min(1, "Employer is required")
+    .max(150, "Employer is too long"),
+
+  location: z
+    .string()
+    .trim()
+    .min(1, "Location is required")
+    .max(150, "Location is too long"),
+
+  startDate: z
+    .number()
+    .int()
+    .min(1900, "Enter a valid start year")
+    .max(2100, "Enter a valid start year"),
+
+  endDate: z
+    .number()
+    .int()
+    .min(1900, "Enter a valid end year")
+    .max(2100, "Enter a valid end year")
+    .nullable(),
+
+  isContinued: z.boolean(),
+
+  jobSummary: z
+    .string()
+    .trim()
+    .min(1, "Job summary is required")
+    .max(2000, "Job summary is too long"),
+
+  skillIds: z
+    .array(z.number().int().positive())
+    .max(50, "Too many skills selected"),
+
+  bullets: z
+    .array(
+      z.object({
+        description: z
+          .string()
+          .trim()
+          .min(1, "Bullet cannot be empty")
+          .max(500, "Bullet is too long"),
+      }),
+    )
+    .max(50, "Too many responsibilities"),
+});
+
+export const experienceFormSchema = z
+  .object({
+    jobTitle: z.string().trim().min(1, "Job title is required"),
+
+    employer: z.string().trim().min(1, "Employer is required"),
+
+    location: z.string().trim().min(1, "Location is required"),
+
+    startDate: z
+      .number()
+      .int()
+      .min(1900, "Enter a valid year")
+      .max(2100, "Enter a valid year"),
+
+    endDate: z
+      .number()
+      .int()
+      .min(1900, "Enter a valid year")
+      .max(2100, "Enter a valid year")
+      .nullable(),
+
+    isContinued: z.boolean(),
+
+    jobSummary: z.string().trim().min(1, "Job summary is required"),
+
+    skillIds: z.array(z.number().int().positive()),
+
+    bullets: z.array(
+      z.object({
+        description: z.string().trim().min(1, "Responsibility cannot be empty"),
+      }),
+    ),
+  })
+  .superRefine((data, ctx) => {
+    if (
+      !data.isContinued &&
+      data.endDate !== null &&
+      data.endDate < data.startDate
+    ) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["endDate"],
+        message: "End year cannot be before start year",
+      });
+    }
+
+    if (data.isContinued && data.endDate !== null) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["endDate"],
+        message: "End year must be empty",
+      });
+    }
+  });
