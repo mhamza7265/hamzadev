@@ -17,6 +17,9 @@ export async function dashboardData({
     const pageViews = await prisma.analyticsEvent.count({
       where: {
         event: "page_view",
+        browser: {
+          not: "Chrome Headless",
+        },
         createdAt: {
           gte: startDate || undefined,
           lt: endDate || undefined,
@@ -86,6 +89,7 @@ export async function getPageViews({
       FROM "AnalyticsEvent"
       WHERE
         "event" = 'page_view'
+        AND "browser" != 'Chrome Headless'
         AND "createdAt" >= ${calculatedStartDate}
         AND "createdAt" < ${calculatedEndDate}
       GROUP BY DATE_TRUNC('day', "createdAt")
