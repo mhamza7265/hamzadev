@@ -48,7 +48,8 @@ const formatEventName = (event: string) => {
 };
 
 const AnalyticsStatCard = ({ title, analytics, index }: StatCardProps) => {
-  const maxValue = analytics[0].count || 1;
+  const maxValue = Math.max(...analytics.map((item) => item.count));
+  console.log("AalyticsStatCard:analytics", analytics);
   return (
     <motion.div
       key={title}
@@ -63,7 +64,7 @@ const AnalyticsStatCard = ({ title, analytics, index }: StatCardProps) => {
       <p className="text-sm font-medium text-slate-400 border-b border-slate-600 w-full pb-2 mb-4">
         {formateTitle(title)}
       </p>
-      <div className="h-40 overflow-auto px-1">
+      <div className="h-40 w-full overflow-y-auto px-1">
         {analytics.map((item) => {
           const labelKey = Object.keys(item).find((key) => key !== "count");
 

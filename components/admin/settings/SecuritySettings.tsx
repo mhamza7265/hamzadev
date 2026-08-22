@@ -175,26 +175,25 @@ const SecuritySettings = () => {
             )}
           </div>
         </div>
+        {/* Actions */}
+        <div className="flex justify-end gap-3 mt-1">
+          <button
+            type="button"
+            onClick={() => reset()}
+            className="relative inline-flex cursor-pointer items-center gap-2 overflow-hidden rounded-xl border border-brand-600 px-4 py-2.5 text-sm font-medium text-brand-400 shadow-glow transition-transform hover:scale-[1.03] hover:bg-brand-600 hover:text-white"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            disabled={isSaving}
+            className="relative inline-flex cursor-pointer items-center gap-2 overflow-hidden rounded-xl bg-linear-to-r from-brand-500 to-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95 disabled:cursor-not-allowed disabled:opacity-80"
+          >
+            {isSaving ? "Changing..." : "Change Password"}
+          </button>
+        </div>
       </section>
-
-      {/* Actions */}
-      <div className="flex justify-end gap-3">
-        <button
-          type="button"
-          onClick={() => reset()}
-          className="relative inline-flex cursor-pointer items-center gap-2 overflow-hidden rounded-xl border border-brand-600 px-4 py-2.5 text-sm font-medium text-brand-400 shadow-glow transition-transform hover:scale-[1.03] hover:bg-brand-600 hover:text-white"
-        >
-          Cancel
-        </button>
-
-        <button
-          type="submit"
-          disabled={isSaving}
-          className="relative inline-flex cursor-pointer items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95 disabled:cursor-not-allowed disabled:opacity-80"
-        >
-          {isSaving ? "Changing..." : "Change Password"}
-        </button>
-      </div>
     </form>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { MoreHorizontalIcon } from "lucide-react";
+import { Eye, MoreHorizontalIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -35,22 +35,22 @@ export function DataTable({ messages, isLoading }: DataTableProps) {
     <Table>
       <TableHeader>
         <TableRow className="border-b border-slate-600 hover:bg-slate-900/70">
-          <TableHead className="text-start font-medium text-slate-400">
+          <TableHead className="text-start font-semibold text-slate-400">
             Status
           </TableHead>
-          <TableHead className="text-center font-medium text-slate-400">
+          <TableHead className="text-center font-semibold text-slate-400">
             Name
           </TableHead>
-          <TableHead className="text-center font-medium text-slate-400">
+          <TableHead className="text-center font-semibold text-slate-400">
             Subject
           </TableHead>
-          <TableHead className="text-center font-medium text-slate-400">
+          <TableHead className="text-center font-semibold text-slate-400">
             Email
           </TableHead>
-          <TableHead className="text-center font-medium text-slate-400">
+          <TableHead className="text-center font-semibold text-slate-400">
             Received
           </TableHead>
-          <TableHead className="text-right font-medium text-slate-400">
+          <TableHead className="text-right font-semibold text-slate-400">
             Actions
           </TableHead>
         </TableRow>
@@ -123,8 +123,17 @@ export function DataTable({ messages, isLoading }: DataTableProps) {
                 </TableCell>
                 <TableCell className="text-center">{message.email}</TableCell>
                 <TableCell>{formattedDate}</TableCell>
-                <TableCell className="text-right">
-                  <DropdownMenu>
+                <TableCell className="flex items-baseline justify-center">
+                  <button
+                    onClick={() => {
+                      router.push(`/admin/messages/${message.id}`);
+                      start();
+                    }}
+                    className="cursor-pointer"
+                  >
+                    <Eye size={20} />
+                  </button>
+                  {/* <DropdownMenu>
                     <DropdownMenuTrigger
                       render={
                         <Button
@@ -148,7 +157,7 @@ export function DataTable({ messages, isLoading }: DataTableProps) {
                         Open
                       </DropdownMenuItem>
                     </DropdownMenuContent>
-                  </DropdownMenu>
+                  </DropdownMenu> */}
                 </TableCell>
               </TableRow>
             );

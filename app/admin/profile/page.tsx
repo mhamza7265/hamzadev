@@ -4,7 +4,7 @@ import ProfileForm from "@/components/admin/profile/ProfileForm";
 export default async function ProfileSettingsPage() {
   const profile = await getProfileData();
   return (
-    <div className="p-2 lg:p-6">
+    <div className="lg:p-6">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-8">

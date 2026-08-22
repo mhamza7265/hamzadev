@@ -414,7 +414,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
                 description: "",
               })
             }
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 px-3 py-2 text-xs font-medium text-slate-300 transition hover:bg-slate-900 hover:text-white"
+            className="relative inline-flex cursor-pointer items-center gap-2 overflow-hidden rounded-xl border border-brand-600 px-2.5 py-1.5 text-sm font-medium text-brand-400 shadow-glow transition-transform hover:scale-[1.03] hover:bg-brand-600 hover:text-white"
           >
             <Plus className="h-3.5 w-3.5" />
             Add
@@ -457,7 +457,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
                 type="button"
                 onClick={() => remove(index)}
                 disabled={bulletFields.length === 1}
-                className="mt-1.5 rounded-md p-2 text-slate-500 transition hover:bg-slate-900 hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-30"
+                className="mt-1.5 cursor-pointer rounded-md p-2 text-slate-500 transition hover:bg-slate-900 hover:text-red-400 disabled:cursor-not-allowed disabled:opacity-30"
                 title="Remove responsibility"
               >
                 <Trash2 className="h-4 w-4" />
@@ -491,7 +491,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
       <div className="flex items-center justify-end gap-3 border-t border-slate-800 pt-5">
         <Link
           href="/admin/experience"
-          className="rounded-lg border border-slate-700 px-4 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-white"
+          className="relative inline-flex cursor-pointer items-center gap-2 overflow-hidden rounded-xl border border-brand-600 px-4 py-2.5 text-sm font-medium text-brand-400 shadow-glow transition-transform hover:scale-[1.03] hover:bg-brand-600 hover:text-white"
         >
           Cancel
         </Link>
@@ -499,7 +499,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-medium text-slate-900 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-50"
+          className="relative inline-flex cursor-pointer items-center gap-2 overflow-hidden rounded-xl bg-linear-to-r from-brand-500 to-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95 disabled:cursor-not-allowed disabled:opacity-80"
         >
           {isSubmitting && <Loader2 className="h-4 w-4 animate-spin" />}
 

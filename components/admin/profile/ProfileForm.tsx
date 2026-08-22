@@ -63,7 +63,7 @@ const ProfileForm = ({ profile }: { profile: ProfileType | null }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {/* Personal Information */}
-      <section className="rounded-xl border border-slate-800 bg-slate-900/70 p-1 lg:p-5">
+      <section className="rounded-xl border border-slate-800 bg-slate-900/70 lg:p-5">
         <div className="border-b border-slate-800 px-5 py-4">
           <h2 className="text-base font-semibold text-white">
             Personal Information
@@ -74,7 +74,7 @@ const ProfileForm = ({ profile }: { profile: ProfileType | null }) => {
           </p>
         </div>
 
-        <div className="grid gap-5 p-5 lg:p-6 sm:grid-cols-2">
+        <div className="grid gap-5 p-4 lg:p-6 sm:grid-cols-2">
           {/* Name */}
           {profilePersonalInfoFields.map((field, i) => {
             return (
@@ -136,25 +136,24 @@ const ProfileForm = ({ profile }: { profile: ProfileType | null }) => {
             </div>
           ))}
         </div>
-      </section>
-
-      {/* Actions */}
-      <div className="flex justify-end gap-3">
-        <button
+        {/* Actions */}
+        <div className="flex justify-end gap-3 mt-5">
+          {/* <button
           type="button"
           className="relative cursor-pointer inline-flex items-center gap-2 overflow-hidden rounded-xl border border-brand-600 px-4 py-2.5 text-sm font-medium text-brand-400 hover:bg-brand-600 hover:text-white shadow-glow transition-transform hover:scale-[1.03]"
         >
           Cancel
-        </button>
+        </button> */}
 
-        <button
-          type="submit"
-          disabled={isSaving}
-          className="relative cursor-pointer inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95 disabled:cursor-not-allowed disabled:opacity-80"
-        >
-          {isSaving ? "Saving..." : "Save Changes"}
-        </button>
-      </div>
+          <button
+            type="submit"
+            disabled={isSaving}
+            className="relative cursor-pointer inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95 disabled:cursor-not-allowed disabled:opacity-80"
+          >
+            {isSaving ? "Saving..." : "Save Changes"}
+          </button>
+        </div>
+      </section>
     </form>
   );
 };

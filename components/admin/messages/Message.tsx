@@ -49,7 +49,7 @@ const MessageClient = ({
     hour12: true,
   });
   return (
-    <div className="min-h-full space-y-6 p-2 lg:p-6">
+    <div className="min-h-full space-y-6 lg:p-6">
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
@@ -95,7 +95,7 @@ const MessageClient = ({
       {/* Message */}
       <Card className="overflow-hidden border-slate-700 bg-slate-900/70 shadow-xl">
         {/* Subject */}
-        <CardHeader className="space-y-5 border-b border-slate-700 px-6 py-6">
+        <CardHeader className="space-y-5 border-b border-slate-700 lg:px-6 py-6">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight text-white">
               {contactMessage.subject}

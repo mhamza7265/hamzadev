@@ -171,6 +171,11 @@ export async function analytics() {
       _count: {
         _all: true,
       },
+      orderBy: {
+        _count: {
+          event: "desc",
+        },
+      },
     });
 
     const formattedEventCounts = eventCounts.map((item) => ({
@@ -192,6 +197,11 @@ export async function analytics() {
       },
       _count: {
         _all: true,
+      },
+      orderBy: {
+        _count: {
+          device: "desc",
+        },
       },
     });
 

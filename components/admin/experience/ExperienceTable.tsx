@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
   GripVertical,
@@ -9,8 +9,17 @@ import {
   Plus,
   Trash2,
 } from "lucide-react";
-
+import { useRouter } from "next/navigation";
+import { useProgress } from "@bprogress/next";
 import { deleteExperience } from "@/actions/experience";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 type Experience = {
   id: number;
@@ -39,16 +48,36 @@ export default function ExperienceTable({ experiences }: Props) {
 
   const [deleteError, setDeleteError] = useState("");
 
+  const actionRefs = useRef<Record<number, HTMLTableCellElement | null>>({});
+
+  const router = useRouter();
+  const { start } = useProgress();
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (openMenu === null) return;
+
+      const actionCell = actionRefs.current[openMenu];
+
+      if (actionCell && !actionCell.contains(event.target as Node)) {
+        setOpenMenu(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openMenu]);
+
   async function handleDelete(experience: Experience) {
     const confirmed = window.confirm(
       `Delete "${experience.jobTitle}" at ${experience.employer}?\n\nThis will also delete its responsibilities and selected stack.`,
     );
-
     if (!confirmed) return;
-
     setDeleteError("");
     setDeletingId(experience.id);
-
     try {
       const result = await deleteExperience(experience.id);
 
@@ -76,13 +105,16 @@ export default function ExperienceTable({ experiences }: Props) {
           </p>
         </div>
 
-        <Link
-          href="/admin/experience/new"
-          className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-medium text-slate-900 transition hover:bg-slate-200"
+        <button
+          className="relative cursor-pointer inline-flex items-center gap-2 overflow-hidden rounded-xl bg-linear-to-r from-brand-500 to-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-glow transition-transform hover:scale-[1.03] active:scale-95 disabled:cursor-not-allowed disabled:opacity-80"
+          onClick={() => {
+            router.push("/admin/experience/new");
+            start();
+          }}
         >
           <Plus className="h-4 w-4" />
           Add Experience
-        </Link>
+        </button>
       </div>
 
       {/* Error */}
@@ -93,41 +125,43 @@ export default function ExperienceTable({ experiences }: Props) {
       )}
 
       {/* Table */}
-      <div className="overflow-hidden rounded-xl border border-slate-800 bg-slate-950">
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[950px] text-left">
-            <thead className="border-b border-slate-800 bg-slate-900/50">
-              <tr>
-                <th className="w-12 px-4 py-3" />
+      <div className="rounded-xl border border-slate-800 bg-slate-900/70 px-0 py-5">
+        <div>
+          <Table className="w-full min-w-236 text-left">
+            <TableHeader>
+              <TableRow className="border-b border-slate-600 hover:bg-slate-900/70">
+                <TableHead className="w-12 px-4 py-3" />
 
-                <th className="px-4 py-3 text-xs font-medium uppercase tracking-wide text-slate-500">
+                <TableHead className="text-center font-semibold text-slate-400">
                   Position
-                </th>
+                </TableHead>
 
-                <th className="px-4 py-3 text-xs font-medium uppercase tracking-wide text-slate-500">
+                <TableHead className="text-center font-semibold text-slate-400">
                   Employer
-                </th>
+                </TableHead>
 
-                <th className="px-4 py-3 text-xs font-medium uppercase tracking-wide text-slate-500">
+                <TableHead className="text-center font-semibold text-slate-400">
                   Location
-                </th>
+                </TableHead>
 
-                <th className="px-4 py-3 text-xs font-medium uppercase tracking-wide text-slate-500">
+                <TableHead className="text-center font-semibold text-slate-400">
                   Period
-                </th>
+                </TableHead>
 
-                <th className="px-4 py-3 text-xs font-medium uppercase tracking-wide text-slate-500">
+                <TableHead className="text-center font-semibold text-slate-400">
                   Stack
-                </th>
+                </TableHead>
 
-                <th className="w-16 px-4 py-3" />
-              </tr>
-            </thead>
+                <TableHead className="text-center font-semibold text-slate-400">
+                  Action
+                </TableHead>
+              </TableRow>
+            </TableHeader>
 
-            <tbody className="divide-y divide-slate-800">
+            <TableBody>
               {experiences.length === 0 ? (
-                <tr>
-                  <td colSpan={7} className="px-6 py-16 text-center">
+                <TableRow className="border-b border-slate-700 even:bg-slate-800/30 hover:bg-slate-800 has-aria-expanded:bg-slate-800">
+                  <TableCell colSpan={7} className="px-6 py-16 text-center">
                     <p className="text-sm text-slate-400">
                       No experience entries yet.
                     </p>
@@ -138,16 +172,16 @@ export default function ExperienceTable({ experiences }: Props) {
                     >
                       Add your first experience
                     </Link>
-                  </td>
-                </tr>
+                  </TableCell>
+                </TableRow>
               ) : (
                 experiences.map((experience) => (
-                  <tr
+                  <TableRow
                     key={experience.id}
-                    className="transition hover:bg-slate-900/40"
+                    className="border-b border-slate-700 even:bg-slate-800/30 hover:bg-slate-800 has-aria-expanded:bg-slate-800"
                   >
                     {/* Future drag handle */}
-                    <td className="px-4 py-4">
+                    <TableCell className="py-4">
                       <button
                         type="button"
                         disabled
@@ -156,37 +190,37 @@ export default function ExperienceTable({ experiences }: Props) {
                       >
                         <GripVertical className="h-4 w-4" />
                       </button>
-                    </td>
+                    </TableCell>
 
                     {/* Position */}
-                    <td className="px-4 py-4">
+                    <TableCell className="text-center whitespace-break-spaces py-4">
                       <span className="font-medium text-slate-200">
                         {experience.jobTitle}
                       </span>
-                    </td>
+                    </TableCell>
 
                     {/* Employer */}
-                    <td className="px-4 py-4 text-sm text-slate-300">
+                    <TableCell className="py-4 whitespace-break-spaces text-center text-sm text-slate-300">
                       {experience.employer}
-                    </td>
+                    </TableCell>
 
                     {/* Location */}
-                    <td className="px-4 py-4 text-sm text-slate-400">
+                    <TableCell className="py-4 text-center text-sm text-slate-400">
                       {experience.location}
-                    </td>
+                    </TableCell>
 
                     {/* Period */}
-                    <td className="whitespace-nowrap px-4 py-4 text-sm text-slate-400">
+                    <TableCell className="whitespace-nowrap py-4 text-center text-sm text-slate-400">
                       {experience.startDate}
                       {" – "}
                       {experience.isContinued
                         ? "Present"
                         : (experience.endDate ?? "—")}
-                    </td>
+                    </TableCell>
 
                     {/* Stack */}
-                    <td className="px-4 py-4">
-                      <div className="flex max-w-[320px] flex-wrap gap-1.5">
+                    <TableCell className="py-4 whitespace-break-spaces">
+                      <div className="flex justify-center max-w-70 text-center flex-wrap gap-1.5">
                         {experience.stack.slice(0, 4).map(({ skill }) => (
                           <span
                             key={skill.id}
@@ -202,10 +236,15 @@ export default function ExperienceTable({ experiences }: Props) {
                           </span>
                         )}
                       </div>
-                    </td>
+                    </TableCell>
 
                     {/* Actions */}
-                    <td className="relative px-4 py-4">
+                    <TableCell
+                      ref={(element) => {
+                        actionRefs.current[experience.id] = element;
+                      }}
+                      className="relative py-4"
+                    >
                       <button
                         type="button"
                         disabled={deletingId === experience.id}
@@ -214,7 +253,7 @@ export default function ExperienceTable({ experiences }: Props) {
                             openMenu === experience.id ? null : experience.id,
                           )
                         }
-                        className="rounded-md p-1.5 text-slate-400 transition hover:bg-slate-800 hover:text-white disabled:opacity-50"
+                        className="rounded-md cursor-pointer p-1.5 text-slate-400 transition hover:bg-slate-800 hover:text-white disabled:opacity-50"
                       >
                         <MoreHorizontal className="h-5 w-5" />
                       </button>
@@ -233,19 +272,19 @@ export default function ExperienceTable({ experiences }: Props) {
                             type="button"
                             disabled={deletingId === experience.id}
                             onClick={() => handleDelete(experience)}
-                            className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-red-400 transition hover:bg-slate-800 disabled:opacity-50"
+                            className="flex cursor-pointer w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-red-400 transition hover:bg-slate-800 disabled:opacity-50"
                           >
                             <Trash2 className="h-4 w-4" />
                             Delete
                           </button>
                         </div>
                       )}
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 ))
               )}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
         </div>
       </div>
     </div>

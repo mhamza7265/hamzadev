@@ -2,8 +2,8 @@ import MessagesTable from "@/components/admin/messages/MessagesTable";
 
 const Messages = async () => {
   return (
-    <div className="p-2 lg:p-6">
-      <div className="mx-auto max-w-4xl">
+    <div className="lg:p-6">
+      <div className="mx-auto max-w-4xl px-1 lg:px-0">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight text-white">

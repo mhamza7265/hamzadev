@@ -31,7 +31,7 @@ const MessagesTable = () => {
 
   return (
     <>
-      <div className="rounded-xl border border-slate-800 bg-slate-900/70 px-10 py-5">
+      <div className="rounded-xl border border-slate-800 bg-slate-900/70 px-6 lg:px-4 py-5">
         <DataTable messages={messages} isLoading={isLoading} />
       </div>
       <div className="flex items-center justify-center lg:justify-end gap-2 mt-4">
