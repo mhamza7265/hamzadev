@@ -154,7 +154,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
       )}
 
       {/* Position Information */}
-      <section className="rounded-xl border border-slate-800 bg-slate-950">
+      <section className="rounded-xl border border-slate-800 bg-slate-900/70 px-6 lg:px-4 py-5">
         <div className="border-b border-slate-800 px-5 py-4">
           <h2 className="text-sm font-semibold text-white">
             Position Information
@@ -180,7 +180,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
               id="jobTitle"
               type="text"
               placeholder="Full Stack Developer"
-              className={`w-full rounded-lg border bg-slate-950 px-3 py-2.5 text-sm text-slate-200 outline-none transition placeholder:text-slate-600 ${
+              className={`w-full rounded-lg border border-slate-700 px-3 py-2.5 text-sm text-slate-400 outline-none transition focus:border-slate-800 focus:ring-1 focus:ring-gray-900 placeholder:text-slate-600 ${
                 errors.jobTitle
                   ? "border-red-500/70"
                   : "border-slate-700 focus:border-slate-500"
@@ -208,7 +208,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
               id="employer"
               type="text"
               placeholder="Company Name"
-              className={`w-full rounded-lg border bg-slate-950 px-3 py-2.5 text-sm text-slate-200 outline-none transition placeholder:text-slate-600 ${
+              className={`w-full rounded-lg border border-slate-700 px-3 py-2.5 text-sm text-slate-400 outline-none transition focus:border-slate-800 focus:ring-1 focus:ring-gray-900 placeholder:text-slate-600 ${
                 errors.employer
                   ? "border-red-500/70"
                   : "border-slate-700 focus:border-slate-500"
@@ -236,7 +236,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
               id="location"
               type="text"
               placeholder="Lahore, Pakistan"
-              className={`w-full rounded-lg border bg-slate-950 px-3 py-2.5 text-sm text-slate-200 outline-none transition placeholder:text-slate-600 ${
+              className={`w-full rounded-lg border border-slate-700 px-3 py-2.5 text-sm text-slate-400 outline-none transition focus:border-slate-800 focus:ring-1 focus:ring-gray-900 placeholder:text-slate-600 ${
                 errors.location
                   ? "border-red-500/70"
                   : "border-slate-700 focus:border-slate-500"
@@ -267,7 +267,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
               type="number"
               min={1900}
               max={2100}
-              className={`w-full rounded-lg border bg-slate-950 px-3 py-2.5 text-sm text-slate-200 outline-none transition ${
+              className={`w-full rounded-lg border border-slate-700 px-3 py-2.5 text-sm text-slate-400 outline-none transition focus:border-slate-800 focus:ring-1 focus:ring-gray-900 placeholder:text-slate-600 ${
                 errors.startDate
                   ? "border-red-500/70"
                   : "border-slate-700 focus:border-slate-500"
@@ -315,7 +315,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
               max={2100}
               disabled={isContinued}
               placeholder={isContinued ? "Present" : "2026"}
-              className={`w-full rounded-lg border bg-slate-950 px-3 py-2.5 text-sm text-slate-200 outline-none transition disabled:cursor-not-allowed disabled:opacity-40 ${
+              className={`w-full rounded-lg border border-slate-700 px-3 py-2.5 text-sm text-slate-400 outline-none transition focus:border-slate-800 focus:ring-1 focus:ring-gray-900 placeholder:text-slate-600 ${
                 errors.endDate
                   ? "border-red-500/70"
                   : "border-slate-700 focus:border-slate-500"
@@ -332,7 +332,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
       </section>
 
       {/* Summary */}
-      <section className="rounded-xl border border-slate-800 bg-slate-950">
+      <section className="rounded-xl border border-slate-800 bg-slate-900/70 px-6 lg:px-4 py-5">
         <div className="border-b border-slate-800 px-5 py-4">
           <h2 className="text-sm font-semibold text-white">Job Summary</h2>
 
@@ -346,7 +346,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
             {...register("jobSummary")}
             rows={5}
             placeholder="Briefly describe your role, responsibilities, and the type of work you performed..."
-            className={`w-full resize-y rounded-lg border bg-slate-950 px-3 py-2.5 text-sm text-slate-200 outline-none transition placeholder:text-slate-600 ${
+            className={`w-full rounded-lg border border-slate-700 px-3 py-2.5 text-sm text-slate-400 outline-none transition focus:border-slate-800 focus:ring-1 focus:ring-gray-900 placeholder:text-slate-600 ${
               errors.jobSummary
                 ? "border-red-500/70"
                 : "border-slate-700 focus:border-slate-500"
@@ -362,7 +362,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
       </section>
 
       {/* Stack */}
-      <section className="rounded-xl border border-slate-800 bg-slate-950">
+      <section className="rounded-xl border border-slate-800 bg-slate-900/70 px-6 lg:px-4 py-5">
         <div className="border-b border-slate-800 px-5 py-4">
           <h2 className="text-sm font-semibold text-white">Tech Stack</h2>
 
@@ -395,7 +395,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
       </section>
 
       {/* Responsibilities */}
-      <section className="rounded-xl border border-slate-800 bg-slate-950">
+      <section className="rounded-xl border border-slate-800 bg-slate-900/70 px-6 lg:px-4 py-5">
         <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4">
           <div>
             <h2 className="text-sm font-semibold text-white">
@@ -439,7 +439,7 @@ export default function ExperienceForm({ skills, experience }: Props) {
                   {...register(`bullets.${index}.description`)}
                   type="text"
                   placeholder="Describe a responsibility or achievement..."
-                  className={`w-full rounded-lg border bg-slate-950 px-3 py-2.5 text-sm text-slate-200 outline-none transition placeholder:text-slate-600 ${
+                  className={`w-full rounded-lg border border-slate-700 px-3 py-2.5 text-sm text-slate-400 outline-none transition focus:border-slate-800 focus:ring-1 focus:ring-gray-900 placeholder:text-slate-600 ${
                     errors.bullets?.[index]?.description
                       ? "border-red-500/70"
                       : "border-slate-700 focus:border-slate-500"

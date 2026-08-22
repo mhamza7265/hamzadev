@@ -65,11 +65,11 @@ const ProfileForm = ({ profile }: { profile: ProfileType | null }) => {
       {/* Personal Information */}
       <section className="rounded-xl border border-slate-800 bg-slate-900/70 lg:p-5">
         <div className="border-b border-slate-800 px-5 py-4">
-          <h2 className="text-base font-semibold text-white">
+          <h2 className="text-sm font-semibold text-white">
             Personal Information
           </h2>
 
-          <p className="text-sm font-medium text-slate-400">
+          <p className="mt-1 text-xs text-slate-500">
             Your basic professional information.
           </p>
         </div>
@@ -81,7 +81,7 @@ const ProfileForm = ({ profile }: { profile: ProfileType | null }) => {
               <div key={i}>
                 <label
                   htmlFor={field.name}
-                  className="mb-2 block text-sm font-medium text-slate-400"
+                  className="mb-2 block text-sm font-medium text-white"
                 >
                   {field.label}
                 </label>
@@ -106,9 +106,9 @@ const ProfileForm = ({ profile }: { profile: ProfileType | null }) => {
       {/* Social & Links */}
       <section className="rounded-xl border border-slate-800 bg-slate-900/70 p-1 lg:p-5">
         <div className="border-b border-slate-800 px-5 py-4">
-          <h2 className="text-base font-semibold text-white">Social & Links</h2>
+          <h2 className="text-sm font-semibold text-white">Social & Links</h2>
 
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-xs text-slate-500">
             Links to your professional profiles and resume.
           </p>
         </div>
@@ -118,7 +118,7 @@ const ProfileForm = ({ profile }: { profile: ProfileType | null }) => {
             <div key={i}>
               <label
                 htmlFor={field.name}
-                className="mb-2 block text-sm font-medium text-slate-400"
+                className="mb-2 block text-sm font-medium text-white"
               >
                 {field.label}
               </label>

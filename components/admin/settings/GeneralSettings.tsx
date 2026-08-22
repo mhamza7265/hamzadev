@@ -63,18 +63,18 @@ const GeneralSettings = ({ settings }: GeneralSettingsProps) => {
     }
   };
 
-  const handleCancel = () => {
-    reset();
-  };
+  // const handleCancel = () => {
+  //   reset();
+  // };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {/* Public Website */}
       <section className="rounded-xl border border-slate-800 bg-slate-900/70 p-1 lg:p-5">
         <div className="border-b border-slate-800 px-5 py-4">
-          <h2 className="text-base font-semibold text-white">Public Website</h2>
+          <h2 className="text-sm font-semibold text-white">Public Website</h2>
 
-          <p className="text-sm font-medium text-slate-400">
+          <p className="mt-1 text-xs text-slate-500">
             Basic information used across your public portfolio.
           </p>
         </div>
@@ -84,7 +84,7 @@ const GeneralSettings = ({ settings }: GeneralSettingsProps) => {
           <div>
             <label
               htmlFor="publicSiteTitle"
-              className="mb-2 block text-sm font-medium text-slate-400"
+              className="mb-1.5 block text-sm font-medium text-slate-300"
             >
               Site Title
             </label>
@@ -108,7 +108,7 @@ const GeneralSettings = ({ settings }: GeneralSettingsProps) => {
           <div>
             <label
               htmlFor="publicSiteDescription"
-              className="mb-2 block text-sm font-medium text-slate-400"
+              className="mb-1.5 block text-sm font-medium text-slate-300"
             >
               Site Description
             </label>
@@ -132,7 +132,7 @@ const GeneralSettings = ({ settings }: GeneralSettingsProps) => {
           <div>
             <label
               htmlFor="siteUrl"
-              className="mb-2 block text-sm font-medium text-slate-400"
+              className="mb-1.5 block text-sm font-medium text-slate-300"
             >
               Site URL
             </label>
@@ -171,7 +171,7 @@ const GeneralSettings = ({ settings }: GeneralSettingsProps) => {
           <div>
             <label
               htmlFor="adminTitle"
-              className="mb-2 block text-sm font-medium text-slate-400"
+              className="mb-1.5 block text-sm font-medium text-slate-300"
             >
               Admin Title
             </label>
@@ -195,7 +195,7 @@ const GeneralSettings = ({ settings }: GeneralSettingsProps) => {
           <div>
             <label
               htmlFor="adminDescription"
-              className="mb-2 block text-sm font-medium text-slate-400"
+              className="mb-1.5 block text-sm font-medium text-slate-300"
             >
               Admin Description
             </label>
@@ -232,7 +232,7 @@ const GeneralSettings = ({ settings }: GeneralSettingsProps) => {
           <div>
             <label
               htmlFor="seoTitle"
-              className="mb-2 block text-sm font-medium text-slate-400"
+              className="mb-1.5 block text-sm font-medium text-slate-300"
             >
               SEO Title
             </label>
@@ -256,7 +256,7 @@ const GeneralSettings = ({ settings }: GeneralSettingsProps) => {
           <div>
             <label
               htmlFor="seoDescription"
-              className="mb-2 block text-sm font-medium text-slate-400"
+              className="mb-1.5 block text-sm font-medium text-slate-300"
             >
               SEO Description
             </label>
@@ -280,7 +280,7 @@ const GeneralSettings = ({ settings }: GeneralSettingsProps) => {
           {/* <div>
             <label
               htmlFor="seoKeywords"
-              className="mb-2 block text-sm font-medium text-slate-400"
+              className="mb-1.5 block text-sm font-medium text-slate-300"
             >
               SEO Keywords
             </label>
@@ -304,7 +304,7 @@ const GeneralSettings = ({ settings }: GeneralSettingsProps) => {
           <div>
             <label
               htmlFor="canonicalUrl"
-              className="mb-2 block text-sm font-medium text-slate-400"
+              className="mb-1.5 block text-sm font-medium text-slate-300"
             >
               Canonical URL
             </label>
@@ -328,7 +328,7 @@ const GeneralSettings = ({ settings }: GeneralSettingsProps) => {
           <div>
             <label
               htmlFor="ogImageUrl"
-              className="mb-2 block text-sm font-medium text-slate-400"
+              className="mb-1.5 block text-sm font-medium text-slate-300"
             >
               Open Graph Image URL
             </label>

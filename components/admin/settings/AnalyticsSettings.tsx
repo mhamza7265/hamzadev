@@ -90,9 +90,9 @@ const AnalyticsSettings = ({
         className="rounded-xl border border-slate-800 bg-slate-900/70 p-1 lg:p-5"
       >
         <div className="border-b border-slate-800 px-5 py-4">
-          <h2 className="text-base font-semibold text-white">Data Retention</h2>
+          <h2 className="text-sm font-semibold text-white">Data Retention</h2>
 
-          <p className="text-sm text-slate-400">
+          <p className="mt-1 text-xs text-slate-500">
             Configure how long analytics data should be retained.
           </p>
         </div>
@@ -101,7 +101,7 @@ const AnalyticsSettings = ({
           <div className="max-w-sm">
             <label
               htmlFor="analyticsRetentionDays"
-              className="mb-2 block text-sm font-medium text-slate-400"
+              className="mb-1.5 block text-sm font-medium text-slate-300"
             >
               Retention Period
             </label>

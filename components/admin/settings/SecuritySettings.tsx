@@ -50,11 +50,9 @@ const SecuritySettings = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <section className="rounded-xl border border-slate-800 bg-slate-900/70 p-1 lg:p-5">
         <div className="border-b border-slate-800 px-5 py-4">
-          <h2 className="text-base font-semibold text-white">
-            Change Password
-          </h2>
+          <h2 className="text-sm font-semibold text-white">Change Password</h2>
 
-          <p className="text-sm text-slate-400">
+          <p className="mt-1 text-xs text-slate-500">
             Update the password used to access your admin dashboard.
           </p>
         </div>
@@ -64,7 +62,7 @@ const SecuritySettings = () => {
           <div>
             <label
               htmlFor="currentPassword"
-              className="mb-2 block text-sm font-medium text-slate-400"
+              className="mb-1.5 block text-sm font-medium text-slate-300"
             >
               Current Password
             </label>
@@ -103,7 +101,7 @@ const SecuritySettings = () => {
           <div>
             <label
               htmlFor="newPassword"
-              className="mb-2 block text-sm font-medium text-slate-400"
+              className="mb-1.5 block text-sm font-medium text-slate-300"
             >
               New Password
             </label>
@@ -140,7 +138,7 @@ const SecuritySettings = () => {
           <div>
             <label
               htmlFor="confirmPassword"
-              className="mb-2 block text-sm font-medium text-slate-400"
+              className="mb-1.5 block text-sm font-medium text-slate-300"
             >
               Confirm New Password
             </label>
